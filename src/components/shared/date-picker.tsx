@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import {
   Popover,
   PopoverContent,
@@ -22,15 +22,8 @@ const SmallCalendar = ({ }: { defaultDate?: number }) => {
 
 
   const [month, setMonth] = useState<string[][]>(getMonth());
-  const [monthNumber, setMonthNumber] = useState<number>(1);
+  const [monthNumber, setMonthNumber] = useState<number>(new Date().getMonth());
   const output_month = deserializeMonth(month);
-
-
-  useEffect(() => {
-    setMonthNumber(new Date().getMonth());
-    setMonth(getMonth());
-  }, [])
-
 
 
 

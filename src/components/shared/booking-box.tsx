@@ -11,7 +11,6 @@ import DatePicker from './date-picker';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
 import dayjs from 'dayjs';
-// import dayjs from 'dayjs';
 
 
 const BookingBox = () => {
