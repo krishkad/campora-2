@@ -113,7 +113,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const MemoizedCalendars = React.memo(Calendar)
+// const MemoizedCalendars = React.memo(Calendar)
 
 export default function DatePicker({
   className,
@@ -152,7 +152,7 @@ export default function DatePicker({
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
           <React.Suspense fallback={<p>Loading...</p>}>
-            <MemoizedCalendars
+            <Calendar
               initialFocus
               mode="range"
               defaultMonth={date?.from}
