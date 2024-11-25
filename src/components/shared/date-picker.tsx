@@ -31,7 +31,7 @@ const DatePicker = ({ }: { defaultDate?: number }) => {
     <Popover>
       <PopoverTrigger asChild>
         <p
-          className={cn(buttonVariants({ variant: "outline" }), "rounded-full cursor-pointer w-full")}
+          className={cn("h-9 px-4 py-2 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors", "rounded-full cursor-pointer w-full")}
         >
           <Calendar1Icon className='w-4 h-4 shrink-0 inline mr-0.5' />
           {dayjs(new Date(dayjs().year(), monthNumber, dayjs().date())).format('DD MMM YYYY')}
