@@ -19,7 +19,6 @@ import SmallCalendar from './small-calendart';
 const DatePicker = ({ }: { defaultDate?: number }) => {
 
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
 
   const [month, setMonth] = useState<string[][]>(getMonth());
@@ -30,7 +29,7 @@ const DatePicker = ({ }: { defaultDate?: number }) => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild onClick={() => setIsCalendarOpen(true)}>
+      <PopoverTrigger asChild>
         <p
           className={cn(buttonVariants({ variant: "outline" }), "rounded-full cursor-pointer w-full")}
         >
@@ -39,11 +38,7 @@ const DatePicker = ({ }: { defaultDate?: number }) => {
         </p>
       </PopoverTrigger>
       <PopoverContent className="w-max border-border p-2">
-        {isCalendarOpen && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <SmallCalendar setMonth={setMonth} setMonthNumber={setMonthNumber} output_month={output_month} monthNumber={monthNumber} />
-          </Suspense>
-        )}
+        <SmallCalendar setMonth={setMonth} setMonthNumber={setMonthNumber} output_month={output_month} monthNumber={monthNumber} />
       </PopoverContent>
     </Popover >
   );
