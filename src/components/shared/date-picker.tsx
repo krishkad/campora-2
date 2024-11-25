@@ -151,14 +151,16 @@ export default function DatePicker({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
-          <MemoizedCalendars
-            initialFocus
-            mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
-            numberOfMonths={2}
-          />
+          <React.Suspense fallback={<p>Loading...</p>}>
+            <MemoizedCalendars
+              initialFocus
+              mode="range"
+              defaultMonth={date?.from}
+              selected={date}
+              onSelect={setDate}
+              numberOfMonths={2}
+            />
+          </React.Suspense>
         </PopoverContent>
       </Popover>
     </div>
