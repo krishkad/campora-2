@@ -11,11 +11,12 @@ import { cn, deserializeMonth, getMonth } from '@/lib/utils';
 import { Calendar1Icon } from 'lucide-react';
 // import { dayHeader } from '@/constants/index.c';
 import { buttonVariants } from '../ui/button';
+import SmallCalendar from './small-calendart';
 
 
-const LazyCalendar = React.lazy(() => import("./small-calendart"));
+// const LazyCalendar = React.lazy(() => import("./small-calendart"));
 
-const SmallCalendar = ({ }: { defaultDate?: number }) => {
+const DatePicker = ({ }: { defaultDate?: number }) => {
 
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -40,7 +41,7 @@ const SmallCalendar = ({ }: { defaultDate?: number }) => {
       <PopoverContent className="w-max border-border p-2">
         {isCalendarOpen && (
           <Suspense fallback={<div>Loading...</div>}>
-            <LazyCalendar setMonth={setMonth} setMonthNumber={setMonthNumber} output_month={output_month} monthNumber={monthNumber} />
+            <SmallCalendar setMonth={setMonth} setMonthNumber={setMonthNumber} output_month={output_month} monthNumber={monthNumber} />
           </Suspense>
         )}
       </PopoverContent>
@@ -48,4 +49,4 @@ const SmallCalendar = ({ }: { defaultDate?: number }) => {
   );
 };
 
-export default SmallCalendar;
+export default DatePicker;
