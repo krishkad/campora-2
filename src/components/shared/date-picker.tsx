@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useEffect, useState } from 'react'
+import React, { lazy, useEffect, useState } from 'react'
 import {
   Popover,
   PopoverContent,
@@ -12,7 +12,7 @@ import { Calendar1Icon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { dayHeader } from '@/constants/index.c';
 import { Button, buttonVariants } from '../ui/button';
 
-const SmallCalendar = memo(({ }: { defaultDate?: number }) => {
+const SmallCalendar = ({}: { defaultDate?: number }) => {
 
 
 
@@ -90,6 +90,6 @@ const SmallCalendar = memo(({ }: { defaultDate?: number }) => {
       </PopoverContent>
     </Popover>
   );
-});
+};
 
 export default SmallCalendar;
