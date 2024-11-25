@@ -20,11 +20,13 @@ const BookingBox = () => {
             <div
                 className=" bg-white rounded-3xl md:rounded-full h-32 md:h-16 p-4 grid grid-cols-2 md:flex md:items-center md:justify-bwtween gap-5 border"
             >
-                <DatePicker />
-                <DatePicker defaultDate={dayjs().month()} />
+                <div className="col-span-2 w-full">
+                    <DatePicker />
+                </div>
+
                 {/* <div className="w-full">date picker disable</div> */}
                 <Select>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="max-w-[150px]">
                         <SelectValue placeholder="2" />
                     </SelectTrigger>
                     <SelectContent>
@@ -33,7 +35,7 @@ const BookingBox = () => {
                         <SelectItem value="3" className='w-full'>3</SelectItem>
                     </SelectContent>
                 </Select>
-                <Button className='w-full rounded-full'>
+                <Button className='max-w-[200px] rounded-full'>
                     Check Availability
                     <ArrowRight className='w-4 h-4 inline ml-0.5 max-md:hidden' />
                 </Button>
