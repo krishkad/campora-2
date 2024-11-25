@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import {
   Popover,
   PopoverContent,
@@ -12,7 +12,7 @@ import { Calendar1Icon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { dayHeader } from '@/constants/index.c';
 import { Button, buttonVariants } from '../ui/button';
 
-const SmallCalendar = ({ }: { defaultDate?: number }) => {
+const SmallCalendar = memo(({ }: { defaultDate?: number }) => {
 
 
 
@@ -34,7 +34,7 @@ const SmallCalendar = ({ }: { defaultDate?: number }) => {
     <Popover>
       <PopoverTrigger asChild>
         <p
-          className={cn( buttonVariants({ variant: "outline" }), "rounded-full cursor-pointer w-full")}
+          className={cn(buttonVariants({ variant: "outline" }), "rounded-full cursor-pointer w-full")}
         >
           <Calendar1Icon className='w-4 h-4 shrink-0 inline mr-0.5' />
           {dayjs(new Date(dayjs().year(), monthNumber, dayjs().date())).format('DD MMM YYYY')}
@@ -90,6 +90,6 @@ const SmallCalendar = ({ }: { defaultDate?: number }) => {
       </PopoverContent>
     </Popover>
   );
-};
+});
 
 export default SmallCalendar;

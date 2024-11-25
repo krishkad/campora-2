@@ -22,7 +22,7 @@ const BookingBox = () => {
             >
                 <DatePicker />
                 {/* <DatePicker defaultDate={dayjs().month()} /> */}
-                <div className="">date picker disable</div>
+                <div className="w-full">date picker disable</div>
                 <Select>
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder="2" />
