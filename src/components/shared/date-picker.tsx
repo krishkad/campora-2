@@ -186,7 +186,7 @@ import {
 } from "@/components/ui/popover";
 
 // Memoize the Calendar to prevent unnecessary re-renders
-const MemoizedCalendar = React.memo(Calendar);
+// const MemoizedCalendar = React.memo(Calendar);
 
 export default function DatePicker({
   className,
@@ -207,9 +207,9 @@ export default function DatePicker({
   }, [date]);
 
 
-  const handleDateSelect = React.useCallback((selectedDate: DateRange | undefined) => {
-    setDate(selectedDate);
-  }, []);
+  // const handleDateSelect = React.useCallback((selectedDate: DateRange | undefined) => {
+  //   setDate(selectedDate);
+  // }, []);
 
   console.log("calendar component")
   return (
@@ -229,16 +229,14 @@ export default function DatePicker({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
-          <React.Suspense fallback={<div>Loading Calendar...</div>}>
-            <MemoizedCalendar
+            <Calendar
               initialFocus
               mode="range"
               defaultMonth={date?.from}
               selected={date}
-              onSelect={handleDateSelect}
+              onSelect={setDate}
               numberOfMonths={2}
             />
-          </React.Suspense>
         </PopoverContent>
       </Popover>
     </div>
