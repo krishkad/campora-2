@@ -97,31 +97,114 @@
 
 
 
-"use client"
+// "use client"
 
-import * as React from "react"
-import { addDays, format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
+// import * as React from "react"
+// import { addDays, format } from "date-fns"
+// import { CalendarIcon } from "lucide-react"
+// import { DateRange } from "react-day-picker"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+// import { cn } from "@/lib/utils"
+// import { Button } from "@/components/ui/button"
+// import { Calendar } from "@/components/ui/calendar"
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover";
+
+// const MemoizedCalendars = React.memo(Calendar)
+
+// export default function DatePicker({
+//   className,
+// }: React.HTMLAttributes<HTMLDivElement>) {
+
+
+   
+//   const [date, setDate] = React.useState<DateRange | undefined>({
+//     from: new Date(2022, 0, 20),
+//     to: addDays(new Date(2022, 0, 20), 20),
+//   })
+
+//   return (
+//     <div className={cn("w-full grid gap-2", className)}>
+//       <Popover>
+//         <PopoverTrigger asChild>
+//           <Button
+//             id="date"
+//             variant={"outline"}
+//             className={cn(
+//               "w-full justify-start text-left font-normal",
+//               !date && "text-muted-foreground"
+//             )}
+//           >
+//             <CalendarIcon />
+//             {date?.from ? (
+//               date.to ? (
+//                 <>
+//                   {format(date.from, "LLL dd, y")} -{" "}
+//                   {format(date.to, "LLL dd, y")}
+//                 </>
+//               ) : (
+//                 format(date.from, "LLL dd, y")
+//               )
+//             ) : (
+//               <span>Pick a date</span>
+//             )}
+//           </Button>
+//         </PopoverTrigger>
+//         <PopoverContent className="w-full p-0" align="start">
+//             <MemoizedCalendars
+//               initialFocus
+//               mode="range"
+//               defaultMonth={date?.from}
+//               selected={date}
+//               onSelect={setDate}
+//               numberOfMonths={2}
+//             />
+//         </PopoverContent>
+//       </Popover>
+//     </div>
+//   )
+// }
+
+
+"use client";
+
+import * as React from "react";
+import { addDays, format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { DateRange } from "react-day-picker";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const MemoizedCalendars = React.memo(Calendar)
+// Memoize the Calendar to prevent unnecessary re-renders
+const MemoizedCalendar = React.memo(Calendar);
 
 export default function DatePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
+  // Use useState with lazy initialization
+  const [date, setDate] = React.useState<DateRange | undefined>(() => ({
     from: new Date(2022, 0, 20),
     to: addDays(new Date(2022, 0, 20), 20),
-  })
+  }));
+
+  const formattedDate = React.useMemo(() => {
+    if (date?.from) {
+      return date.to
+        ? `${format(date.from, "LLL dd, y")} - ${format(date.to, "LLL dd, y")}`
+        : format(date.from, "LLL dd, y");
+    }
+    return "Pick a date";
+  }, [date]);
 
   return (
     <div className={cn("w-full grid gap-2", className)}>
@@ -129,29 +212,19 @@ export default function DatePicker({
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={"outline"}
+            variant="outline"
             className={cn(
               "w-full justify-start text-left font-normal",
               !date && "text-muted-foreground"
             )}
           >
             <CalendarIcon />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
-            ) : (
-              <span>Pick a date</span>
-            )}
+            <span>{formattedDate}</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
-            <MemoizedCalendars
+          <React.Suspense fallback={<div>Loading Calendar...</div>}>
+            <MemoizedCalendar
               initialFocus
               mode="range"
               defaultMonth={date?.from}
@@ -159,8 +232,9 @@ export default function DatePicker({
               onSelect={setDate}
               numberOfMonths={2}
             />
+          </React.Suspense>
         </PopoverContent>
       </Popover>
     </div>
-  )
+  );
 }
