@@ -7,7 +7,7 @@ const Hero = () => {
     return (
         <div className='relative w-full h-svh'>
             <Image
-                src={'/images/hero/hero-2-reduced.jpg'}
+                src={'/images/hero/hero-2-reduced-2.jpg'}
                 width={0}
                 height={0}
                 className='w-full h-full object-cover select-none pointer-events-none'
