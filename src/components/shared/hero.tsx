@@ -7,13 +7,15 @@ const Hero = () => {
     return (
         <div className='relative w-full h-svh'>
             <Image
-                unoptimized
-                width={0}
-                height={0}
+                src={'/images/hero/hero-2-reduced-2.jpg'}
+                fill
+                sizes={'100vw'}
                 loading='eager'
                 priority
-                src={'/images/hero/hero-2-reduced-2.jpg'}
-                className='w-full h-full object-cover select-none pointer-events-none'
+                style={{ 
+                    objectFit: "cover"
+                }}
+                className='select-none pointer-events-none'
                 alt='hero-images'
             />
             <div className="absolute inset-0 size-full bg-black opacity-45" />
