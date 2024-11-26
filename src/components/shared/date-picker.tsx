@@ -205,7 +205,7 @@ export default function DatePicker({
     }
     return "Pick a date";
   }, [date]);
-
+  console.log("calendar component")
   return (
     <div className={cn("w-full grid gap-2", className)}>
       <Popover>

@@ -1,26 +1,16 @@
 "use client";
 
-import React from 'react'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+import React, { useState } from 'react'
+import { Input } from "@/components/ui/input"
+
 
 const NumberSelect = () => {
+    const [guest, setGuest] = useState(2)
+
     return (
-        <Select>
-            <SelectTrigger className="max-w-[150px]">
-                <SelectValue placeholder="2" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="1" className='w-full'>1</SelectItem>
-                <SelectItem value="2" className='w-full'>2</SelectItem>
-                <SelectItem value="3" className='w-full'>3</SelectItem>
-            </SelectContent>
-        </Select>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Input datatype='integer' value={guest} onChange={(event) => setGuest(Number(event.target.value))} id="guest" placeholder="No. of people" />
+        </div>
     )
 }
 
