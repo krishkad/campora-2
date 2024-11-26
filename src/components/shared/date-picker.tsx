@@ -120,7 +120,7 @@
 // }: React.HTMLAttributes<HTMLDivElement>) {
 
 
-   
+
 //   const [date, setDate] = React.useState<DateRange | undefined>({
 //     from: new Date(2022, 0, 20),
 //     to: addDays(new Date(2022, 0, 20), 20),
@@ -205,6 +205,12 @@ export default function DatePicker({
     }
     return "Pick a date";
   }, [date]);
+
+
+  const handleDateSelect = React.useCallback((selectedDate: DateRange | undefined) => {
+    setDate(selectedDate);
+  }, []);
+
   console.log("calendar component")
   return (
     <div className={cn("w-full grid gap-2", className)}>
@@ -229,7 +235,7 @@ export default function DatePicker({
               mode="range"
               defaultMonth={date?.from}
               selected={date}
-              onSelect={setDate}
+              onSelect={handleDateSelect}
               numberOfMonths={2}
             />
           </React.Suspense>
