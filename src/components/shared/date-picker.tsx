@@ -184,6 +184,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import dayjs from "dayjs";
 // import {
 //   Dialog,
 //   DialogContent,
@@ -202,8 +203,8 @@ export default function DatePicker({
 }: React.HTMLAttributes<HTMLDivElement>) {
   // Use useState with lazy initialization
   const [date, setDate] = React.useState<DateRange | undefined>(() => ({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: new Date(dayjs().year(), dayjs().month(), dayjs().date()),
+    to: addDays(new Date(dayjs().year(), dayjs().month(), dayjs().date()), 1),
   }));
 
   const formattedDate = React.useMemo(() => {
@@ -228,7 +229,7 @@ export default function DatePicker({
             id="date"
             variant="outline"
             className={cn(
-              "w-full justify-start text-left font-normal",
+              "w-full justify-start text-left font-normal rounded-full",
               !date && "text-muted-foreground"
             )}
           >
@@ -237,14 +238,14 @@ export default function DatePicker({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
-            <Calendar
-              initialFocus
-              mode="range"
-              defaultMonth={date?.from}
-              selected={date}
-              onSelect={setDate}
-              numberOfMonths={2}
-            />
+          <Calendar
+            initialFocus
+            mode="range"
+            defaultMonth={date?.from}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
+          />
         </PopoverContent>
       </Popover>
     </div>
