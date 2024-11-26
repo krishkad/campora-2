@@ -220,7 +220,6 @@ export default function DatePicker({
   //   setDate(selectedDate);
   // }, []);
 
-  console.log("calendar component")
   return (
     <div className={cn("w-full grid gap-2", className)}>
       <Popover>

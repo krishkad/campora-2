@@ -7,7 +7,7 @@ export default function Home() {
       <Hero />
       <div className="w-full h-screen mt-32">
         <h1 className="text-4xl font-semibold text-balance pl-5 md:pl-8">
-          Stay in Cozy Cottages<br /> and Scenic Camps
+          tay in comfy cottages and <br /> chill at scenic camps
         </h1>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 mt-8">
           <div className="relative w-full aspect-square">
