@@ -179,19 +179,19 @@ import { DateRange } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@/components/ui/popover";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogDescription,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from "@/components/ui/dialog"
 
 
 // Memoize the Calendar to prevent unnecessary re-renders
@@ -222,37 +222,9 @@ export default function DatePicker({
 
   console.log("calendar component")
   return (
-    // <div className={cn("w-full grid gap-2", className)}>
-    //   <Popover>
-    //     <PopoverTrigger asChild>
-    //       <Button
-    //         id="date"
-    //         variant="outline"
-    //         className={cn(
-    //           "w-full justify-start text-left font-normal",
-    //           !date && "text-muted-foreground"
-    //         )}
-    //       >
-    //         <CalendarIcon />
-    //         <span>{formattedDate}</span>
-    //       </Button>
-    //     </PopoverTrigger>
-    //     <PopoverContent className="w-full p-0" align="start">
-    //         <Calendar
-    //           initialFocus
-    //           mode="range"
-    //           defaultMonth={date?.from}
-    //           selected={date}
-    //           onSelect={setDate}
-    //           numberOfMonths={2}
-    //         />
-    //     </PopoverContent>
-    //   </Popover>
-    // </div>
-
     <div className={cn("w-full grid gap-2", className)}>
-      <Dialog>
-        <DialogTrigger asChild>
+      <Popover>
+        <PopoverTrigger asChild>
           <Button
             id="date"
             variant="outline"
@@ -264,28 +236,56 @@ export default function DatePicker({
             <CalendarIcon />
             <span>{formattedDate}</span>
           </Button>
-        </DialogTrigger>
-        <DialogContent className="w-max">
-          <DialogHeader>
-            <DialogTitle>
-              Select Date
-            </DialogTitle>
-            <DialogDescription>
-              Select Check-In and Check-Out dates
-            </DialogDescription>
-          </DialogHeader>
-
-          <Calendar
-            initialFocus
-            mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
-            numberOfMonths={2}
-            className="p-0"
-          />
-        </DialogContent>
-      </Dialog>
+        </PopoverTrigger>
+        <PopoverContent className="w-full p-0" align="start">
+            <Calendar
+              initialFocus
+              mode="range"
+              defaultMonth={date?.from}
+              selected={date}
+              onSelect={setDate}
+              numberOfMonths={2}
+            />
+        </PopoverContent>
+      </Popover>
     </div>
+
+    // <div className={cn("w-full grid gap-2", className)}>
+    //   <Dialog>
+    //     <DialogTrigger asChild>
+    //       <Button
+    //         id="date"
+    //         variant="outline"
+    //         className={cn(
+    //           "w-full justify-start text-left font-normal",
+    //           !date && "text-muted-foreground"
+    //         )}
+    //       >
+    //         <CalendarIcon />
+    //         <span>{formattedDate}</span>
+    //       </Button>
+    //     </DialogTrigger>
+    //     <DialogContent className="w-max">
+    //       <DialogHeader>
+    //         <DialogTitle>
+    //           Select Date
+    //         </DialogTitle>
+    //         <DialogDescription>
+    //           Select Check-In and Check-Out dates
+    //         </DialogDescription>
+    //       </DialogHeader>
+
+    //       <Calendar
+    //         initialFocus
+    //         mode="range"
+    //         defaultMonth={date?.from}
+    //         selected={date}
+    //         onSelect={setDate}
+    //         numberOfMonths={2}
+    //         className="p-0"
+    //       />
+    //     </DialogContent>
+    //   </Dialog>
+    // </div>
   );
 }
