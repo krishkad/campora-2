@@ -1,6 +1,6 @@
 import Hero from "@/components/shared/hero";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, CookingPot, FlameKindling, PartyPopper, QuoteIcon, Tent } from "lucide-react";
+import { AirVent, Armchair, ArrowLeft, ArrowRight, Bed, CookingPot, FlameKindling, PartyPopper, PencilRuler, QuoteIcon, Star, Tent } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -85,9 +85,12 @@ export default function Home() {
               <h2 className="text-xl font-semibold">
                 Camping Tent
               </h2>
-              <p className="text-sm">
-                Experience serene lakeside camping like never before! Nestled by the tranquil waters, our premium tents offer unmatched comfort, breathtaking views, and a perfect escape to nature&apos;s embrace. Relax, unwind, and reconnect under the stars!
-              </p>
+              <div className="w-full">
+                <p className="text-sm"><PencilRuler className="inline mr-2 w-4 h-4" />8x8 ft tent for 2 adults</p>
+                <p className="text-sm"><Bed className="inline mr-2 w-4 h-4" />Includes sleeping bags and pads</p>
+                <p className="text-sm"><Armchair className="inline mr-2 w-4 h-4" />Chairs, table, lantern, fire pit</p>
+                <p className="text-sm"><Star className="inline mr-2 w-4 h-4" />Lakefront, pre-pitched</p>
+              </div>
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
 
@@ -98,9 +101,12 @@ export default function Home() {
               <h2 className="text-xl font-semibold">
                 Cottage Stay
               </h2>
-              <p className="text-sm">
-                Stay in a cozy lakeside cottage and enjoy the perfect getaway! Wake up to peaceful water views, relax in comfort, and make the most of your time in nature. It&apos;s the ultimate spot to unwind and recharge.
-              </p>
+              <div className="w-full">
+                <p className="text-sm"><PencilRuler className="inline mr-2 w-4 h-4" />20x15 ft cottage for 4</p>
+                <p className="text-sm"><Bed className="inline mr-2 w-4 h-4" /> 1 queen bed, 1 sofa bed</p>
+                <p className="text-sm"><AirVent className="inline mr-2 w-4 h-4" />Kitchenette, bathroom, AC</p>
+                <p className="text-sm"><Star className="inline mr-2 w-4 h-4" />Lakefront with private patio</p>
+              </div>
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
 
