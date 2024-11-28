@@ -86,7 +86,7 @@ export default function Home() {
                 Camping Tent
               </h2>
               <p className="text-sm">
-                Experience serene lakeside camping like never before! Nestled by the tranquil waters, our premium tents offer unmatched comfort, breathtaking views, and a perfect escape to nature's embrace. Relax, unwind, and reconnect under the stars!
+                Experience serene lakeside camping like never before! Nestled by the tranquil waters, our premium tents offer unmatched comfort, breathtaking views, and a perfect escape to nature&apos;s embrace. Relax, unwind, and reconnect under the stars!
               </p>
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
