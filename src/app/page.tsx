@@ -73,7 +73,7 @@ export default function Home() {
       </div>
 
       <div className="w-full">
-        <div className="max-w-6xl mx-auto mt-24">
+        <div className="max-w-6xl px-4 md:px-8 mx-auto mt-24">
           <h1 className="text-4xl font-semibold text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
           </h1>
