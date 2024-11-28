@@ -13,7 +13,7 @@ export default function Home() {
             Welcome to <span className="px-2 text-white bg-primary">Campora</span>
           </h1>
           <p className="text-base font-medium text-center mt-7 max-w-xl">
-            Looking for a getaway in nature? Campora is the perfect spot to relax, explore, and have fun. With cozy accommodations, exciting activities, and amazing views, we’ve got everything you need for a great time outdoors. Come join us and make some awesome memories! 🌲✨
+            Looking for a getaway in nature? Campora is the perfect spot to relax, explore, and have fun. With cozy accommodations, exciting activities, and amazing views, we&apos;ve got everything you need for a great time outdoors. Come join us and make some awesome memories! 🌲✨
           </p>
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 mt-8">
@@ -99,7 +99,7 @@ export default function Home() {
                 Cottage Stay
               </h2>
               <p className="text-sm">
-                Stay in a cozy lakeside cottage and enjoy the perfect getaway! Wake up to peaceful water views, relax in comfort, and make the most of your time in nature. It’s the ultimate spot to unwind and recharge.
+                Stay in a cozy lakeside cottage and enjoy the perfect getaway! Wake up to peaceful water views, relax in comfort, and make the most of your time in nature. It&apos;s the ultimate spot to unwind and recharge.
               </p>
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
@@ -140,7 +140,7 @@ export default function Home() {
                 <div className="relative w-full mt-5">
                   <QuoteIcon className="w-6 h-6 shrink-0 scale-x-[-1]" />
                   <p className="font-medium pl-10">
-                    I had an amazing stay at this lakeside camping resort! The views were absolutely breathtaking, and the peaceful vibe made it so relaxing. The tents were super comfortable, and I loved waking up to the sound of the water. The staff was friendly and made sure everything was perfect. Can’t wait to come back for another escape into nature!
+                    I had an amazing stay at this lakeside camping resort! The views were absolutely breathtaking, and the peaceful vibe made it so relaxing. The tents were super comfortable, and I loved waking up to the sound of the water. The staff was friendly and made sure everything was perfect. Can&apos;t wait to come back for another escape into nature!
 
                   </p>
                 </div>
