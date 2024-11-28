@@ -79,7 +79,7 @@ export default function Home() {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
             <div className="w-full h-max space-y-3">
-              <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-[4/3]">
                 <Image src={'/images/rooms/camping-2.jpg'} fill priority className="size-full object-cover" alt="images" />
               </div>
               <h2 className="text-xl font-semibold">
@@ -91,7 +91,7 @@ export default function Home() {
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
             <div className="w-full h-max space-y-3">
-              <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-[4/3]">
                 <Image src={'/images/rooms/camping-4.jpg'} fill priority className="size-full object-cover" alt="images" />
               </div>
               <h2 className="text-xl font-semibold">
@@ -103,7 +103,7 @@ export default function Home() {
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
             <div className="w-full h-max space-y-3">
-              <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-[4/3]">
                 <Image src={'/images/cabin/cabin-1.jpg'} fill priority className="size-full object-cover" alt="images" />
               </div>
               <h2 className="text-xl font-semibold">
@@ -115,7 +115,7 @@ export default function Home() {
               <Button className="min-w-[240px]">Check Availibility</Button>
             </div>
             <div className="w-full h-max space-y-3">
-              <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-[4/3]">
                 <Image src={'/images/cabin/cabin-2.jpg'} fill priority className="size-full object-cover" alt="images" />
               </div>
               <h2 className="text-xl font-semibold">
@@ -130,8 +130,14 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-12">
-          
+        <div className="max-w-wrapper-6xl mt-24">
+          <h1 className="text-center text-4xl font-semibold">
+            Everything You Need for a <br className="hidden md:block" />
+            {' '}
+            <span className="px-2 bg-primary text-white">Memorable</span>
+            {' '}
+            Stay
+          </h1>
         </div>
       </div>
     </div>
