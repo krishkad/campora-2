@@ -1,4 +1,5 @@
 import Hero from "@/components/shared/hero";
+import { Button } from "@/components/ui/button";
 import { CookingPot, FlameKindling, PartyPopper, Tent } from "lucide-react";
 import Image from "next/image";
 
@@ -67,6 +68,64 @@ export default function Home() {
               Garden/Ground
             </p>
             <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Serene Grounds for Relaxation</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <div className="max-w-6xl mx-auto mt-24">
+          <h1 className="text-4xl font-semibold text-center">
+            Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            <div className="w-full h-max space-y-3">
+              <div className="relative w-full aspect-video">
+                <Image src={'/images/rooms/camping-2.jpg'} fill priority className="size-full object-cover" alt="images" />
+              </div>
+              <h2 className="text-xl font-semibold">
+                Camping tent
+              </h2>
+              <p className="text-sm">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur rem voluptas excepturi natus distinctio inventore ipsum, officiis unde deleniti voluptatum quis, sit exercitationem nesciunt minima!
+              </p>
+              <Button className="min-w-[240px]">Check Availibility</Button>
+            </div>
+            <div className="w-full h-max space-y-3">
+              <div className="relative w-full aspect-video">
+                <Image src={'/images/rooms/camping-4.jpg'} fill priority className="size-full object-cover" alt="images" />
+              </div>
+              <h2 className="text-xl font-semibold">
+                Camping tent
+              </h2>
+              <p className="text-sm">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur rem voluptas excepturi natus distinctio inventore ipsum, officiis unde deleniti voluptatum quis, sit exercitationem nesciunt minima!
+              </p>
+              <Button className="min-w-[240px]">Check Availibility</Button>
+            </div>
+            <div className="w-full h-max space-y-3">
+              <div className="relative w-full aspect-video">
+                <Image src={'/images/cabin/cabin-1.jpg'} fill priority className="size-full object-cover" alt="images" />
+              </div>
+              <h2 className="text-xl font-semibold">
+                Camping tent
+              </h2>
+              <p className="text-sm">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur rem voluptas excepturi natus distinctio inventore ipsum, officiis unde deleniti voluptatum quis, sit exercitationem nesciunt minima!
+              </p>
+              <Button className="min-w-[240px]">Check Availibility</Button>
+            </div>
+            <div className="w-full h-max space-y-3">
+              <div className="relative w-full aspect-video">
+                <Image src={'/images/cabin/cabin-2.jpg'} fill priority className="size-full object-cover" alt="images" />
+              </div>
+              <h2 className="text-xl font-semibold">
+                Camping tent
+              </h2>
+              <p className="text-sm">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur rem voluptas excepturi natus distinctio inventore ipsum, officiis unde deleniti voluptatum quis, sit exercitationem nesciunt minima!
+              </p>
+              <Button className="min-w-[240px]">Check Availibility</Button>
+            </div>
           </div>
         </div>
       </div>
