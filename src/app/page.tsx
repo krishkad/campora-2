@@ -1,7 +1,22 @@
 import Hero from "@/components/shared/hero";
 import { Button } from "@/components/ui/button";
-import { AirVent, Armchair, ArrowLeft, ArrowRight, BabyIcon, Bed, CookingPot, FlameKindling, FlameKindlingIcon, PartyPopper, PencilRuler, QuoteIcon, SoupIcon, Star, StarIcon, TelescopeIcon, Tent, Wifi } from "lucide-react";
+import { AirVent, Armchair, ArrowLeft, ArrowRight, BabyIcon, Bed, BedSingleIcon, ClockIcon, CoffeeIcon, CookingPot, CupSodaIcon, DoorClosedIcon, FlameKindling, FlameKindlingIcon, Gamepad, Music2Icon, PartyPopper, PencilRuler, QuoteIcon, SoupIcon, Star, StarIcon, SunIcon, TelescopeIcon, Tent, TreesIcon, UtensilsCrossed, Wifi } from "lucide-react";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
 
 export default function Home() {
   return (
@@ -123,27 +138,48 @@ export default function Home() {
             Stay
           </h1>
           <div className="w-full">
-            <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-5 mt-16">
-              <div className="w-full space-y-3 ">
+            <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-5 mt-16">
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
                 <Wifi className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
-              <div className="w-full space-y-3 ">
-                <SoupIcon className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">Breakfast</p>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
-              <div className="w-full space-y-3 ">
-                <FlameKindlingIcon className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">Campfire area</p>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
-              <div className="w-full space-y-3 ">
-                <BabyIcon className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">Family Friendly</p>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
-              <div className="w-full space-y-3 ">
-                <TelescopeIcon className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">Lake View</p>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+              <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+
             </div>
           </div>
         </div>
@@ -164,6 +200,129 @@ export default function Home() {
         </div>
       </div>
 
+
+      <div className="w-full">
+        <div className="max-w-wrapper-6xl mt-24">
+          <h1 className="text-center text-4xl font-medium">
+            How Your Day
+            {" "}
+            <span className="px-2 bg-primary text-white">Looks</span>
+            {" "}
+            Like ?
+          </h1>
+          <div className="w-full mt-14">
+            <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="day-1">Day 1</TabsTrigger>
+                <TabsTrigger value="day-2">Day 2</TabsTrigger>
+              </TabsList>
+              <TabsContent value="day-1" >
+                <Card  >
+                  <CardHeader>
+                    <CardTitle>Day 1</CardTitle>
+                    <CardDescription>
+                      Make changes to your account here. Click save when you're done.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <ClockIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">4:00 PM</span>
+                      </div>
+                      <p className="font-semibold">Check-In</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <CupSodaIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">5:00 PM</span>
+                      </div>
+                      <p className="font-semibold">Welcome Drink & Snack Time</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <TreesIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">5:30 PM</span>
+                      </div>
+                      <p className="font-semibold">Nature Trail</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Gamepad className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">6:00 PM</span>
+                      </div>
+                      <p className="font-semibold">Game Time</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Music2Icon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">7:30 PM</span>
+                      </div>
+                      <p className="font-semibold">Music Hours</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <FlameKindlingIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">8:00 PM</span>
+                      </div>
+                      <p className="font-semibold">Barbeque Bonanza</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <UtensilsCrossed className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">9:30 PM</span>
+                      </div>
+                      <p className="font-semibold">Dinner Delight </p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <BedSingleIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">11:00 PM</span>
+                      </div>
+                      <p className="font-semibold">Tent Time</p>
+                    </div>
+
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="day-2" >
+                <Card  >
+                  <CardHeader>
+                    <CardTitle>Day 2</CardTitle>
+                    <CardDescription>
+                      Change your password here. After saving, you'll be logged out.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <SunIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">7:00 AM</span>
+                      </div>
+                      <p className="font-semibold">Rise & Shine</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <CoffeeIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">9:00 AM</span>
+                      </div>
+                      <p className="font-semibold">Tea & Breakfast</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <DoorClosedIcon className="w-5 h-5 shrink-0" />
+                        <span className="font-medium text-sm">11:00 AM</span>
+                      </div>
+                      <p className="font-semibold">Check-Out</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+
       <div className="w-full">
         <div className="max-w-wrapper-6xl mt-24">
           <h1 className="text-center text-4xl font-medium">
@@ -178,20 +337,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
-          <h1 className="text-center text-4xl font-medium">
-            How Your Day
-            {" "}
-            <span className="px-2 bg-primary text-white">Looks</span>
-            {" "}
-            Like ?
-          </h1>
-          <div className="w-full mt-14">
 
-          </div>
-        </div>
-      </div>
 
       <div className="w-full">
         <div className="max-w-wrapper-6xl mt-32">
