@@ -1,6 +1,6 @@
 import Hero from "@/components/shared/hero";
 import { Button } from "@/components/ui/button";
-import { AirVent, Armchair, ArrowLeft, ArrowRight, Bed, CookingPot, FlameKindling, PartyPopper, PencilRuler, QuoteIcon, Star, Tent } from "lucide-react";
+import { AirVent, Armchair, ArrowLeft, ArrowRight, BabyIcon, Bed, CookingPot, FlameKindling, FlameKindlingIcon, PartyPopper, PencilRuler, QuoteIcon, SoupIcon, Star, TelescopeIcon, Tent, Wifi } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -73,7 +73,7 @@ export default function Home() {
       </div>
 
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+        <div className="max-w-wrapper-6xl mt-32">
           <h1 className="text-4xl font-semibold text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
           </h1>
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+        <div className="max-w-wrapper-6xl mt-32">
           <h1 className="text-center text-4xl font-semibold">
             Everything You Need for a <br className="hidden md:block" />
             {' '}
@@ -122,10 +122,34 @@ export default function Home() {
             {' '}
             Stay
           </h1>
+          <div className="w-full">
+            <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-5 mt-16">
+              <div className="w-full space-y-3 ">
+                <Wifi className="w-7 h-7 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+              </div>
+              <div className="w-full space-y-3 ">
+                <SoupIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Breakfast</p>
+              </div>
+              <div className="w-full space-y-3 ">
+                <FlameKindlingIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Campfire area</p>
+              </div>
+              <div className="w-full space-y-3 ">
+                <BabyIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Family Friendly</p>
+              </div>
+              <div className="w-full space-y-3 ">
+                <TelescopeIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Lake View</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+        <div className="max-w-wrapper-6xl mt-32">
           <h1 className="text-center text-4xl font-semibold">
             What Our
             {' '}
