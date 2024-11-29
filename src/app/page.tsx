@@ -9,7 +9,7 @@ export default function Home() {
       <Hero />
       <div className="w-full h-max mt-32">
         <div className="max-w-wrapper flex flex-col items-center">
-          <h1 className="text-4xl font-semibold text-balance pl-5 md:pl-8 text-center">
+          <h1 className="text-4xl font-medium text-balance pl-5 md:pl-8 text-center">
             Welcome to <span className="px-2 text-white bg-primary">Campora</span>
           </h1>
           <p className="text-base font-medium text-center mt-7 max-w-xl">
@@ -74,7 +74,7 @@ export default function Home() {
 
       <div className="w-full">
         <div className="max-w-wrapper-6xl mt-32">
-          <h1 className="text-4xl font-semibold text-center">
+          <h1 className="text-4xl font-medium text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
@@ -113,9 +113,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full ">
         <div className="max-w-wrapper-6xl mt-32">
-          <h1 className="text-center text-4xl font-semibold">
+          <h1 className="text-center text-4xl font-medium">
             Everything You Need for a <br className="hidden md:block" />
             {' '}
             <span className="px-2 bg-primary text-white">Memorable</span>
@@ -125,32 +125,77 @@ export default function Home() {
           <div className="w-full">
             <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-5 mt-16">
               <div className="w-full space-y-3 ">
-                <Wifi className="w-7 h-7 shrink-0 mx-auto" />
+                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">High Speed WiFi</p>
               </div>
               <div className="w-full space-y-3 ">
-                <SoupIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <SoupIcon className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">Breakfast</p>
               </div>
               <div className="w-full space-y-3 ">
-                <FlameKindlingIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <FlameKindlingIcon className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">Campfire area</p>
               </div>
               <div className="w-full space-y-3 ">
-                <BabyIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <BabyIcon className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">Family Friendly</p>
               </div>
               <div className="w-full space-y-3 ">
-                <TelescopeIcon className="w-7 h-7 shrink-0 mx-auto" />
+                <TelescopeIcon className="w-12 h-12 shrink-0 mx-auto" />
                 <p className="font-medium text-sm text-center">Lake View</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div className="w-full">
+        <div className="max-w-wrapper-6xl mt-24">
+          <h1 className="text-center text-4xl font-medium">
+            Choosing Us Means
+            {" "}
+            <span className="px-2 bg-primary text-white">Choosing Memories</span>
+            {" "}
+            <br className="hidden md:block" />That Last a Lifetime
+          </h1>
+          <div className="w-full mt-14">
+
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <div className="max-w-wrapper-6xl mt-24">
+          <h1 className="text-center text-4xl font-medium">
+            Snapshots of
+            {" "}
+            <span className="px-2 bg-primary text-white">Adventure</span>
+            {" "}
+          </h1>
+          <div className="w-full mt-14">
+
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <div className="max-w-wrapper-6xl mt-24">
+          <h1 className="text-center text-4xl font-medium">
+            How Your Day
+            {" "}
+            <span className="px-2 bg-primary text-white">Looks</span>
+            {" "}
+            Like ?
+          </h1>
+          <div className="w-full mt-14">
+
+          </div>
+        </div>
+      </div>
+
       <div className="w-full">
         <div className="max-w-wrapper-6xl mt-32">
-          <h1 className="text-center text-4xl font-semibold">
+          <h1 className="text-center text-4xl font-medium">
             What Our
             {' '}
             <span className="px-2 bg-primary text-white">Guests</span>
@@ -166,14 +211,14 @@ export default function Home() {
                     <Image src={'/images/users/user-1.png'} className="object-cover rounded-full" fill priority alt="user-image" />
                   </div>
                   <div className="space-y">
-                  <p className="font-semibold">John James</p>
-                  <div className="flex items-center justify-start gap-2">
-                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
-                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
-                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
-                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
-                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
-                  </div>
+                    <p className="font-semibold">John James</p>
+                    <div className="flex items-center justify-start gap-2">
+                      <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                      <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                      <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                      <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                      <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                    </div>
                   </div>
                 </div>
                 <div className="relative w-full mt-5">
@@ -198,7 +243,7 @@ export default function Home() {
       </div>
       <div className="w-full">
         <div className="max-w-wrapper-6xl mt-24">
-          <h1 className="text-center text-4xl font-semibold">
+          <h1 className="text-center text-4xl font-medium">
             Ready to
             {' '}
             <span className="px-2 bg-primary text-white">Plan</span>
@@ -210,6 +255,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
