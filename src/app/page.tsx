@@ -1,6 +1,6 @@
 import Hero from "@/components/shared/hero";
 import { Button } from "@/components/ui/button";
-import { AirVent, Armchair, ArrowLeft, ArrowRight, BabyIcon, Bed, CookingPot, FlameKindling, FlameKindlingIcon, PartyPopper, PencilRuler, QuoteIcon, SoupIcon, Star, TelescopeIcon, Tent, Wifi } from "lucide-react";
+import { AirVent, Armchair, ArrowLeft, ArrowRight, BabyIcon, Bed, CookingPot, FlameKindling, FlameKindlingIcon, PartyPopper, PencilRuler, QuoteIcon, SoupIcon, Star, StarIcon, TelescopeIcon, Tent, Wifi } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -165,7 +165,16 @@ export default function Home() {
                   <div className="relative w-12 aspect-square">
                     <Image src={'/images/users/user-1.png'} className="object-cover rounded-full" fill priority alt="user-image" />
                   </div>
+                  <div className="space-y">
                   <p className="font-semibold">John James</p>
+                  <div className="flex items-center justify-start gap-2">
+                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                    <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
+                  </div>
+                  </div>
                 </div>
                 <div className="relative w-full mt-5">
                   <QuoteIcon className="w-6 h-6 shrink-0 scale-x-[-1]" />
