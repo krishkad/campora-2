@@ -244,57 +244,57 @@ export default function Home() {
                     <CardTitle>Day 1</CardTitle>
 
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <ClockIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">4:00 PM</span>
                       </div>
                       <p className="font-semibold">Check-In</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <CupSodaIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">5:00 PM</span>
                       </div>
                       <p className="font-semibold">Welcome Drink & Snack Time</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <TreesIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">5:30 PM</span>
                       </div>
                       <p className="font-semibold">Nature Trail</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Gamepad className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">6:00 PM</span>
                       </div>
                       <p className="font-semibold">Game Time</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Music2Icon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">7:30 PM</span>
                       </div>
                       <p className="font-semibold">Music Hours</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <FlameKindlingIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">8:00 PM</span>
                       </div>
                       <p className="font-semibold">Barbeque Bonanza</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <UtensilsCrossed className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">9:30 PM</span>
                       </div>
                       <p className="font-semibold">Dinner Delight </p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <BedSingleIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">11:00 PM</span>
@@ -311,22 +311,22 @@ export default function Home() {
                     <CardTitle>Day 2</CardTitle>
 
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <SunIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">7:00 AM</span>
                       </div>
                       <p className="font-semibold">Rise & Shine</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <CoffeeIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">9:00 AM</span>
                       </div>
                       <p className="font-semibold">Tea & Breakfast</p>
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <DoorClosedIcon className="w-5 h-5 shrink-0" />
                         <span className="font-medium text-sm">11:00 AM</span>
