@@ -17,6 +17,14 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { IoMdFootball } from "react-icons/io";
+import { MdSportsCricket } from "react-icons/md";
+import { FaChess } from "react-icons/fa";
+import { GiArcheryTarget } from "react-icons/gi";
+import { GiDart } from "react-icons/gi";
+import { GiBullHorns } from "react-icons/gi";
+import { CgCardSpades } from "react-icons/cg";
+
 
 export default function Home() {
   return (
@@ -140,44 +148,50 @@ export default function Home() {
           <div className="w-full">
             <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-5 mt-16">
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <IoMdFootball className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Football</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <MdSportsCricket className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Cricket</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <FaChess className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Chess</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <div className="relative w-12 h-12">
+                  <Image fill src={'/images/games/board-game.png'} sizes="100%" className=" object-contain" alt="carrom" />
+                </div>
+                <p className="font-medium text-sm text-center">Carrom</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <GiArcheryTarget className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Soft Archery</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <div className="relative w-12 h-12">
+                  <Image fill src={'/images/games/badminton.png'} sizes="100%" className="object-contain" alt="badminton" />
+                </div>
+                <p className="font-medium text-sm text-center">Badminton</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <GiDart className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Dart Game</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <GiBullHorns className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Bullock Cart</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <CgCardSpades className="w-12 h-12 shrink-0 mx-auto" />
+                <p className="font-medium text-sm text-center">Cards</p>
               </div>
               <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
-                <Wifi className="w-12 h-12 shrink-0 mx-auto" />
-                <p className="font-medium text-sm text-center">High Speed WiFi</p>
+                <div className="relative w-12 h-12">
+                  <Image fill src={'/images/games/monopoly.png'} sizes="100%" className="object-contain" alt="monopoly" />
+                </div>
+                <p className="font-medium text-sm text-center">Monopoly</p>
               </div>
 
             </div>
@@ -214,12 +228,12 @@ export default function Home() {
             <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
               <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">
                 <TabsTrigger value="day-1" asChild className="rounded-full">
-                  <div className="w-full h-16 rounded-full border">
+                  <div className="w-full h-16 rounded-full border font-semibold">
                     Day 1
                   </div>
                 </TabsTrigger>
                 <TabsTrigger value="day-2" asChild className="rounded-full">
-                  <div className="w-full h-16 rounded-full border">
+                  <div className="w-full h-16 rounded-full border font-semibold">
                     Day 2
                   </div>
                 </TabsTrigger>
@@ -228,9 +242,7 @@ export default function Home() {
                 <Card  >
                   <CardHeader>
                     <CardTitle>Day 1</CardTitle>
-                    <CardDescription>
-                      Make changes to your account here. Click save when you&apos;re done.
-                    </CardDescription>
+
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div>
@@ -297,9 +309,7 @@ export default function Home() {
                 <Card  >
                   <CardHeader>
                     <CardTitle>Day 2</CardTitle>
-                    <CardDescription>
-                      Change your password here. After saving, you&apos;ll be logged out.
-                    </CardDescription>
+
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div>
