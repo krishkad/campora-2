@@ -227,13 +227,13 @@ export default function Home() {
           <div className="w-full mt-14">
             <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
               <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">
-                <TabsTrigger value="day-1" asChild className="rounded-full">
-                  <div className="w-full h-16 rounded-full border font-semibold">
+                <TabsTrigger value="day-1" asChild className="rounded-full ">
+                  <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
                     Day 1
                   </div>
                 </TabsTrigger>
-                <TabsTrigger value="day-2" asChild className="rounded-full">
-                  <div className="w-full h-16 rounded-full border font-semibold">
+                <TabsTrigger value="day-2" asChild className="rounded-full ">
+                  <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
                     Day 2
                   </div>
                 </TabsTrigger>
