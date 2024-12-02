@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-zinc-100">
+      <div className="w-full bg-primary/5">
         <div className="max-w-wrapper-6xl pt-32 pb-16">
           <h1 className="text-4xl font-medium text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
@@ -199,7 +199,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-zinc-100">
+      <div className="w-full bg-primary/5">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Choosing Us Means
@@ -227,12 +227,12 @@ export default function Home() {
           <div className="w-full mt-14">
             <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
               <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">
-                <TabsTrigger value="day-1" asChild className="rounded-full ">
+                <TabsTrigger value="day-1" asChild className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white ">
                   <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
                     Day 1
                   </div>
                 </TabsTrigger>
-                <TabsTrigger value="day-2" asChild className="rounded-full ">
+                <TabsTrigger value="day-2" asChild className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white ">
                   <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
                     Day 2
                   </div>
@@ -341,7 +341,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-zinc-100">
+      <div className="w-full  bg-primary/5">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Snapshots of
@@ -376,7 +376,7 @@ export default function Home() {
                   </div>
                   <div className="space-y">
                     <p className="font-semibold">John James</p>
-                    <div className="flex items-center justify-start gap-2">
+                    <div className="flex items-center justify-start gap-0.5">
                       <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
                       <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
                       <StarIcon className="w-3 h-3 shrink-0 text-yellow-400 fill-yellow-400" />
@@ -405,7 +405,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full bg-zinc-100">
+      <div className="w-full  bg-primary/5">
         <div className="max-w-wrapper-6xl pb-16 pt-16">
           <h1 className="text-center text-4xl font-medium">
             Ready to
