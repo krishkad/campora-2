@@ -95,8 +95,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-32">
+      <div className="w-full bg-zinc-100">
+        <div className="max-w-wrapper-6xl pt-32 pb-16">
           <h1 className="text-4xl font-medium text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
           </h1>
@@ -137,7 +137,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full ">
-        <div className="max-w-wrapper-6xl mt-32">
+        <div className="max-w-wrapper-6xl mt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Everything You Need for a <br className="hidden md:block" />
             {' '}
@@ -199,8 +199,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+      <div className="w-full bg-zinc-100">
+        <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Choosing Us Means
             {" "}
@@ -216,7 +216,7 @@ export default function Home() {
 
 
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+        <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             How Your Day
             {" "}
@@ -341,8 +341,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+      <div className="w-full bg-zinc-100">
+        <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Snapshots of
             {" "}
@@ -358,7 +358,7 @@ export default function Home() {
 
 
       <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-32">
+        <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             What Our
             {' '}
@@ -405,8 +405,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full">
-        <div className="max-w-wrapper-6xl mt-24">
+      <div className="w-full bg-zinc-100">
+        <div className="max-w-wrapper-6xl pb-16 pt-16">
           <h1 className="text-center text-4xl font-medium">
             Ready to
             {' '}
