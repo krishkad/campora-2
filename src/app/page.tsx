@@ -24,6 +24,7 @@ import { GiArcheryTarget } from "react-icons/gi";
 import { GiDart } from "react-icons/gi";
 import { GiBullHorns } from "react-icons/gi";
 import { CgCardSpades } from "react-icons/cg";
+import GalleryComponent from "@/components/shared/gallery-component";
 
 
 export default function Home() {
@@ -355,7 +356,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full  bg-primary/5">
+      <div className="w-full h-max bg-primary/5">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Snapshots of
@@ -363,8 +364,12 @@ export default function Home() {
             <span className="px-2 bg-primary text-white">Adventure</span>
             {" "}
           </h1>
-          <div className="w-full mt-14">
-
+          <GalleryComponent />
+          <div className="w-full pt-14 flex justify-center">
+            <Button className="rounded-full">
+              See More
+              <ArrowRight className="inline w-4 h-4 ml-0.5 text-white" />
+            </Button>
           </div>
         </div>
       </div>
