@@ -202,14 +202,28 @@ export default function Home() {
       <div className="w-full bg-primary/5">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
-            Choosing Us Means
+            What Makes Us The
             {" "}
-            <span className="px-2 bg-primary text-white">Choosing Memories</span>
+            <span className="px-2 bg-primary text-white">Best</span>
             {" "}
-            <br className="hidden md:block" />That Last a Lifetime
+            <br className="hidden md:block" />Choice
           </h1>
-          <div className="w-full mt-14">
-
+          <div className="w-full mt-14 flex max-md:flex-col max-md:gap-4">
+            <div className="w-full md:w-1/2 space-y-4">
+              <li className="font-medium">Unique Luxury Swiss tents </li>
+              <li className="font-medium">Area surrounded by nature </li>
+              <li className="font-medium">DJ Music </li>
+              <li className="font-medium">Private Bonfire </li>
+              <li className="font-medium">Private Stargazing Lawn</li>
+              <li className="font-medium">Riverfront tent view</li>
+            </div>
+            <div className="w-full md:w-1/2 space-y-4">
+              <li className="font-medium">Beautiful sunset view </li>
+              <li className="font-medium">Best Food </li>
+              <li className="font-medium">Network available </li>
+              <li className="font-medium">Attached Washroom Inside tent </li>
+              <li className="font-medium">Availability of private parking space </li>
+            </div>
           </div>
         </div>
       </div>
