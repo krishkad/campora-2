@@ -18,6 +18,7 @@ const IMAGES = [
     '/images/gallery/9.jpg',
     '/images/gallery/10.jpg',
     '/images/gallery/11.jpg',
+    '/images/gallery/12.jpg',
 ];
 
 function splitArray<T>(array: Array<T>, numParts: number) {
@@ -78,15 +79,15 @@ function GalleryColumn({ images, className, imageClassName, msPerPixel }: { imag
             style={{ '--marquee-duration': duration } as React.CSSProperties}
         >
             {images.concat(images).map((image, imageIndex) => {
-                
+
                 return <div
 
 
-                    className="animate-fade-in relative w-full h-[400px] p-3 rounded-md"
+                    className={cn("animate-fade-in relative w-full h-[400px] p-3 rounded-md", imageClassName?.(imageIndex % images.length))}
                     style={{ animationDelay }}
                     key={imageIndex}
                 >
-                    <Image src={image} fill sizes='100%' priority loading="eager" style={{ objectFit: 'cover' }} className={cn('rounded-xl', imageClassName?.(imageIndex % images.length))} alt='images' />
+                    <Image src={image} fill sizes='100%' priority loading="eager" style={{ objectFit: 'cover' }} className={cn('rounded-xl')} alt='images' />
                 </div>
             })}
         </div>
