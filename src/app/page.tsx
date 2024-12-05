@@ -25,6 +25,7 @@ import { GiDart } from "react-icons/gi";
 import { GiBullHorns } from "react-icons/gi";
 import { CgCardSpades } from "react-icons/cg";
 import GalleryComponent from "@/components/shared/gallery-component";
+import { GiCampingTent } from "react-icons/gi";
 
 
 export default function Home() {
@@ -209,8 +210,8 @@ export default function Home() {
             {" "}
             <br className="hidden md:block" />Choice
           </h1>
-          <div className="w-full mt-14 flex max-md:flex-col max-md:gap-4">
-            <div className="w-full md:w-1/2 space-y-4">
+          <div className="relative w-full mt-14 flex max-md:flex-col max-md:gap-4">
+            <div className="w-full md:w-1/2 space-y-4 z-10">
               <li className="font-medium">Unique Luxury Swiss tents </li>
               <li className="font-medium">Area surrounded by nature </li>
               <li className="font-medium">DJ Music </li>
@@ -218,13 +219,14 @@ export default function Home() {
               <li className="font-medium">Private Stargazing Lawn</li>
               <li className="font-medium">Riverfront tent view</li>
             </div>
-            <div className="w-full md:w-1/2 space-y-4">
+            <div className="w-full md:w-1/2 space-y-4 z-10">
               <li className="font-medium">Beautiful sunset view </li>
               <li className="font-medium">Best Food </li>
               <li className="font-medium">Network available </li>
               <li className="font-medium">Attached Washroom Inside tent </li>
               <li className="font-medium">Availability of private parking space </li>
             </div>
+            <GiCampingTent className="absolute inset-0 size-full text-white object-cover" />
           </div>
         </div>
       </div>
