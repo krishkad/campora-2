@@ -97,7 +97,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-primary/5">
+      <div className="w-full bg-gradient-2">
         <div className="max-w-wrapper-6xl pt-32 pb-16">
           <h1 className="text-4xl font-medium text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-primary/5">
+      <div className="w-full bg-gradient-2">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             What Makes Us The
@@ -226,7 +226,6 @@ export default function Home() {
               <li className="font-medium">Attached Washroom Inside tent </li>
               <li className="font-medium">Availability of private parking space </li>
             </div>
-            <GiCampingTent className="absolute inset-0 size-full text-white object-cover" />
           </div>
         </div>
       </div>
@@ -245,12 +244,12 @@ export default function Home() {
             <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
               <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">
                 <TabsTrigger value="day-1" asChild className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white ">
-                  <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
+                  <div className="w-full h-16 rounded-full border-none font-semibold cursor-pointer">
                     Day 1
                   </div>
                 </TabsTrigger>
                 <TabsTrigger value="day-2" asChild className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white ">
-                  <div className="w-full h-16 rounded-full border font-semibold cursor-pointer">
+                  <div className="w-full h-16 rounded-full border-none font-semibold cursor-pointer">
                     Day 2
                   </div>
                 </TabsTrigger>
@@ -358,7 +357,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full h-max bg-primary/5">
+      <div className="w-full h-max bg-gradient-2">
         <div className="max-w-wrapper-6xl pt-16 pb-16">
           <h1 className="text-center text-4xl font-medium">
             Snapshots of
@@ -426,7 +425,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full  bg-primary/5">
+      <div className="w-full  bg-gradient-2">
         <div className="max-w-wrapper-6xl pb-16 pt-16">
           <h1 className="text-center text-4xl font-medium">
             Ready to
