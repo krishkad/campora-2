@@ -98,7 +98,7 @@ export default function Home() {
       </div>
 
       <div className="w-full bg-gradient-2">
-        <div className="max-w-wrapper-6xl pt-32 pb-16">
+        <div className="max-w-wrapper-6xl pt-20 pb-16">
           <h1 className="text-4xl font-medium text-center">
             Find Your <span className="px-2 bg-primary text-white">Perfect</span> Stay
           </h1>
@@ -210,21 +210,71 @@ export default function Home() {
             {" "}
             <br className="hidden md:block" />Choice
           </h1>
-          <div className="relative w-full mt-14 flex max-md:flex-col max-md:gap-4">
-            <div className="w-full md:w-1/2 space-y-4 z-10">
-              <li className="font-medium">Unique Luxury Swiss tents </li>
-              <li className="font-medium">Area surrounded by nature </li>
-              <li className="font-medium">DJ Music </li>
-              <li className="font-medium">Private Bonfire </li>
-              <li className="font-medium">Private Stargazing Lawn</li>
-              <li className="font-medium">Riverfront tent view</li>
-            </div>
-            <div className="w-full md:w-1/2 space-y-4 z-10">
-              <li className="font-medium">Beautiful sunset view </li>
-              <li className="font-medium">Best Food </li>
-              <li className="font-medium">Network available </li>
-              <li className="font-medium">Attached Washroom Inside tent </li>
-              <li className="font-medium">Availability of private parking space </li>
+
+          <div className="relative w-full mt-14">
+            <div className="w-full sm:w-[450px] mx-auto space-y-4">
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Unique Luxury Swiss tents
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Area surrounded by nature
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  DJ Music
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Private Bonfire
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Private Stargazing Lawn
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Riverfront tent view
+
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Beautiful sunset view
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Best Food
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Network available
+
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Attached Washroom Inside tent
+                </span>
+              </div>
+              <div className="w-full py-3 px-5 border border-orange-400 rounded-md mx-auto text-center">
+                <span className="text-center">
+                  Availability of private parking space
+                </span>
+              </div>
             </div>
           </div>
         </div>
