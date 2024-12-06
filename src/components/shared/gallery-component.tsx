@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from "framer-motion";
+import { Button } from '../ui/button';
+import { ArrowRight } from 'lucide-react';
 
 
 
@@ -73,6 +75,8 @@ function GalleryColumn({ images, className, imageClassName, msPerPixel }: { imag
 
 
     return (
+
+
         <div
             ref={columnRef}
             className={cn("animate-marquee size-full space-y-10 ", className)}
@@ -105,41 +109,58 @@ const GalleryComponent = () => {
     const column3 = splitArray(columns[2], 2);
 
     return (
-        <div className="relative w-full h-[80vh] mt-14">
-            <div className="absolute -top-1 inset-x-0 w-full h-32 bg-gradient-top-bottom z-10" />
-            <div className="absolute -bottom-1 inset-x-0 w-full h-32 bg-gradient-bottom-top z-10" />
-            <div ref={galleryRef} className="size-full grid grid-cols-1 md:grid-cols-3 gap-5 overflow-hidden">
-                {isInView ? <>
-                    <GalleryColumn
-                        images={[...column1, ...column3.flat(), ...column2]}
-                        imageClassName={(imageIndex) =>
-                            cn({
-                                "md:hidden": imageIndex >= column1.length + column3[0].length,
-                                "lg:hidden": imageIndex >= column1.length
-                            })
+        <div className="w-full h-max bg-gradient-2">
+            <div className="max-w-wrapper-6xl pt-16 pb-16">
+                <h1 className="text-center text-4xl font-medium">
+                    Snapshots of
+                    {" "}
+                    <span className="px-2 bg-primary text-white">Adventure</span>
+                    {" "}
+                </h1>
+                <div className="relative w-full h-[80vh] mt-14">
+                    <div className="absolute -top-1 inset-x-0 w-full h-32 bg-gradient-top-bottom z-10" />
+                    <div className="absolute -bottom-1 inset-x-0 w-full h-32 bg-gradient-bottom-top z-10" />
+                    <div ref={galleryRef} className="size-full grid grid-cols-1 md:grid-cols-3 gap-5 overflow-hidden">
+                        {isInView ? <>
+                            <GalleryColumn
+                                images={[...column1, ...column3.flat(), ...column2]}
+                                imageClassName={(imageIndex) =>
+                                    cn({
+                                        "md:hidden": imageIndex >= column1.length + column3[0].length,
+                                        "lg:hidden": imageIndex >= column1.length
+                                    })
 
-                        }
-                        msPerPixel={15}
+                                }
+                                msPerPixel={15}
 
-                    />
-                    <GalleryColumn
-                        images={[...column2, ...column3[1]]}
-                        imageClassName={(imageIndex) =>
-                            cn({
-                                "lg:hidden": imageIndex >= column2.length
-                            })
+                            />
+                            <GalleryColumn
+                                images={[...column2, ...column3[1]]}
+                                imageClassName={(imageIndex) =>
+                                    cn({
+                                        "lg:hidden": imageIndex >= column2.length
+                                    })
 
-                        }
-                        msPerPixel={10}
+                                }
+                                msPerPixel={10}
 
-                    />
-                    <GalleryColumn
-                        images={column3.flat()}
-                        className={cn("hidden md:block")}
-                        msPerPixel={15}
+                            />
+                            <GalleryColumn
+                                images={column3.flat()}
+                                className={cn("hidden md:block")}
+                                msPerPixel={15}
 
-                    />
-                </> : null}
+                            />
+                        </> : null}
+                    </div>
+                </div>
+
+                <div className="w-full pt-14 flex justify-center">
+                    <Button className="rounded-full">
+                        See More
+                        <ArrowRight className="inline w-4 h-4 ml-0.5 text-white" />
+                    </Button>
+                </div>
             </div>
         </div>
     )

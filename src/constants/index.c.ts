@@ -78,3 +78,42 @@ export const dayHeader = [
         active: "bg-[#577590] text-white"
     },
 ];
+
+
+
+type Review = {
+    imageUrl: string;
+    name: string;
+    review: string;
+  };
+  
+  export const campingResortReviews: Review[] = [
+    {
+      imageUrl: "/images/users/user-1.png",
+      name: "John Doe",
+      review: "This camping resort was an absolute dream! The facilities were spotless, the staff was incredibly friendly, and the views were breathtaking. Highly recommend for a peaceful getaway!"
+    },
+    {
+      imageUrl: "/images/users/user-2.png",
+      name: "Jane Smith",
+      review: "We loved every moment at this resort. The hiking trails were well-maintained, and the campfire nights were unforgettable. Perfect for families!"
+    },
+    {
+      imageUrl: "/images/users/user-3.png",
+      name: "Emily Brown",
+      review: "The experience was amazing. The glamping tents were luxurious yet gave us that camping vibe. The starry nights were magical. Would definitely visit again!"
+    },
+    {
+      imageUrl: "/images/users/user-4.jpg",
+      name: "Michael Johnson",
+      review: "A hidden gem for nature lovers. The staff provided all the essentials, and the activities were fun and engaging. A must-visit for adventure seekers!"
+    },
+    {
+      imageUrl: "/images/users/user-5.jpg",
+      name: "Sophia Lee",
+      review: "We had a fantastic time at this camping resort. The food options were surprisingly good, and the environment was so serene. Perfect place to relax and recharge!"
+    }
+  ];
+  
+  export default campingResortReviews;
+  
