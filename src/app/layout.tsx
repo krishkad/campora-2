@@ -8,10 +8,27 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "./fonts/playfair-display/PlayfairDisplay-Regular.ttf",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const playfairDisplay = localFont({
+  src: [
+    {
+      path: './fonts/playfair-display/PlayfairDisplay-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/playfair-display/PlayfairDisplay-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-playfair-display', // Optional custom CSS variable
 });
 
 export const metadata: Metadata = {
@@ -27,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-auto scrollbar-hide`}
+        className={`${playfairDisplay.variable} antialiased overflow-auto scrollbar-hide`}
       >
         <main className="relative w-full">
           <Navbar />

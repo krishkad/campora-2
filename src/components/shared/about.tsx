@@ -1,10 +1,35 @@
+"use client";
 import Image from 'next/image';
+import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 
 const About = () => {
+
+
+    const titleContainerRef = useRef<HTMLDivElement | null>(null);
+
+
+    // useEffect(() => {
+    //     const ctx = gsap.context(() => {
+    //         const titleAnimation = gsap.timeline({
+    //             scrollTrigger: {
+    //                 trigger: titleContainerRef.current,
+    //                 start: '100 bottom',
+    //                 end: 'center bottom',
+    //             }
+    //         });
+
+    //         titleAnimation.to('about-title', {
+                
+    //         })
+    //     })
+    // }, [])
+
+
     return (
         <div className="w-full h-max mt-32">
-            <div className="max-w-wrapper flex flex-col items-center">
-                <h1 className="text-4xl font-medium text-balance pl-5 md:pl-8 text-center">
+            <div className="max-w-wrapper flex flex-col items-center" ref={titleContainerRef}>
+                <h1 className="text-4xl font-medium text-balance pl-5 md:pl-8 text-center" id='about-title'>
                     Welcome to <span className="px-2 text-white bg-primary">Campora</span>
                 </h1>
                 <p className="text-base font-medium text-center mt-7 max-w-xl">

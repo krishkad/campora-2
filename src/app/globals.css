@@ -67,11 +67,13 @@ body {
 
 @layer base {
   * {
-    @apply box-border;
+    @apply box-border font-playfair;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   .max-w-wrapper {
     @apply max-w-[1440px] px-4 md:px-8 mx-auto;
   }
@@ -93,15 +95,26 @@ body {
     @apply bg-gradient-to-tl from-orange-100 via-white to-orange-100;
   }
 
-  .hide-scrollbar-y {
-    overflow-y: scroll; /* Ensures scroll functionality */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
+  .nav-links {
+    @apply relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center;
   }
-  
-  .hide-scrollbar-y::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-  }
-  
-}
 
+  .floating-nav {
+    @apply bg-black/50 ;
+  }
+
+  .hide-scrollbar-y {
+    overflow-y: scroll;
+    /* Ensures scroll functionality */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .hide-scrollbar-y::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
+  }
+
+}

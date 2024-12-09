@@ -34,7 +34,7 @@ const Hero = () => {
             />
             <div className="absolute inset-0 size-full bg-black opacity-45" />
             <div className="absolute inset-0 size-full flex items-center -translate-x-full opacity-0" id='hero'>
-                <div className="w-[90%] md:w-[40%] pl-8 md:ml-20 space-y-5">
+                <div className="w-[93%] md:w-[43%] pl-8 md:ml-20 space-y-5">
                     <p className="text-base text-medium text-gray-200">
                         Your Gateway to Nature
                     </p>
