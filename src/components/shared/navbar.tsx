@@ -96,14 +96,14 @@ const Navbar = () => {
                 </Button>
             </div>
             <div className="block md:hidden">
-                <Sheet>
+                <Sheet  >
                     <SheetTrigger asChild>
                         <AlignJustify className='text-white' />
                         {/* <Button variant="outline">Open</Button> */}
                     </SheetTrigger>
-                    <SheetContent side={'top'} className={'h-full'}>
-                        <SheetHeader>
-                            <SheetTitle>Menu</SheetTitle>
+                    <SheetContent side={'top'} className={'h-full bg-black/30 text-white border-gray-600'} onOpenAutoFocus={(e: Event) => e.preventDefault()}>
+                        <SheetHeader className='border-b border-gray-600 pb-5'>
+                            <SheetTitle className={"text-white"}>Menu</SheetTitle>
                             <SheetDescription>
                                 {' '}
                             </SheetDescription>
@@ -111,7 +111,7 @@ const Navbar = () => {
                         <div className="space-y-8 py-4 flex flex-col justify-center items-center pt-20">
                             {NAVLINKS.map((link, i) => {
                                 return <Link
-                                    className='font-semibold text-base text-balance text-black'
+                                    className='font-semibold text-base text-balance text-white'
                                     href={link.href}
                                     key={i}
                                 >
