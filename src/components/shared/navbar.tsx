@@ -32,6 +32,7 @@ const Navbar = () => {
             y: isVisible ? 0 : -100,
             opacity: isVisible ? 1 : 0,
             duration: 0.75,
+            transition: "all",
             ease: 'power2.inOut'
         });
 
