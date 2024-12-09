@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { NAVLINKS } from '@/constants/index.c';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import { Button, buttonVariants } from '../ui/button';
 import Logo from './logo';
 import { AlignJustify, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
@@ -17,6 +17,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { cn } from '@/lib/utils';
 
 
 const Navbar = () => {
@@ -101,7 +102,7 @@ const Navbar = () => {
                         <AlignJustify className='text-white' />
                         {/* <Button variant="outline">Open</Button> */}
                     </SheetTrigger>
-                    <SheetContent side={'top'} className={'h-full bg-black/30 text-white border-gray-600'} onOpenAutoFocus={(e: Event) => e.preventDefault()}>
+                    <SheetContent side={'top'} className={'h-full bg-black/60 text-white border-gray-600'} onOpenAutoFocus={(e: Event) => e.preventDefault()}>
                         <SheetHeader className='border-b border-gray-600 pb-5'>
                             <SheetTitle className={"text-white"}>Menu</SheetTitle>
                             <SheetDescription>
@@ -118,6 +119,15 @@ const Navbar = () => {
                                     {link.label}
                                 </Link>
                             })}
+                        </div>
+                        <div className="w-full py-4 pt-8">
+                            <Link
+                                href={'/'}
+                                className={cn(buttonVariants({ size: 'lg', variant: 'ghost' }), 'w-full dark font-semibold underline underline-offset-[5px] border-gray-500')}
+                            >
+                                Book Now
+                                {/* <ArrowRight className='w-5 h-5 shrink-0 inline' /> */}
+                            </Link>
                         </div>
                     </SheetContent>
                 </Sheet>
