@@ -7,7 +7,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import campingResortReviews from '@/constants/index.c';
+import { campingResortReviews } from '@/constants/index.c';
 import { ArrowLeft, ArrowRight, QuoteIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import { useRef } from 'react';
