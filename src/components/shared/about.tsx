@@ -30,7 +30,7 @@ const About = () => {
         <div className="w-full h-max mt-32">
             <div className="max-w-wrapper flex flex-col items-center" ref={titleContainerRef}>
                 <h1 className="text-4xl font-medium text-balance pl-5 md:pl-8 text-center" id='about-title'>
-                    Welcome to <span className="px-2 text-white bg-primary">Campora</span>
+                    Welcome to <span className="px-2 text-primary">Campora</span>
                 </h1>
                 <p className="text-base font-medium text-center mt-7 max-w-xl">
                     Looking for a getaway in nature? Campora is the perfect spot to relax, explore, and have fun. With cozy accommodations, exciting activities, and amazing views, we&apos;ve got everything you need for a great time outdoors. Come join us and make some awesome memories! 🌲✨

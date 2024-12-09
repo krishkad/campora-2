@@ -19,7 +19,7 @@ const Day = () => {
                 <h1 className="text-center text-4xl font-medium">
                     How Your Day
                     {" "}
-                    <span className="px-2 bg-primary text-white">Looks</span>
+                    <span className="px-2 text-primary">Looks</span>
                     {" "}
                     Like ?
                 </h1>

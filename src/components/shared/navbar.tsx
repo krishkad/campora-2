@@ -7,6 +7,16 @@ import Logo from './logo';
 import { AlignJustify, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useWindowScroll } from 'react-use';
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
 
 
 const Navbar = () => {
@@ -86,7 +96,31 @@ const Navbar = () => {
                 </Button>
             </div>
             <div className="block md:hidden">
-                <AlignJustify className='text-white' />
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <AlignJustify className='text-white' />
+                        {/* <Button variant="outline">Open</Button> */}
+                    </SheetTrigger>
+                    <SheetContent side={'top'} className={'h-full'}>
+                        <SheetHeader>
+                            <SheetTitle>Menu</SheetTitle>
+                            <SheetDescription>
+                                {' '}
+                            </SheetDescription>
+                        </SheetHeader>
+                        <div className="space-y-8 py-4 flex flex-col justify-center items-center pt-20">
+                            {NAVLINKS.map((link, i) => {
+                                return <Link
+                                    className='font-semibold text-base text-balance text-black'
+                                    href={link.href}
+                                    key={i}
+                                >
+                                    {link.label}
+                                </Link>
+                            })}
+                        </div>
+                    </SheetContent>
+                </Sheet>
             </div>
         </div>
     )

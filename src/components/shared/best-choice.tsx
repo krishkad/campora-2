@@ -7,7 +7,7 @@ const BestChoice = () => {
                 <h1 className="text-center text-4xl font-medium">
                     What Makes Us The
                     {" "}
-                    <span className="px-2 bg-primary text-white">Best</span>
+                    <span className="px-2 text-primary">Best</span>
                     {" "}
                     <br className="hidden md:block" />Choice
                 </h1>

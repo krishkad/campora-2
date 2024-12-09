@@ -22,7 +22,7 @@ const CustomerReview = () => {
                 <h1 className="text-center text-4xl font-medium">
                     What Our
                     {' '}
-                    <span className="px-2 bg-primary text-white">Guests</span>
+                    <span className="px-2 text-primary">Guests</span>
                     {' '}
                     Are Saying
                 </h1>

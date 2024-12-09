@@ -15,7 +15,7 @@ const Feature = () => {
                 <h1 className="text-center text-4xl font-medium">
                     Everything You Need for a <br className="hidden md:block" />
                     {' '}
-                    <span className="px-2 bg-primary text-white">Memorable</span>
+                    <span className="px-2 text-primary">Memorable</span>
                     {' '}
                     Stay
                 </h1>

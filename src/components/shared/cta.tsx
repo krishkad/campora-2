@@ -7,7 +7,7 @@ const Cta = () => {
                 <h1 className="text-center text-4xl font-medium">
                     Ready to
                     {' '}
-                    <span className="px-2 bg-primary text-white">Plan</span>
+                    <span className=" text-primary">Plan</span>
                     {' '}
                     Your <br className="hidden sm:block" /> Stay?
                 </h1>

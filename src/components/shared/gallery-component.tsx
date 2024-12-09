@@ -114,7 +114,7 @@ const GalleryComponent = () => {
                 <h1 className="text-center text-4xl font-medium">
                     Snapshots of
                     {" "}
-                    <span className="px-2 bg-primary text-white">Adventure</span>
+                    <span className="px-2 text-primary">Adventure</span>
                     {" "}
                 </h1>
                 <div className="relative w-full h-[80vh] mt-14">
