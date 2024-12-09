@@ -13,18 +13,30 @@ const Navbar = () => {
 
     const navbarRef = useRef<HTMLDivElement | null>(null);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const { y: currentScrollY } = useWindowScroll();
 
 
+    // useEffect(() => {
+    //     if (!navbarRef.current) return;
+    //     const ctx = gsap.context(() => {
+    //         gsap.to(navbarRef.current, { y: 0, opacity: 1, duration: 0.75, ease: 'power2.inOut' });
+    //     })
+
+    //     return () => ctx.revert()
+    // }, [isVisible])
+
     useEffect(() => {
         if (!navbarRef.current) return;
-        const ctx = gsap.context(() => {
-            gsap.to(navbarRef.current, { y: 0, opacity: 1, duration: 0.75, ease: 'power2.inOut' });
-        })
+        gsap.to(navbarRef.current, {
+            y: isVisible ? 0 : -100,
+            opacity: isVisible ? 1 : 0,
+            duration: 0.75,
+            ease: 'power2.inOut'
+        });
 
-        return () => ctx.revert()
-    }, [])
+
+    }, [isVisible])
 
     useEffect(() => {
         if (!navbarRef.current) return;
@@ -41,23 +53,15 @@ const Navbar = () => {
         setLastScrollY(currentScrollY);
     }, [currentScrollY, lastScrollY]);
 
-    useEffect(() => {
-        gsap.to(navbarRef.current, {
-            y: isVisible ? 0 : -100,
-            opacity: isVisible ? 1 : 0,
-            duration: 0.2
-        })
 
-
-    }, [isVisible])
 
 
 
 
     return (
         <div
+            className='fixed top-0 inset-x-0 max-w-wrapper h-20 z-30 flex items-center justify-between -translate-y-full opacity-0'
             ref={navbarRef}
-            className='fixed top-0 inset-x-0 max-w-wrapper h-20 z-30 flex items-center justify-between -translate-y-full opacity-0 transition-all duration-300'
         >
             <div className="text-white">
                 <Logo />
