@@ -46,9 +46,6 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
                             <React.Fragment key={wordIndex}>
                                 <span
                                     className={`animated-word`}
-                                // style={{
-                                //     marginRight: wordIndex < line.split(" ").length - 1 ? "8px" : "0",
-                                // }}
                                 >
                                     {isSpanWord
                                         ?

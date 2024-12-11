@@ -102,8 +102,13 @@ body {
   .floating-nav {
     @apply bg-black/75;
   }
+
   .animated-word {
     @apply -translate-y-full opacity-0;
+  }
+
+  .animation-container {
+    @apply translate-y-[50%] opacity-0;
   }
 
 
@@ -123,5 +128,3 @@ body {
 
 
 }
-
-

@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { IoMdFootball } from "react-icons/io";
 import { MdSportsCricket } from "react-icons/md";
