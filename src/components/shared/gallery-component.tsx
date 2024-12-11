@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from "framer-motion";
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
+import AnimatedTitle from './animated-title';
 
 
 
@@ -111,12 +112,13 @@ const GalleryComponent = () => {
     return (
         <div className="w-full h-max bg-gradient-2">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
-                <h1 className="text-center text-4xl font-medium">
+                {/* <h1 className="text-center text-4xl font-medium">
                     Snapshots of
                     {" "}
                     <span className="px-2 text-primary">Adventure</span>
                     {" "}
-                </h1>
+                </h1> */}
+                <AnimatedTitle title=' Snapshots of <span>Adventure</span>' />
                 <div className="relative w-full h-[80vh] mt-14">
                     <div className="absolute -top-1 inset-x-0 w-full h-32 bg-gradient-top-bottom z-10" />
                     <div className="absolute -bottom-1 inset-x-0 w-full h-32 bg-gradient-bottom-top z-10" />

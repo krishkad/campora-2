@@ -11,18 +11,20 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs";
 import { BedSingleIcon, ClockIcon, CoffeeIcon, CupSodaIcon, DoorClosedIcon, FlameKindlingIcon, Gamepad, Music2Icon, SunIcon, TreesIcon, UtensilsCrossed } from "lucide-react";
+import AnimatedTitle from "./animated-title";
 
 const Day = () => {
     return (
         <div className="w-full">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
-                <h1 className="text-center text-4xl font-medium">
+                {/* <h1 className="text-center text-4xl font-medium">
                     How Your Day
                     {" "}
                     <span className="px-2 text-primary">Looks</span>
                     {" "}
                     Like ?
-                </h1>
+                </h1> */}
+                <AnimatedTitle title="How Your Day <br /><span>Looks</span> Like ?" />
                 <div className="w-full mt-14">
                     <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
                         <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">

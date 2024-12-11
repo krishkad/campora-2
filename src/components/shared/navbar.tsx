@@ -48,7 +48,7 @@ const Navbar = () => {
         });
 
 
-    }, [isVisible])
+    }, [isVisible]);
 
     useEffect(() => {
         if (!navbarRef.current) return;

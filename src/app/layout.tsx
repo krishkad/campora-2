@@ -3,18 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/playfair-display/PlayfairDisplay-Regular.ttf",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
 const playfairDisplay = localFont({
   src: [
     {

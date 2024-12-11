@@ -100,8 +100,12 @@ body {
   }
 
   .floating-nav {
-    @apply bg-black/75 ;
+    @apply bg-black/75;
   }
+  .animated-word {
+    @apply -translate-y-full opacity-0;
+  }
+
 
   .hide-scrollbar-y {
     overflow-y: scroll;
@@ -117,4 +121,7 @@ body {
     /* Chrome, Safari, Edge */
   }
 
+
 }
+
+
