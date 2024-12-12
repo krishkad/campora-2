@@ -10,10 +10,10 @@ const Tent = () => {
     return (
         <div className="w-full bg-gradient-2">
             <div className="max-w-wrapper-6xl pt-20 pb-16">
-                <h1 className="text-4xl font-medium text-center">
+                {/* <h1 className="text-4xl font-medium text-center">
                     Find Your <span className="text-primary">Perfect</span> Stay
-                </h1>
-                {/* <AnimatedTitle title='Find Your <span>Perfect</span><br /> Stay' /> */}
+                </h1> */}
+                <AnimatedTitle title='Find Your <span>Perfect</span><br /> Stay' />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                     <div className="w-full h-max space-y-3">
                         <div className="relative w-full aspect-video">

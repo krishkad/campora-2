@@ -14,14 +14,14 @@ const Feature = () => {
     return (
         <div className="w-full ">
             <div className="max-w-wrapper-6xl mt-16 pb-16">
-                <h1 className="text-center text-4xl font-medium">
+                {/* <h1 className="text-center text-4xl font-medium">
                     Everything You Need for a <br className="hidden md:block" />
                     {' '}
                     <span className="px-2 text-primary">Memorable</span>
                     {' '}
                     Stay
-                </h1>
-                {/* <AnimatedTitle title='Everything You Need for a <br /><span>Memorable</span> Stay' /> */}
+                </h1> */}
+                <AnimatedTitle title='Everything You Need for a <br /><span>Memorable</span> Stay' />
                 <div className="w-full">
                     <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-5 mt-16">
                         <div className="w-full space-y-3 aspect-square border rounded-md flex flex-col items-center justify-center">
