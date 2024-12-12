@@ -13,7 +13,7 @@ const Cta = () => {
                     {' '}
                     Your <br className="hidden sm:block" /> Stay?
                 </h1> */}
-                <AnimatedTitle title='Ready to <span>Plan</span> <br />Your Stay?' />
+                <AnimatedTitle title='Ready to <span>Plan</span><br />Your Stay?' />
                 <div className="w-full mt-14">
 
                 </div>

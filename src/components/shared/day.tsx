@@ -25,7 +25,7 @@ const Day = () => {
                     {" "}
                     Like ?
                 </h1> */}
-                <AnimatedTitle title="How Your Day <br /><span>Looks</span> Like ?" />
+                <AnimatedTitle title="How Your Day<br /><span>Looks</span> Like ?" />
                 <div className="w-full mt-14">
                     <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
                         <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">

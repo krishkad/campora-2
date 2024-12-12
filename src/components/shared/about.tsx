@@ -12,7 +12,7 @@ const About = () => {
                 {/* <h1 className="text-4xl font-medium text-balance pl-5 md:pl-8 text-center" id='about-title'>
                     Welcome to <span className="px-2 text-primary">Campora</span>
                 </h1> */}
-                <AnimatedTitle title='Welcome to <br /><span>Campora</span>' />
+                <AnimatedTitle title='Welcome to<br /><span>Campora</span>' />
                 <div className="text-base font-medium text-center mt-7 max-w-xl">
                     {/* Looking for a getaway in nature? Campora is the perfect spot to relax, explore, and have fun. With cozy accommodations, exciting activities, and amazing views, we&apos;ve got everything you need for a great time outdoors. Come join us and make some awesome memories! 🌲✨ */}
                     <AnimatedContent>

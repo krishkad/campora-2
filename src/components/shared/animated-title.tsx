@@ -39,15 +39,18 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
             {title.split("<br />").map((line, lineIndex) => (
                 <div
                     key={lineIndex}
-                    className="flex justify-center items-center max-w-full flex-wrap gap-2 px-10 md:gap-3 text-center text-4xl font-medium text-balance"
+                    className="flex justify-center items-center max-w-full flex-wrap px-10  text-center text-4xl font-medium text-balance"
                 >
                     {line.split(" ").map((word, wordIndex: number) => {
                         // Check if the word contains a span element
                         const isSpanWord = word.includes("<span>");
+                        console.log(wordIndex < line.split(" ").length - 1 && `space in line-${lineIndex + 1}`)
+                        console.log(line.split(" ").length)
+
                         return (
                             <React.Fragment key={wordIndex}>
                                 <span
-                                    className={`animated-word`}
+                                    className={`animated-word ${wordIndex < line.split(" ").length - 1 ? "mr-2 md:mr-3" : ""}`}
                                 >
                                     {isSpanWord
                                         ?

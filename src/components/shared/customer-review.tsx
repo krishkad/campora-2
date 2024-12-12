@@ -27,7 +27,7 @@ const CustomerReview = () => {
                     {' '}
                     Are Saying
                 </h1> */}
-                <AnimatedTitle title="What Our <span>Guests</span><br /> Are Saying" />
+                <AnimatedTitle title="What Our <span>Guests</span><br />Are Saying" />
                 <div className="w-full mt-14">
                     <div className="w-[90%] sm:w-[70%] mx-auto">
                         <Carousel className="w-full">

@@ -14,7 +14,7 @@ const BestChoice = () => {
                     {" "}
                     <br className="hidden md:block" />Choice
                 </h1> */}
-                <AnimatedTitle title='What Makes Us The <br /><span>Best</span> Choice' />
+                <AnimatedTitle title='What Makes Us The<br /><span>Best</span> Choice' />
                 <div className="relative w-full mt-14">
                     <div className="w-full sm:w-[450px] mx-auto space-y-4">
                         <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
