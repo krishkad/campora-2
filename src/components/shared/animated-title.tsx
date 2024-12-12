@@ -22,10 +22,13 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
                 }
             })
 
-            textAnimation.fromTo('.animated-word',
-                { y: 100, x: -20, opacity: 0 },
-                { y: 0, x: 0, opacity: 1, ease: 'power2.inOut', stagger: 0.02 }
-            )
+            textAnimation.to('.animated-word', {
+                y: 0,
+                x: 0,
+                opacity: 1,
+                ease: 'power2.inOut',
+                stagger: 0.02
+            })
         }, containerRef)
 
         return () => ctx.revert();
