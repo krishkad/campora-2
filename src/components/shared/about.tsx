@@ -21,7 +21,6 @@ const About = () => {
                 </div>
             </div>
             <div className="w-full grid grid-cols-1 md:grid-cols-3 mt-8">
-                <AnimatedContent>
 
                     <div className="relative w-full aspect-square">
                         <Image
@@ -40,8 +39,6 @@ const About = () => {
                         <p className="absolute bottom-10 left-4 text-base font-semibold text-white">Camping</p>
                         <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Cozy Stays Amidst Nature</p>
                     </div>
-                </AnimatedContent>
-                <AnimatedContent>
 
                     <div className="relative w-full aspect-square">
                         <Image
@@ -60,8 +57,6 @@ const About = () => {
                         </p>
                         <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Charming Cottages in Nature</p>
                     </div>
-                </AnimatedContent>
-                <AnimatedContent>
 
                     <div className="relative w-full aspect-square">
                         <Image
@@ -81,7 +76,6 @@ const About = () => {
                         </p>
                         <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Serene Grounds for Relaxation</p>
                     </div>
-                </AnimatedContent>
             </div>
         </div>
     )
