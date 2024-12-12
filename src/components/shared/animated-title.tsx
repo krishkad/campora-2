@@ -16,7 +16,7 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
             const textAnimation = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "100 bottom",
+                    start: "150 bottom",
                     end: "center bottom",
                     toggleActions: "play none none reverse",
                 }
