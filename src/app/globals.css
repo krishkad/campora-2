@@ -104,7 +104,7 @@ body {
   }
 
   .animated-word {
-    @apply translate-y-full -translate-x-6 opacity-0;
+    @apply translate-y-full opacity-0;
   }
 
 

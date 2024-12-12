@@ -24,7 +24,6 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
 
             textAnimation.to('.animated-word', {
                 y: 0,
-                x: 0,
                 opacity: 1,
                 ease: 'power2.inOut',
                 stagger: 0.02
@@ -44,7 +43,7 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
                 >
                     {line.split(" ").map((word, wordIndex: number) => {
                         // Check if the word contains a span element
-                        const isSpanWord = word.includes("<span");
+                        const isSpanWord = word.includes("<span>");
                         return (
                             <React.Fragment key={wordIndex}>
                                 <span
