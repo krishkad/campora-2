@@ -107,9 +107,7 @@ body {
     @apply -translate-y-full opacity-0;
   }
 
-  .animation-container {
-    @apply translate-y-[50%] opacity-0;
-  }
+
 
 
   .hide-scrollbar-y {

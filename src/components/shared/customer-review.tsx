@@ -20,14 +20,14 @@ const CustomerReview = () => {
     return (
         <div className="w-full">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
-                {/* <h1 className="text-center text-4xl font-medium">
+                <h1 className="text-center text-4xl font-medium">
                     What Our
                     {' '}
                     <span className="px-2 text-primary">Guests</span>
                     {' '}
                     Are Saying
-                </h1> */}
-                <AnimatedTitle title="What Our <span>Guests</span><br /> Are Saying" />
+                </h1>
+                {/* <AnimatedTitle title="What Our <span>Guests</span><br /> Are Saying" /> */}
                 <div className="w-full mt-14">
                     <div className="w-[90%] sm:w-[70%] mx-auto">
                         <Carousel className="w-full">
