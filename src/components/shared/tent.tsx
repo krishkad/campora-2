@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import { AirVent, Armchair, Bed, PencilRuler, Star } from 'lucide-react';
+import { AirVent, Armchair, Bed, PencilRuler, Star, TentIcon } from 'lucide-react';
 import AnimatedTitle from './animated-title';
 
 
@@ -19,34 +19,86 @@ const Tent = () => {
                 <div className="w-full sm:max-w-wrapper-6xl grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                     <div className="w-full h-max space-y-3">
                         <div className="relative w-full aspect-[3/2]">
-                            <Image src={'/images/rooms/camping-2.jpg'} fill priority className="size-full object-cover rounded-md" alt="images" />
+                            <Image src={'/images/rooms/camping-2.jpg'} fill priority className="size-full object-cover" alt="images" />
                         </div>
-                        <h2 className="text-xl font-semibold">
-                            Camping Tent
-                        </h2>
-                        <div className="w-full">
-                            <p className="text-sm"><PencilRuler className="inline mr-2 w-4 h-4" />8x8 ft tent for 2 adults</p>
-                            <p className="text-sm"><Bed className="inline mr-2 w-4 h-4" />Includes sleeping bags and pads</p>
-                            <p className="text-sm"><Armchair className="inline mr-2 w-4 h-4" />Chairs, table, lantern, fire pit</p>
-                            <p className="text-sm"><Star className="inline mr-2 w-4 h-4" />Lakefront, pre-pitched</p>
+                        <div className="space-y-3 px-4">
+
+                            <h2 className="text-xl font-semibold">
+                                Camping Tent
+                            </h2>
+                            <div className="w-full">
+                                <div className="w-full flex items-center justify-between gap-6">
+                                    <p className="w-[70%] font-medium text-wrap">
+                                        Stay in cozy tents surrounded by serene landscapes, perfect for a peaceful getaway.
+                                    </p>
+                                    <div className="w-[90px] h-[90px] flex items-center justify-center bg-primary rounded-full">
+                                        <TentIcon className='w-6 h-6 text-white' />
+                                    </div>
+                                </div>
+                                <div className="mt-5">
+                                    <p className="font-medium text-wrap">
+                                        Enjoy a night under the stars with our comfortable and nature-filled tent experience.
+                                    </p>
+                                </div>
+                                <div className="w-full h-12 rounded-full bg-green-700 flex items-center mt-5">
+                                    <div className="h-full w-[70%] flex items-center justify-center rounded-full bg-primary text-white">
+                                        Check Availability
+                                    </div>
+                                    <div className="w-[30%] h-full text-white flex items-center justify-center">
+                                        Book Now
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="w-full flex items-center justify-center">
+                                <Button className="min-w-[180px] mx-auto rounded-full mt-5">
+                                    Learn More
+                                </Button>
+                            </div>
                         </div>
-                        <Button className="min-w-[240px]">Check Availibility</Button>
                     </div>
 
                     <div className="w-full h-max space-y-3">
                         <div className="relative w-full aspect-[3/2]">
-                            <Image src={'/images/cabin/cabin-1.jpg'} fill priority className="size-full object-cover rounded-md" alt="images" />
+                            <Image src={'/images/cabin/cabin-1.jpg'} fill priority className="size-full object-cover" alt="images" />
                         </div>
-                        <h2 className="text-xl font-semibold">
-                            Cottage Stay
-                        </h2>
-                        <div className="w-full">
-                            <p className="text-sm"><PencilRuler className="inline mr-2 w-4 h-4" />20x15 ft cottage for 4</p>
-                            <p className="text-sm"><Bed className="inline mr-2 w-4 h-4" /> 1 queen bed, 1 sofa bed</p>
-                            <p className="text-sm"><AirVent className="inline mr-2 w-4 h-4" />Kitchenette, bathroom, AC</p>
-                            <p className="text-sm"><Star className="inline mr-2 w-4 h-4" />Lakefront with private patio</p>
+                        <div className="space-y-3 px-4">
+
+                            <h2 className="text-xl font-semibold">
+                                Cottage Stay
+                            </h2>
+                            <div className="w-full">
+                                <div className="w-full flex items-center justify-between gap-6">
+                                    <p className="w-[70%] font-medium text-wrap">
+                                        Relax in charming cottages blending natural vibes with modern amenities.
+
+
+                                    </p>
+                                    <div className="w-[90px] h-[90px] flex items-center justify-center bg-primary rounded-full">
+                                        <TentIcon className='w-6 h-6 text-white' />
+                                    </div>
+                                </div>
+                                <div className="mt-5">
+                                    <p className="font-medium text-wrap">
+                                        Unwind in serene cottages, your perfect home in nature.
+                                    </p>
+                                </div>
+                                <div className="w-full h-12 rounded-full bg-green-700 flex items-center mt-5">
+                                    <div className="h-full w-[70%] flex items-center justify-center rounded-full bg-primary text-white">
+                                        Check Availability
+                                    </div>
+                                    <div className="w-[30%] h-full text-white flex items-center justify-center">
+                                        Book Now
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="w-full flex items-center justify-center">
+                                <Button className="min-w-[180px] mx-auto rounded-full mt-5">
+                                    Learn More
+                                </Button>
+                            </div>
                         </div>
-                        <Button className="min-w-[240px]">Check Availibility</Button>
                     </div>
 
                 </div>
