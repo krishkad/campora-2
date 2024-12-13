@@ -22,60 +22,60 @@ const About = () => {
             </div>
             <div className="w-full grid grid-cols-1 md:grid-cols-3 mt-8">
 
-                    <div className="relative w-full aspect-square">
-                        <Image
-                            src={'/images/discover/camping-2.jpg'}
-                            loading="eager"
-                            priority
-                            fill
-                            sizes="100%"
-                            style={{
-                                objectFit: "cover"
-                            }}
-                            className="object-cover"
-                            alt="showcase"
-                        />
-                        <div className="absolute inset-0 bg-black opacity-10" />
-                        <p className="absolute bottom-10 left-4 text-base font-semibold text-white">Camping</p>
-                        <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Cozy Stays Amidst Nature</p>
-                    </div>
+                <div className="relative w-full aspect-square">
+                    <Image
+                        src={'/images/discover/camping-2.jpg'}
+                        loading="eager"
+                        priority
+                        fill
+                        sizes="100%"
+                        style={{
+                            objectFit: "cover"
+                        }}
+                        className="object-cover"
+                        alt="showcase"
+                    />
+                    <div className="absolute inset-0 bg-black opacity-10" />
+                    <p className="absolute bottom-10 left-4 text-base font-semibold text-white">Camping</p>
+                    <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Cozy Stays Amidst Nature</p>
+                </div>
 
-                    <div className="relative w-full aspect-square">
-                        <Image
-                            src={'/images/discover/cone-cottage-2.jpg'}
-                            loading="eager"
-                            priority
-                            fill sizes="100%"
-                            style={{ objectFit: "cover" }}
-                            className="object-cover"
-                            alt="showcase"
-                        />
+                <div className="relative w-full aspect-square">
+                    <Image
+                        src={'/images/discover/cone-cottage-2.jpg'}
+                        loading="eager"
+                        priority
+                        fill sizes="100%"
+                        style={{ objectFit: "cover" }}
+                        className="object-cover"
+                        alt="showcase"
+                    />
 
-                        <div className="absolute inset-0 bg-black opacity-10" />
-                        <p className="absolute bottom-10 left-4 text-base font-semibold text-white">
-                            Cottage
-                        </p>
-                        <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Charming Cottages in Nature</p>
-                    </div>
+                    <div className="absolute inset-0 bg-black opacity-10" />
+                    <p className="absolute bottom-10 left-4 text-base font-semibold text-white">
+                        Cottage
+                    </p>
+                    <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Charming Cottages in Nature</p>
+                </div>
 
-                    <div className="relative w-full aspect-square">
-                        <Image
-                            src={'/images/discover/view.jpg'}
-                            loading="eager"
-                            priority
-                            fill
-                            sizes="100%"
-                            style={{ objectFit: "cover" }}
-                            className="object-cover"
-                            alt="showcase"
-                        />
-                        <div className="absolute inset-0 bg-black opacity-10" />
+                <div className="relative w-full aspect-square">
+                    <Image
+                        src={'/images/discover/view.jpg'}
+                        loading="eager"
+                        priority
+                        fill
+                        sizes="100%"
+                        style={{ objectFit: "cover" }}
+                        className="object-cover"
+                        alt="showcase"
+                    />
+                    <div className="absolute inset-0 bg-black opacity-10" />
 
-                        <p className="absolute bottom-10 left-4 text-base font-semibold text-white">
-                            Lake View
-                        </p>
-                        <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Serene Grounds for Relaxation</p>
-                    </div>
+                    <p className="absolute bottom-10 left-4 text-base font-semibold text-white">
+                        Lake View
+                    </p>
+                    <p className="absolute bottom-4 left-4 text-sm font-medium text-gray-300">Serene Grounds for Relaxation</p>
+                </div>
             </div>
         </div>
     )

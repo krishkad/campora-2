@@ -4,7 +4,18 @@ import { cn } from '@/lib/utils';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+
+
+gsap.registerPlugin(ScrollTrigger);  // Register the plugin inside useEffect to avoid SSR issues
+
+const refreshListener = () => {
+    if (document.body.getAttribute("style") === "") {
+        document.body.removeAttribute("style");
+    }
+};
+
+ScrollTrigger.addEventListener("refresh", refreshListener);
+
 
 const AnimatedTitle = ({ title, containerClass }: { title: string, containerClass?: string }) => {
 
@@ -44,8 +55,6 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
                     {line.split(" ").map((word, wordIndex: number) => {
                         // Check if the word contains a span element
                         const isSpanWord = word.includes("<span>");
-                        console.log(wordIndex < line.split(" ").length - 1 && `space in line-${lineIndex + 1}`)
-                        console.log(line.split(" ").length)
 
                         return (
                             <React.Fragment key={wordIndex}>

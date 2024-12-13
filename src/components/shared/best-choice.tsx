@@ -16,8 +16,8 @@ const BestChoice = () => {
                 </h1> */}
                 <AnimatedTitle title='What Makes Us The<br /><span>Best</span> Choice' />
                 <div className="relative w-full mt-14">
-                    <div className="w-full sm:w-[450px] mx-auto space-y-4">
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                    <div className="w-full sm:w-[450px] mx-auto border-collapse">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -26,7 +26,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -35,7 +35,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -44,7 +44,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -53,7 +53,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -62,7 +62,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -71,7 +71,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -80,7 +80,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -89,7 +89,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -98,7 +98,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
@@ -107,7 +107,7 @@ const BestChoice = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full h-[60px] px-5 border border-orange-400 rounded-md mx-auto flex items-center gap-6 text-center">
+                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
                             <TentIcon className='w-10 h-10' />
                             <div className="h-full w-px bg-primary" />
                             <div className="w-full text-start">
