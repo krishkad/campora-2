@@ -37,7 +37,7 @@ const AnimatedContent = ({ className = "", children }: AnimatedContentProps) => 
                     ease: "power2.inOut", // Smooth easing
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: "300 bottom",  // Trigger when element enters the viewport
+                        start: "150 bottom",  // Trigger when element enters the viewport
                         end: "bottom top",    // End when it leaves the viewport
                         toggleActions: "play none none reverse",  // Play and reverse on scroll
                     },
@@ -53,7 +53,7 @@ const AnimatedContent = ({ className = "", children }: AnimatedContentProps) => 
 
     return (
         <div className={cn("w-full", className)} ref={containerRef}>
-            <div ref={animationRef} className="translate-y-[100%] opacity-0">
+            <div ref={animationRef} className="translate-y-[50%] opacity-0">
                 {children}
             </div>
         </div>

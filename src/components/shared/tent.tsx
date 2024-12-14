@@ -9,14 +9,14 @@ import AnimatedTitle from './animated-title';
 const Tent = () => {
     return (
         <div className="w-full">
-            <div className=" pt-20 pb-16">
+            <div className=" pt-32 pb-16">
                 {/* <h1 className="text-4xl font-medium text-center">
                     Find Your <span className="text-primary">Perfect</span> Stay
                 </h1> */}
                 <div className="max-w-wrapper-6xl">
                     <AnimatedTitle title='Find Your<br /><span>Perfect</span> Stay' />
                 </div>
-                <div className="w-full sm:max-w-wrapper-6xl grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <div className="max-w-wrapper-6xl grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
                     <div className="w-full pb-4 border">
                         <div className="relative w-full aspect-[3/2]">
                             <Image fill src={'/images/rooms/camping-1.jpg'} sizes='100%' className='object-cover' alt='images' />
@@ -34,7 +34,7 @@ const Tent = () => {
                             <p className="text-balance font-medium">
                                 Pitch your tent in stunning natural settings with amenities like clean washrooms, fire pits, and drinking water.
                             </p>
-                            <Button className='rounded-full'>
+                            <Button className='px-5'>
                                 Check Availibilty
                             </Button>
                         </div>
@@ -50,7 +50,7 @@ const Tent = () => {
                             <p className="text-balance font-medium">
                                 Relax in fully furnished cottages with private decks and modern comforts, surrounded by breathtaking nature.
                             </p>
-                            <Button className='rounded-full'>
+                            <Button className='px-5'>
                                 Check Availibilty
                             </Button>
                         </div>
@@ -66,7 +66,7 @@ const Tent = () => {
                             <p className="text-balance font-medium">
                                 Enjoy plush bedding, ambient lighting, and en-suite bathrooms in our luxury tents. Nature meets comfort for a perfect retreat.
                             </p>
-                            <Button className='rounded-full'>
+                            <Button className='px-5 '>
                                 Check Availibilty
                             </Button>
                         </div>
