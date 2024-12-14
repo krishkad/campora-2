@@ -4,7 +4,7 @@ import AnimatedTitle from './animated-title'
 
 const Cta = () => {
     return (
-        <div className="w-full  bg-gradient-2">
+        <div className="w-full">
             <div className="max-w-wrapper-6xl pb-16 pt-16">
                 {/* <h1 className="text-center text-4xl font-medium">
                     Ready to

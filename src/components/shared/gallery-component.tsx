@@ -110,7 +110,7 @@ const GalleryComponent = () => {
     const column3 = splitArray(columns[2], 2);
 
     return (
-        <div className="w-full h-max bg-gradient-2">
+        <div className="w-full h-max">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
                 {/* <h1 className="text-center text-4xl font-medium">
                     Snapshots of

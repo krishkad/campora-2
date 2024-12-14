@@ -5,7 +5,7 @@ import { TentIcon } from 'lucide-react';
 
 const BestChoice = () => {
     return (
-        <div className="w-full bg-gradient-2">
+        <div className="w-full">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
                 {/* <h1 className="text-center text-4xl font-medium">
                     What Makes Us The
