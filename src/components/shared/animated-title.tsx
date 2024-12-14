@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -31,18 +31,30 @@ const AnimatedTitle = ({ title, containerClass }: { title: string, containerClas
                     end: "center bottom",
                     toggleActions: "play none none reverse",
                 }
-            })
+            });
 
             textAnimation.to('.animated-word', {
                 y: 0,
                 opacity: 1,
                 ease: 'power2.inOut',
                 stagger: 0.02
-            })
-        }, containerRef)
+            });
+        }, containerRef);
 
-        return () => ctx.revert();
-    }, [])
+        const observer = new ResizeObserver(() => {
+            ScrollTrigger.refresh();
+        });
+
+        observer.observe(document.body);
+
+
+
+        return () => {
+            ctx.revert();
+            observer.disconnect();
+        }
+    }, []);
+
 
 
     return (
