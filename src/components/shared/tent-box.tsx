@@ -31,18 +31,11 @@ const TentBox = ({ img, title, description, buttonTitle }: { img: string, title:
                 }
             });
 
-            const borderAnimation = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: `${containerRef.current?.offsetHeight} bottom`,
-                    end: 'bottom bottom',
-                    toggleActions: 'play none none reverse'
-                }
-            });
+          
 
 
-            borderAnimation.to(containerRef.current, {
-                opacity: 1,
+            animation.to(containerRef.current, {
+               border: '1px solid #ECEBDE'
             });
 
             animation.to('.box-item', {
@@ -71,7 +64,7 @@ const TentBox = ({ img, title, description, buttonTitle }: { img: string, title:
 
 
     return (
-        <div className="w-full pb-4 border opacity-0" ref={containerRef}>
+        <div className="w-full pb-4 border-none" ref={containerRef}>
             <div className="relative w-full aspect-[3/2] box-item">
                 <Image fill src={img} sizes='100%' className='object-cover' alt='images' />
             </div>
