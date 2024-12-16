@@ -138,7 +138,7 @@ export const campingPackages: CampingPackage[] = [
     },
     {
         title: "Luxurious Glamping",
-        description: "Enjoy plush bedding, ambient lighting, and en-suite bathrooms in our luxury tents.",
+        description: "Enjoy plush bedding, ambient lighting, and en-suite bathrooms in our luxury tents, designed for comfort and elegance.",
         img: "/images/rooms/camping-3.jpg",
         buttonTitle: "Check Availability",
     },
