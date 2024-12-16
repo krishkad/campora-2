@@ -1,3 +1,63 @@
+import { IoMdFootball } from "react-icons/io";
+import { MdSportsCricket } from "react-icons/md";
+import { FaChess } from "react-icons/fa";
+import { GiArcheryTarget, GiDart, GiBullHorns } from "react-icons/gi";
+import { CgCardSpades } from "react-icons/cg";
+import { IconBaseProps } from "react-icons";
+
+export interface Feature {
+    icon?: React.ComponentType<IconBaseProps>;
+    imageSrc?: string;
+    alt?: string;
+    label: string;
+}
+
+export const features: Feature[] = [
+    {
+        icon: IoMdFootball,
+        label: "Football",
+    },
+    {
+        icon: MdSportsCricket,
+        label: "Cricket",
+    },
+    {
+        icon: FaChess,
+        label: "Chess",
+    },
+    {
+        imageSrc: "/images/games/board-game.png",
+        alt: "carrom",
+        label: "Carrom",
+    },
+    {
+        icon: GiArcheryTarget,
+        label: "Soft Archery",
+    },
+    {
+        imageSrc: "/images/games/badminton.png",
+        alt: "badminton",
+        label: "Badminton",
+    },
+    {
+        icon: GiDart,
+        label: "Dart Game",
+    },
+    {
+        icon: GiBullHorns,
+        label: "Bullock Cart",
+    },
+    {
+        icon: CgCardSpades,
+        label: "Cards",
+    },
+    {
+        imageSrc: "/images/games/monopoly.png",
+        alt: "monopoly",
+        label: "Monopoly",
+    },
+];
+
 
 
 export const NAVLINKS = [

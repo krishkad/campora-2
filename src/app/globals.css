@@ -111,7 +111,9 @@ body {
     @apply translate-y-36 opacity-0;
   }
 
-
+  .feature-box {
+    @apply translate-y-20 opacity-0;
+  }
 
 
   .hide-scrollbar-y {

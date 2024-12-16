@@ -42,7 +42,7 @@ const TentBox = ({ img, title, description, buttonTitle }: { img: string, title:
                 y: 0,
                 opacity: 1,
                 ease: 'power2.inOut',
-                stagger: 0.15
+                stagger: 0.02
             });
 
 
