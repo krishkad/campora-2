@@ -3,6 +3,7 @@ import { BestChoice } from '@/constants/index.c';
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +15,7 @@ function refreshListener() {
 
 ScrollTrigger.addEventListener('refresh', refreshListener);
 
-const BestBox = ({ item }: { item: BestChoice }) => {
+const BestBox = ({ item, itemIndex }: { item: BestChoice, itemIndex: number }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -52,7 +53,7 @@ const BestBox = ({ item }: { item: BestChoice }) => {
 
 
     return (
-        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center translate-y-48 opacity-0" ref={containerRef}>
+        <div className={cn("w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center translate-y-48 opacity-0", (itemIndex + 1) % 3 === 0 && "bg-primary !text-white")} ref={containerRef}>
             <item.icon className='w-10 h-10' />
             <div className="h-full w-px bg-primary" />
             <div className="w-full text-start">

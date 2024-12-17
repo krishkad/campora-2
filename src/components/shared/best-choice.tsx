@@ -20,7 +20,7 @@ const BestChoice = () => {
                 <div className="relative w-full mt-14">
                     <div className="w-full sm:w-[450px] mx-auto border-collapse">
                         {best_choice.map((item, itemIndex) => (
-                            <BestBox key={itemIndex} item={item} />
+                            <BestBox key={itemIndex} item={item} itemIndex={itemIndex} />
                         ))}
                     </div>
                 </div>
