@@ -38,8 +38,8 @@ const CustomerReview = () => {
             const animation = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: '200 bottom',
-                    end: 'bottom bottom',
+                    start: `${containerRef.current?.offsetHeight} bottom`,
+                    end: "bottom 200px",
                     toggleActions: 'play none none reverse'
                 }
             });
