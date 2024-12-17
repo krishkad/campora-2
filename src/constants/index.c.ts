@@ -4,6 +4,73 @@ import { FaChess } from "react-icons/fa";
 import { GiArcheryTarget, GiDart, GiBullHorns } from "react-icons/gi";
 import { CgCardSpades } from "react-icons/cg";
 import { IconBaseProps } from "react-icons";
+import { Tent } from 'lucide-react'; // Tent icon from lucide-react
+import { GiBathtub } from 'react-icons/gi'; // Alternative icon for "Bath"
+import { AiOutlineFieldTime } from 'react-icons/ai'; // Icon for "Nature"
+import { FaMusic } from 'react-icons/fa'; // Icon for "DJ Music"
+import { GiCampfire } from 'react-icons/gi'; // Icon for "Bonfire"
+import { BsStars } from 'react-icons/bs'; // Icon for "Stargazing"
+import { GiWaterfall } from 'react-icons/gi'; // Icon for "Riverfront"
+import { AiOutlineCamera } from 'react-icons/ai'; // Icon for "Sunset View"
+import { FaHamburger } from 'react-icons/fa'; // Icon for "Best Food"
+import { IoWifi } from 'react-icons/io5'; // Icon for "Network"
+import { FaParking } from 'react-icons/fa'; // Icon for "Parking"
+
+export type BestChoice = {
+    icon: React.ComponentType<IconBaseProps>;
+    description: string;
+};
+
+export const best_choice: BestChoice[] = [
+    {
+        icon: Tent,
+        description: "Unique Luxury Swiss tents",
+    },
+    {
+        icon: AiOutlineFieldTime,
+        description: "Area surrounded by nature",
+    },
+    {
+        icon: FaMusic,
+        description: "DJ Music",
+    },
+    {
+        icon: GiCampfire,
+        description: "Private Bonfire",
+    },
+    {
+        icon: BsStars,
+        description: "Private Stargazing Lawn",
+    },
+    {
+        icon: GiWaterfall,
+        description: "Riverfront tent view",
+    },
+    {
+        icon: AiOutlineCamera,
+        description: "Beautiful sunset view",
+    },
+    {
+        icon: FaHamburger,
+        description: "Best Food",
+    },
+    {
+        icon: IoWifi,
+        description: "Network available",
+    },
+    {
+        icon: GiBathtub,
+        description: "Attached Washroom Inside tent",
+    },
+    {
+        icon: FaParking,
+        description: "Availability of private parking space",
+    },
+];
+
+export default best_choice;
+
+
 
 export interface Feature {
     icon?: React.ComponentType<IconBaseProps>;

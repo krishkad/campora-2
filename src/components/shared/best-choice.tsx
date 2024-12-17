@@ -2,6 +2,8 @@
 import React from 'react'
 import AnimatedTitle from './animated-title'
 import { TentIcon } from 'lucide-react';
+import best_choice from '@/constants/index.c';
+import BestBox from './best-box';
 
 const BestChoice = () => {
     return (
@@ -17,105 +19,9 @@ const BestChoice = () => {
                 <AnimatedTitle title='What Makes Us The<br /><span>Best</span> Choice' />
                 <div className="relative w-full mt-14">
                     <div className="w-full sm:w-[450px] mx-auto border-collapse">
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Unique Luxury Swiss tents
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Area surrounded by nature
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    DJ Music
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Private Bonfire
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Private Stargazing Lawn
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Riverfront tent view
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Beautiful sunset view
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Best Food
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Network available
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Attached Washroom Inside tent
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center">
-                            <TentIcon className='w-10 h-10' />
-                            <div className="h-full w-px bg-primary" />
-                            <div className="w-full text-start">
-                                <span className="text-center">
-                                    Availability of private parking space
-                                </span>
-                            </div>
-                        </div>
+                        {best_choice.map((item, itemIndex) => (
+                            <BestBox key={itemIndex} item={item} />
+                        ))}
                     </div>
                 </div>
             </div>
