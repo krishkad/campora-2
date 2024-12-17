@@ -128,6 +128,11 @@ body {
   }
 
 
+  .day-box {
+    @apply translate-y-48 opacity-0;
+  }
+
+
   .hide-scrollbar-y {
     overflow-y: scroll;
     /* Ensures scroll functionality */

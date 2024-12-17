@@ -13,11 +13,56 @@ import {
 } from "@/components/ui/tabs";
 import { BedSingleIcon, ClockIcon, CoffeeIcon, CupSodaIcon, DoorClosedIcon, FlameKindlingIcon, Gamepad, Music2Icon, SunIcon, TreesIcon, UtensilsCrossed } from "lucide-react";
 import AnimatedTitle from "./animated-title";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function refreshListener() {
+    if (document.body.getAttribute("style") === "") {
+        document.body.removeAttribute("style");
+    };
+};
+
+ScrollTrigger.addEventListener('refresh', refreshListener);
 
 const Day = () => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const animation = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: '200 bottom',
+                    end: "center center",
+                    toggleActions: 'play none none reverse'
+                }
+            });
+
+            animation.to('.day-box', {
+                y: 0,
+                opacity: 1,
+                ease: 'power2.inOut'
+            });
+
+        }, containerRef);
+
+        const observer = new ResizeObserver(() => {
+            ScrollTrigger.refresh();
+        })
+
+        observer.observe(document.body);
+        return () => {
+            ctx.revert();
+            observer.disconnect();
+        };
+
+    }, []);
+
     return (
         <div className="w-full">
-            <div className="max-w-wrapper-6xl pt-16 pb-16">
+            <div className="max-w-wrapper-6xl pt-16 pb-16" ref={containerRef}>
                 {/* <h1 className="text-center text-4xl font-medium">
                     How Your Day
                     {" "}
@@ -26,7 +71,7 @@ const Day = () => {
                     Like ?
                 </h1> */}
                 <AnimatedTitle title="How Your Day<br /><span>Looks</span> Like?" />
-                <div className="w-full mt-14">
+                <div className="w-full mt-14 day-box">
                     <Tabs defaultValue="day-1" className="max-w-[400px] mx-auto">
                         <TabsList className="grid w-full grid-cols-2 rounded-full gap-1">
                             <TabsTrigger value="day-1" asChild className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white ">
