@@ -141,7 +141,7 @@ export const dayHeader = [
 
 
 
-type Review = {
+export type Review = {
     imageUrl: string;
     name: string;
     review: string;

@@ -115,6 +115,18 @@ body {
     @apply translate-y-20 opacity-0;
   }
 
+  .review-client {
+    @apply -translate-x-48 opacity-0;
+  }
+
+  .review-description {
+    @apply translate-x-48 opacity-0;
+  }
+
+  .reviews-button {
+    @apply translate-y-48 opacity-0;
+  }
+
 
   .hide-scrollbar-y {
     overflow-y: scroll;

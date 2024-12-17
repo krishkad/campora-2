@@ -10,34 +10,76 @@ import {
 import { campingResortReviews } from '@/constants/index.c';
 import { ArrowLeft, ArrowRight, QuoteIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import AnimatedTitle from "./animated-title";
+import ReviewBox from "./review-box";
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function refreshListener() {
+    if (document.body.getAttribute("style") === "") {
+        document.body.removeAttribute("style");
+    };
+};
+
+ScrollTrigger.addEventListener('refresh', refreshListener);
 
 
 const CustomerReview = () => {
     const nextRef = useRef<HTMLButtonElement | null>(null);
     const prevRef = useRef<HTMLButtonElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const ctx = gsap.context(() => {
+            const animation = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: '200 bottom',
+                    end: 'bottom bottom',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+
+            animation.to('.reviews-button', {
+                y: 0,
+                opacity: 1,
+                ease: 'power2.inOut'
+            });
+
+
+        }, containerRef);
+
+        const observer = new ResizeObserver(() => {
+            ScrollTrigger.refresh();
+        });
+
+        observer.observe(document.body);
+
+        return () => {
+            observer.disconnect();
+            ctx.revert();
+        };
+    }, []);
+
+
     return (
         <div className="w-full">
             <div className="max-w-wrapper-6xl pt-16 pb-16">
-                {/* <h1 className="text-center text-4xl font-medium">
-                    What Our
-                    {' '}
-                    <span className="px-2 text-primary">Guests</span>
-                    {' '}
-                    Are Saying
-                </h1> */}
                 <AnimatedTitle title="What Our <span>Guests</span><br />Are Saying" />
                 <div className="w-full mt-14">
-                    <div className="w-[90%] sm:w-[70%] mx-auto">
+                    <div className="w-[90%] sm:w-[70%] mx-auto" ref={containerRef}>
                         <Carousel className="w-full">
                             <CarouselContent>
                                 {campingResortReviews.map((review, reviewIndex) => (
 
                                     <CarouselItem key={reviewIndex}>
+                                        <ReviewBox review={review} reviewIndex={reviewIndex} />
 
-
-                                        <div className="w-full">
+                                        {/* <div className="w-full">
                                             <div className="w-full flex items-center gap-4">
                                                 <div className="relative w-12 aspect-square">
                                                     <Image src={review.imageUrl} className="object-cover rounded-full" sizes="100%" fill priority alt="user-image" />
@@ -60,14 +102,14 @@ const CustomerReview = () => {
 
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
                             <CarouselPrevious ref={prevRef} className='hidden' />
                             <CarouselNext ref={nextRef} className='hidden' />
                         </Carousel>
-                        <div className="flex items-center gap-3 mt-5">
+                        <div className="flex items-center gap-3 mt-5 reviews-button">
                             <Button size={'icon'} variant={'outline'} className="rounded-full"
                                 onClick={() => {
                                     prevRef.current?.click()
