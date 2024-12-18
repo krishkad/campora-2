@@ -21,44 +21,41 @@ const ReviewBox = ({ review, reviewIndex }: { review: Review, reviewIndex: numbe
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const animation = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: `${containerRef.current?.offsetHeight} bottom`,
-                    end: "bottom 200px",
-                    toggleActions: 'play none none reverse'
-                }
+        if (reviewIndex === 0) {
+
+            const ctx = gsap.context(() => {
+                const animation = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: `${containerRef.current?.offsetHeight} bottom`,
+                        end: "bottom 200px",
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+
+                animation.to(['.review-client', '.review-description'], {
+                    x: 0,
+                    opacity: 1,
+                    ease: 'power2.inOut',
+                    stagger: 0.02
+                });
+
+
+
+            }, containerRef);
+
+            const observer = new ResizeObserver(() => {
+                ScrollTrigger.refresh();
             });
 
-            animation.to(['.review-client', '.review-description'], {
-                x: 0,
-                opacity: 1,
-                ease: 'power2.inOut',
-                stagger: 0.02
-            });
-
-            // animation.to('.review-description', {
-            //     x: 0,
-            //     opacity: 1,
-            //     ease: 'power2.inOut',
-            // });
+            observer.observe(document.body);
 
 
 
-        }, containerRef);
-
-        const observer = new ResizeObserver(() => {
-            ScrollTrigger.refresh();
-        });
-
-        observer.observe(document.body);
-
-
-
-        return () => {
-            observer.disconnect();
-            ctx.revert();
+            return () => {
+                observer.disconnect();
+                ctx.revert();
+            };
         };
     }, []);
 
