@@ -6,7 +6,7 @@ import { CgCardSpades } from "react-icons/cg";
 import { IconBaseProps } from "react-icons";
 import { Tent } from 'lucide-react'; // Tent icon from lucide-react
 import { GiBathtub } from 'react-icons/gi'; // Alternative icon for "Bath"
-import { AiOutlineFieldTime } from 'react-icons/ai'; // Icon for "Nature"
+import { GiForest   } from 'react-icons/gi'; // Icon for "Nature"
 import { FaMusic } from 'react-icons/fa'; // Icon for "DJ Music"
 import { GiCampfire } from 'react-icons/gi'; // Icon for "Bonfire"
 import { BsStars } from 'react-icons/bs'; // Icon for "Stargazing"
@@ -27,7 +27,7 @@ export const best_choice: BestChoice[] = [
         description: "Unique Luxury Swiss tents",
     },
     {
-        icon: AiOutlineFieldTime,
+        icon: GiForest ,
         description: "Area surrounded by nature",
     },
     {
