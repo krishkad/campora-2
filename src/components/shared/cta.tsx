@@ -74,7 +74,7 @@ const Cta = () => {
                     <div className="space-y-4 z-10 flex flex-col items-center justify-center" ref={containerRef}>
                         <AnimatedTitle containerClass='text-white' title='Ready to <span>Plan</span><br />Your Stay?' />
                         <p className="max-w-[650px] text-center font-medium text-balance text-gray-300 cta-item">
-                            Book your stay now and enjoy unforgettable moments under the stars at our serene camping resort. 🏕️✨ Don’t miss out—spots fill fast!
+                            Book your stay now and enjoy unforgettable moments under the stars at our serene camping resort. 🏕️✨ Don&apos;t miss out—spots fill fast!
                         </p>
                         <Button className='rounded-full px-6 cta-item'>
                             Book a Stay
