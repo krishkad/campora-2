@@ -24,7 +24,7 @@ const Cta = () => {
             const animation = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "120px bottom",
+                    start: "150px bottom",
                     end: "center bottom",
                     toggleActions: "play none none reverse"
                 }
