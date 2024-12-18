@@ -53,7 +53,7 @@ const BestBox = ({ item, itemIndex }: { item: BestChoice, itemIndex: number }) =
 
 
     return (
-        <div className={cn("w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center translate-y-48 opacity-0", (itemIndex + 1) % 3 === 0 && "bg-primary !text-white")} ref={containerRef}>
+        <div className={cn("w-full h-[60px] px-5 border border-collapse border-orange-400  mx-auto flex items-center gap-6 text-center translate-y-48 opacity-0", (itemIndex + 1) % 3 === 0 && "bg-[#FF7F3E] !text-white")} ref={containerRef}>
             <item.icon className='w-10 h-10' />
             <div className="h-full w-px bg-primary" />
             <div className="w-full text-start">
