@@ -6,7 +6,7 @@ import { CgCardSpades } from "react-icons/cg";
 import { IconBaseProps } from "react-icons";
 import { Tent } from 'lucide-react'; // Tent icon from lucide-react
 import { GiBathtub } from 'react-icons/gi'; // Alternative icon for "Bath"
-import { GiForest   } from 'react-icons/gi'; // Icon for "Nature"
+import { GiForest } from 'react-icons/gi'; // Icon for "Nature"
 import { FaMusic } from 'react-icons/fa'; // Icon for "DJ Music"
 import { GiCampfire } from 'react-icons/gi'; // Icon for "Bonfire"
 import { BsStars } from 'react-icons/bs'; // Icon for "Stargazing"
@@ -15,6 +15,36 @@ import { AiOutlineCamera } from 'react-icons/ai'; // Icon for "Sunset View"
 import { FaHamburger } from 'react-icons/fa'; // Icon for "Best Food"
 import { IoWifi } from 'react-icons/io5'; // Icon for "Network"
 import { FaParking } from 'react-icons/fa'; // Icon for "Parking"
+import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+
+interface SocialLink {
+    name: string;
+    url: string;
+    reactIcon: React.ComponentType<IconBaseProps>;
+}
+
+export const socialLinks: SocialLink[] = [
+    {
+        name: "Twitter",
+        url: "https://twitter.com/yourprofile",
+        reactIcon: FaTwitter,
+    },
+    {
+        name: "Facebook",
+        url: "https://facebook.com/yourprofile",
+        reactIcon: FaFacebook,
+    },
+    {
+        name: "LinkedIn",
+        url: "https://linkedin.com/in/yourprofile",
+        reactIcon: FaLinkedin,
+    },
+    {
+        name: "Instagram",
+        url: "https://instagram.com/yourprofile",
+        reactIcon: FaInstagram,
+    },
+];
 
 export type BestChoice = {
     icon: React.ComponentType<IconBaseProps>;
@@ -27,7 +57,7 @@ export const best_choice: BestChoice[] = [
         description: "Unique Luxury Swiss tents",
     },
     {
-        icon: GiForest ,
+        icon: GiForest,
         description: "Area surrounded by nature",
     },
     {
