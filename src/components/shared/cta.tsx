@@ -2,9 +2,11 @@
 import React, { useEffect, useRef } from 'react'
 import AnimatedTitle from './animated-title'
 import Image from 'next/image'
-import { Button } from '../ui/button'
+import { Button, buttonVariants } from '../ui/button'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,9 +78,9 @@ const Cta = () => {
                         <p className="max-w-[650px] text-center font-medium text-balance text-gray-300 cta-item">
                             Book your stay now and enjoy unforgettable moments under the stars at our serene camping resort. 🏕️✨ Don&apos;t miss out—spots fill fast!
                         </p>
-                        <Button className='rounded-full px-6 cta-item'>
+                        <Link href={'/booking'} className={cn(buttonVariants({variant: 'default', size: 'lg'}), 'rounded-full px-6 cta-item')}>
                             Book a Stay
-                        </Button>
+                        </Link>
                     </div>
 
                 </div>

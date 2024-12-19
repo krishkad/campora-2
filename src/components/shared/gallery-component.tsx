@@ -3,9 +3,10 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from "framer-motion";
-import { Button } from '../ui/button';
+import { Button, buttonVariants } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
 import AnimatedTitle from './animated-title';
+import Link from 'next/link';
 
 
 
@@ -158,10 +159,10 @@ const GalleryComponent = () => {
                 </div>
 
                 <div className="w-full pt-14 flex justify-center">
-                    <Button className="rounded-full">
+                    <Link href={'/gallery'} className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'rounded-full')}>
                         See More
                         <ArrowRight className="inline w-4 h-4 ml-0.5 text-white" />
-                    </Button>
+                    </Link>
                 </div>
             </div>
         </div>
