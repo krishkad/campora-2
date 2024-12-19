@@ -27,7 +27,7 @@ const Gallery = () => {
                     <Image src={'/images/gallery.jpg'} fill sizes='100%' className='object-cover' alt='gallery' />
                     <div className="absolute inset-0 bg-black/45 z-[5]" />
                     <div className="absolute inset-0 z-10 flex items-center justify-center">
-                        <h1 className="text-6xl font-semibold text-gray-200">
+                        <h1 className="text-6xl font-semibold text-center text-gray-200">
                             Gallery
                         </h1>
                     </div>
@@ -37,7 +37,7 @@ const Gallery = () => {
                 {galleryDoubleArray.map((imgArray, imgArrayIndex) => {
                     if (imgArray.length < 6) return;
 
-                    return <div className="w-full grid grid-cols-1 md:grid-cols-3 grid-rows-1 md:grid-rows-3 gap-5" key={imgArrayIndex}>
+                    return <div className="w-full grid grid-cols-1 md:grid-cols-3 grid-rows-9 md:grid-rows-3 gap-5" key={imgArrayIndex}>
                         {imgArray.map((img, imgIndex) => {
 
                             const index = imgIndex + 1;

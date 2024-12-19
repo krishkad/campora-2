@@ -117,13 +117,14 @@ const Navbar = () => {
                             <div className="space-y-8 py-4 flex flex-col justify-center items-center pt-20">
                                 {NAVLINKS.map((link, i) => {
                                     if (link.label === "Booking") return;
-                                    return <Link
-                                        className='font-semibold text-base text-balance text-white'
-                                        href={link.href}
-                                        key={i}
-                                    >
-                                        {link.label}
-                                    </Link>
+                                    return <SheetClose asChild key={i}>
+                                        <Link
+                                            className='font-semibold text-base text-balance text-white'
+                                            href={link.href}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </SheetClose>
                                 })}
                             </div>
                             <div className="w-full py-4 pt-8">
