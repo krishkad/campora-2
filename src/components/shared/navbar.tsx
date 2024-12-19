@@ -84,6 +84,7 @@ const Navbar = () => {
                 </div>
                 <div className="hidden md:flex items-center justify-center gap-12">
                     {NAVLINKS.map((link, i) => {
+                        if (link.label === "Booking") return;
                         return <Link
                             className='font-medium text-base text-balance text-gray-200 hover:text-white nav-links'
                             href={link.href}
@@ -115,6 +116,7 @@ const Navbar = () => {
                             </SheetHeader>
                             <div className="space-y-8 py-4 flex flex-col justify-center items-center pt-20">
                                 {NAVLINKS.map((link, i) => {
+                                    if (link.label === "Booking") return;
                                     return <Link
                                         className='font-semibold text-base text-balance text-white'
                                         href={link.href}

@@ -17,6 +17,12 @@ import { IoWifi } from 'react-icons/io5'; // Icon for "Network"
 import { FaParking } from 'react-icons/fa'; // Icon for "Parking"
 import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 
+
+
+
+export const imageUrls: string[] = Array.from({ length: 12 }, (_, i) => `/images/gallery/${i + 1}.jpg`);
+
+
 interface SocialLink {
     name: string;
     url: string;
@@ -163,16 +169,24 @@ export const NAVLINKS = [
         href: '/'
     },
     {
-        label: "Rooms",
-        href: '/rooms'
+        label: "Gallery",
+        href: '/gallery'
     },
     {
-        label: "Galery",
-        href: '/galery'
+        label: "Videos",
+        href: '/videos'
     },
     {
-        label: "Contact",
-        href: '/contact'
+        label: "How To Reach",
+        href: '/how-to-reach'
+    },
+    {
+        label: "Booking",
+        href: '/booking'
+    },
+    {
+        label: "Contact Us",
+        href: '/contact-us'
     },
 ]
 

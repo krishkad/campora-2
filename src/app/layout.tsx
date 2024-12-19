@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/shared/navbar";
-import Footer from "@/components/shared/footer";
 
 const playfairDisplay = localFont({
   src: [
@@ -36,11 +34,11 @@ export default function RootLayout({
         className={`${playfairDisplay.variable} antialiased overflow-auto scrollbar-hide`}
       >
         <main className="relative w-full">
-          <Navbar />
+        
           <main className="w-full">
             {children}
           </main>
-          <Footer />
+          
         </main>
       </body>
     </html>

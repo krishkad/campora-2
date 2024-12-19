@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <div className="w-full bg-black">
             <div className='max-w-wrapper-6xl py-14'>
-                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-b pb-5">
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-500 pb-5">
                     <div className="w-full">
                         <div className="w-full flex justify-start">
                             <Logo className='!text-white' />
