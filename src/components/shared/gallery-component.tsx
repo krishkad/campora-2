@@ -81,7 +81,7 @@ function GalleryColumn({ images, className, imageClassName, msPerPixel }: { imag
 
         <div
             ref={columnRef}
-            className={cn("animate-marquee size-full space-y-10 ", className)}
+            className={cn("animate-marquee size-full space-y-5 ", className)}
             style={{ '--marquee-duration': duration } as React.CSSProperties}
         >
             {images.concat(images).map((image, imageIndex) => {
