@@ -93,13 +93,22 @@ const Navbar = () => {
                             {link.label}
                         </Link>
                     })}
-                    <Link
-                        href={"/booking"}
-                        className={cn(buttonVariants({ variant: "outline" }), 'py-2 px-6 rounded-full bg-transparent text-gray-200 border-2 border-gray-200 hover:border-white')}
-                    >
-                        Book Now
-                        <ArrowRight className='inline ml-1' />
-                    </Link>
+                    <div className="flex justify-center items-center gap-3">
+                        <Link
+                            href={"/booking"}
+                            className={cn(buttonVariants({ variant: "outline" }), 'py-2 px-6 rounded-full bg-transparent text-gray-200 border-2 border-gray-200 hover:border-white')}
+                        >
+                            Book Now
+                            <ArrowRight className='inline ml-1' />
+                        </Link>
+                        <Link
+                            href={"/operator/dashboard"}
+                            className={cn(buttonVariants({ variant: "outline" }), 'py-2 px-6 rounded-full bg-transparent text-gray-200 border-2 border-gray-200 hover:border-white')}
+                        >
+                            Operator
+                            <ArrowRight className='inline ml-1' />
+                        </Link>
+                    </div>
                 </div>
                 <div className="block md:hidden">
                     <Sheet  >

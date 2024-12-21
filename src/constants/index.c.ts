@@ -55,56 +55,67 @@ export const socialLinks: SocialLink[] = [
 export type BestChoice = {
     icon: React.ComponentType<IconBaseProps>;
     description: string;
+    img: string;
 };
 
 export const best_choice: BestChoice[] = [
     {
         icon: Tent,
         description: "Unique Luxury Swiss tents",
+        img: "/images/best-choice/cottage.jpg"
     },
     {
         icon: GiForest,
         description: "Area surrounded by nature",
+        img: "/images/best-choice/nature.jpg"
     },
-    {
+        {
         icon: FaMusic,
         description: "DJ Music",
+        img: "/images/best-choice/music.jpg"
     },
     {
         icon: GiCampfire,
         description: "Private Bonfire",
+        img: "/images/best-choice/bonfire.jpg"
     },
     {
         icon: BsStars,
         description: "Private Stargazing Lawn",
+        img: "/images/best-choice/lawn.jpg"
     },
     {
         icon: GiWaterfall,
         description: "Riverfront tent view",
+        img: "/images/best-choice/river.jpg"
     },
     {
         icon: AiOutlineCamera,
         description: "Beautiful sunset view",
+        img: "/images/best-choice/sunset.jpg"
     },
     {
         icon: FaHamburger,
         description: "Best Food",
+        img: "/images/best-choice/food.jpg"
     },
     {
         icon: IoWifi,
         description: "Network available",
+        img: "/images/best-choice/wifi.jpg"
     },
     {
         icon: GiBathtub,
         description: "Attached Washroom Inside tent",
+        img: "/images/best-choice/bathroom.jpg"
     },
     {
         icon: FaParking,
         description: "Availability of private parking space",
+        img: "/images/best-choice/parking.jpg"
     },
 ];
 
-export default best_choice;
 
 
 
@@ -188,7 +199,21 @@ export const NAVLINKS = [
         label: "Contact Us",
         href: '/contact-us'
     },
-]
+] as const;
+
+
+
+
+
+export const ADMINROUTE = [
+    { href: '/operator/dashboard', label: 'Dashboard', value: 'dashboard' },
+    { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites' },
+    { href: '/operator/bookings', label: 'Booking Management', value: 'bookings' },
+    { href: '/operator/users', label: 'User Management', value: 'users' },
+    { href: '/operator/reviews', label: 'Reviews and Ratings', value: 'reviews' },
+    { href: '/operator/settings', label: 'Settings', value: 'settings' },
+] as const;
+
 
 
 export const dayHeader = [

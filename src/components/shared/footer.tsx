@@ -5,11 +5,12 @@ import { Button, buttonVariants } from '../ui/button';
 import { CiLocationArrow1 } from "react-icons/ci";
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { CopyrightIcon } from 'lucide-react';
 
 const Footer = () => {
     return (
         <div className="w-full bg-black">
-            <div className='max-w-wrapper-6xl py-14'>
+            <div className='max-w-wrapper-6xl pt-7 pb-1'>
                 <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-gray-500 pb-5">
                     <div className="w-full">
                         <div className="w-full flex justify-start">
@@ -75,6 +76,31 @@ const Footer = () => {
 
                         </div>
                     </div>
+                </div>
+                <div className="w-full flex flex-col md:flex-row items-center jusitfy-center md:justify-between max-md:gap-2">
+                    <div className="w-max md:min-h-[60px] h-max flex items-center justify-center gap-3 max-md:mt-4">
+                        <Link href={'/'} className='text-gray-400 hover:text-gray-200 transition-all text-sm'>
+                            Terms of Use
+                        </Link>
+                        <div className="w-px h-[12px] bg-gray-400" />
+
+                        <Link href={'/'} className='text-gray-400 hover:text-gray-200 transition-all text-sm'>
+                            Privacy Policy
+                        </Link>
+                    </div>
+                    <div className="w-max-min-h-16 h-max flex items-center justify-center gap-3">
+                        <p className="text-sm text-gray-400">
+                            <CopyrightIcon className='w-3 h-3 shrink-0 inline mr-2' />
+                            {new Date().getFullYear()}
+                        </p>
+                        <Link href={'/'} className='text-gray-400 hover:text-gray-200 transition-all text-sm'>
+                            The Triangle Gamping,
+                        </Link>
+                        <p className="text-sm text-gray-400">
+                            All Rights Reserved
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
