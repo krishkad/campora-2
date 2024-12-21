@@ -111,7 +111,7 @@ export const best_choice: BestChoice[] = [
     },
     {
         icon: FaParking,
-        description: "Availability of private parking space",
+        description: "Private parking available",
         img: "/images/best-choice/parking.jpg"
     },
 ];
