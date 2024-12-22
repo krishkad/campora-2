@@ -35,7 +35,7 @@ const BestChoice = () => {
             <div className="max-w-wrapper-6xl pt-16 pb-12">
 
                 <AnimatedTitle title='Why <span>Choose</span> Us' />
-                <div className="relative w-full mt-14">
+                <div className="relative w-full mt-14" ref={componentRef} >
                     {isInView && (
 
                         <Carousel
