@@ -9,7 +9,11 @@ const AdminPage = ({ params: { admin_route } }: { params: { admin_route: typeof 
             {
                 admin_route === "dashboard" ? <Dashboard /> :
                     admin_route === "campsites" ? <Campsites /> :
-                        null
+                        admin_route === "bookings" ? "Booking" :
+                            admin_route === "users" ? "Users" :
+                                admin_route === "reviews" ? "Reviews" :
+                                    admin_route === "settings" ? "Settings" :
+                                        null
             }
         </div>
     )

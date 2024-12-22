@@ -136,6 +136,8 @@ body {
     @apply translate-y-48 opacity-0;
   }
 
+  
+
 
   .hide-scrollbar-y {
     overflow-y: scroll;
@@ -153,3 +155,5 @@ body {
 
 
 }
+
+

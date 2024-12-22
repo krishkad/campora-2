@@ -16,6 +16,19 @@ import { FaHamburger } from 'react-icons/fa'; // Icon for "Best Food"
 import { IoWifi } from 'react-icons/io5'; // Icon for "Network"
 import { FaParking } from 'react-icons/fa'; // Icon for "Parking"
 import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { MdDashboard } from 'react-icons/md';
+import { GiCampingTent } from 'react-icons/gi';
+import { FaCalendarAlt, FaUsers, FaStar } from 'react-icons/fa';
+import { FiSettings } from 'react-icons/fi';
+
+export const ADMINROUTE = [
+    { href: '/operator/dashboard', label: 'Dashboard', value: 'dashboard', icon: MdDashboard },
+    { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites', icon: GiCampingTent },
+    { href: '/operator/bookings', label: 'Booking Management', value: 'bookings', icon: FaCalendarAlt },
+    { href: '/operator/users', label: 'User Management', value: 'users', icon: FaUsers },
+    { href: '/operator/reviews', label: 'Reviews and Ratings', value: 'reviews', icon: FaStar },
+    { href: '/operator/settings', label: 'Settings', value: 'settings', icon: FiSettings },
+] as const;
 
 
 
@@ -205,14 +218,14 @@ export const NAVLINKS = [
 
 
 
-export const ADMINROUTE = [
-    { href: '/operator/dashboard', label: 'Dashboard', value: 'dashboard' },
-    { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites' },
-    { href: '/operator/bookings', label: 'Booking Management', value: 'bookings' },
-    { href: '/operator/users', label: 'User Management', value: 'users' },
-    { href: '/operator/reviews', label: 'Reviews and Ratings', value: 'reviews' },
-    { href: '/operator/settings', label: 'Settings', value: 'settings' },
-] as const;
+// export const ADMINROUTE = [
+//     { href: '/operator/dashboard', label: 'Dashboard', value: 'dashboard' },
+//     { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites' },
+//     { href: '/operator/bookings', label: 'Booking Management', value: 'bookings' },
+//     { href: '/operator/users', label: 'User Management', value: 'users' },
+//     { href: '/operator/reviews', label: 'Reviews and Ratings', value: 'reviews' },
+//     { href: '/operator/settings', label: 'Settings', value: 'settings' },
+// ] as const;
 
 
 

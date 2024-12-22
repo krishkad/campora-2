@@ -30,7 +30,7 @@ const BestChoice = () => {
 
     return (
         <div className="w-full">
-            <div className="max-w-wrapper-6xl pt-16 pb-16">
+            <div className="max-w-wrapper-6xl pt-16 pb-12">
                 {/* <h1 className="text-center text-4xl font-medium">
                     What Makes Us The
                     {" "}
@@ -38,7 +38,7 @@ const BestChoice = () => {
                     {" "}
                     <br className="hidden md:block" />Choice
                 </h1> */}
-                <AnimatedTitle title='What Makes Us The<br /><span>Best</span> Choice' />
+                <AnimatedTitle title='Why <span>Choose</span><br />Us' />
                 <div className="relative w-full mt-14">
                     {/* <div className="w-full sm:w-[450px] mx-auto border-collapse">
                         {best_choice.map((item, itemIndex) => (
@@ -46,7 +46,7 @@ const BestChoice = () => {
                         ))}
                     </div> */}
                     <Carousel
-                        
+
                         opts={{
                             align: "center",
                             loop: true
@@ -71,7 +71,7 @@ const BestChoice = () => {
                                         <Card className='overflow-hidden'>
                                             <CardContent className="flex flex-col items-center justify-center p-0 ">
                                                 <div className="relative w-full aspect-[9/12]">
-                                                    <Image src={best.img} fill sizes='100%' className='object-cover select-none' alt={'images'} />
+                                                    <Image src={best.img} fill sizes='100%' className='object-cover select-none hover-shinny' alt={'images'} />
                                                 </div>
                                                 <div className="w-full mt-4 px-5 pb-5">
                                                     <p className="text-sm md:text-lg font-semibold">
