@@ -11,14 +11,14 @@ import {
 
 
 
-const NumberSelect = () => {
+const NumberSelect = ({ placeHolder }: { placeHolder?: string }) => {
     const [guest, setGuest] = useState(2)
 
     return (
-        <div className="grid w-full max-w-40 items-center gap-1.5">
+        <div className="grid w-full max-w-40 items-center gap-1.5 bg-white">
             <Select>
                 <SelectTrigger className="w-full">
-                    <SelectValue placeholder="2" />
+                    <SelectValue placeholder={placeHolder ? placeHolder : "2"} className='bg-white' />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="1">1</SelectItem>

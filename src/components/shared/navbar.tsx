@@ -118,7 +118,9 @@ const Navbar = () => {
                         </SheetTrigger>
                         <SheetContent side={'top'} className={'h-full bg-black/60 text-white border-gray-600'} onOpenAutoFocus={(e: Event) => e.preventDefault()}>
                             <SheetHeader className='border-b border-gray-600 pb-5'>
-                                <SheetTitle className={"text-white"}>Menu</SheetTitle>
+                                <SheetTitle className={"text-white"}>
+                                    <Logo />
+                                </SheetTitle>
                                 <SheetDescription>
                                     {' '}
                                 </SheetDescription>
@@ -136,14 +138,26 @@ const Navbar = () => {
                                     </SheetClose>
                                 })}
                             </div>
-                            <div className="w-full py-4 pt-8">
-                                <Link
-                                    href={'/'}
-                                    className={cn(buttonVariants({ size: 'lg', variant: 'ghost' }), 'w-full dark font-semibold underline underline-offset-[5px] border-gray-500')}
-                                >
-                                    Book Now
-                                    {/* <ArrowRight className='w-5 h-5 shrink-0 inline' /> */}
-                                </Link>
+                            <div className="w-full space-y-6 py-4 pt-8">
+                                <SheetClose asChild>
+                                    <Link
+                                        href={'/booking'}
+                                        className={cn(buttonVariants({ size: 'lg', variant: 'default' }), 'w-full dark font-semibold')}
+                                    >
+                                        Book Now
+                                        {/* <ArrowRight className='w-5 h-5 shrink-0 inline' /> */}
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+
+                                    <Link
+                                        href={'/operator/dashboard'}
+                                        className={cn(buttonVariants({ size: 'lg', variant: 'ghost' }), 'w-full dark font-semibold underline underline-offset-[5px] border-gray-500')}
+                                    >
+                                        Operator
+                                        {/* <ArrowRight className='w-5 h-5 shrink-0 inline' /> */}
+                                    </Link>
+                                </SheetClose>
                             </div>
                         </SheetContent>
                     </Sheet>

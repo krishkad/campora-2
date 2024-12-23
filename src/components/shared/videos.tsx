@@ -9,7 +9,7 @@ const Videos = () => {
           <Image src={'/images/videos.jpg'} fill sizes='100%' className='object-cover' alt='gallery' />
           <div className="absolute inset-0 bg-black/45 z-[5]" />
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
-            <h1 className="text-6xl font-semibold text-center text-gray-200">
+            <h1 className="text-4xl md:text-6xl font-semibold text-center text-gray-200">
               Videos
             </h1>
           </div>
