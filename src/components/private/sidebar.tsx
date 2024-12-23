@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 const Sidebar = () => {
     return (
-        <div className="w-full h-svh space-y-3 p-3 bg-gray-50">
+        <div className="w-full h-svh space-y-3 p-3">
             <div className="w-full py-5 flex justify-start">
                 <Logo IconClassName='!text-black' />
             </div>

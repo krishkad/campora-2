@@ -11,9 +11,9 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import Autoplay from 'embla-carousel-autoplay'
 import { best_choice } from '@/constants/index.c';
 import Image from 'next/image';
-import Autoplay from 'embla-carousel-autoplay'
 import { useInView } from 'framer-motion';
 
 
