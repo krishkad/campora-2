@@ -198,9 +198,14 @@ import dayjs from "dayjs";
 // Memoize the Calendar to prevent unnecessary re-renders
 // const MemoizedCalendar = React.memo(Calendar);
 
+interface DatePickerTypes extends React.HTMLAttributes<HTMLDivElement> {
+  ButtonClassName?: string
+}
+
 export default function DatePicker({
   className,
-}: React.HTMLAttributes<HTMLDivElement>) {
+  ButtonClassName,
+}: DatePickerTypes) {
   // Use useState with lazy initialization
   const [date, setDate] = React.useState<DateRange | undefined>(() => ({
     from: new Date(dayjs().year(), dayjs().month(), dayjs().date()),
@@ -230,7 +235,7 @@ export default function DatePicker({
             variant="outline"
             className={cn(
               "w-full justify-start text-left font-normal rounded-full",
-              !date && "text-muted-foreground"
+              !date && "text-muted-foreground", ButtonClassName
             )}
           >
             <CalendarIcon />

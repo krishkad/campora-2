@@ -27,28 +27,28 @@ const Booking = () => {
             <div className="max-w-3xl mx-auto px-5 py-8">
                 <div className="w-full border p-3 bg-slate-100 rounded-xl">
                     <div className="w-full">
-                        <DatePicker />
+                        <DatePicker ButtonClassName='h-12 rounded-md' />
                     </div>
                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
                         <div className="relative w-full h-max">
-                            <Input type='text' placeholder='Enter Your Name' className='bg-white pl-10' />
+                            <Input type='text' placeholder='Enter Your Name' className='bg-white pl-10 h-12' />
                             <UserIcon className='absolute left-3 my-auto inset-y-0 w-4 h-4 shrink-0' />
                         </div>
                         <div className="relative w-full h-max">
-                            <Input type='email' placeholder='Enter Your Email' className='bg-white pl-10' />
+                            <Input type='email' placeholder='Enter Your Email' className='bg-white pl-10 h-12' />
                             <MdEmail className='absolute left-3 my-auto inset-y-0 w-4 h-4 shrink-0' />
                         </div>
                         <div className="relative w-full h-max">
-                            <Input type='tel' placeholder='Enter Your Phone no.' className='bg-white pl-10' />
+                            <Input type='tel' placeholder='Enter Your Phone no.' className='bg-white pl-10 h-12' />
                             <PhoneIcon className='absolute left-3 my-auto inset-y-0 w-4 h-4 shrink-0' />
                         </div>
                         <div className="w-full grid grid-cols-2 gap-5">
                             <div className="w-full space-y-1">
 
-                                <NumberSelect placeHolder={"no. of People"} />
+                                <NumberSelect placeHolder={"no. of People"} selectValueClassName='h-12' />
                             </div>
                             <div className="w-full space-y-1">
-                                <NumberSelect placeHolder={"no. of Guest"} />
+                                <NumberSelect placeHolder={"no. of Guest"} selectValueClassName='h-12' />
 
                             </div>
                         </div>
