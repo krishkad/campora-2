@@ -21,7 +21,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                 <Sidebar />
             </div>
             <main className="w-full min-h-svh h-full bg-gray-100 p-5">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
+                <div className="max-w-6xl mx-auto flex items-center justify-between gap-5">
                     <div className="flex items-center justify-center gap-3">
                         <Button
                             size={'icon'}
@@ -38,7 +38,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                         <Input
                             placeholder='Search Here'
                             type='text'
-                            className='bg-white'
+                            className='bg-white w-32'
                         />
                     </div>
                 </div>
