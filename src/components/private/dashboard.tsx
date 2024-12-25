@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <div className=' max-w-6xl mx-auto rounded-md'>
             <div className="w-full grid grid-cols-1 md:grid-cols-4 grid-rows-8 md:grid-rows-2 gap-3">
-                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between">
+                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between max-md:order-1" >
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Order</p>
                         <BoxIcon className='w-7 h-7 shrink-0' />
@@ -27,7 +27,7 @@ const Dashboard = () => {
                         Monthly Growth
                     </p>
                 </div>
-                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between">
+                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between max-md:order-2">
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Approved</p>
                         <SquareCheckIcon className='w-7 h-7 shrink-0' />
@@ -42,7 +42,7 @@ const Dashboard = () => {
                         Monthly Growth
                     </p>
                 </div>
-                <div className="w-full row-span-2 rounded-xl bg-white p-3 flex flex-col items-start justify-between border shadow-md">
+                <div className="w-full row-span-2 rounded-xl bg-white p-3 flex flex-col items-start justify-between border shadow-md max-md:order-5">
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Users</p>
                         {/* <Users2Icon className='w-7 h-7 shrink-0' /> */}
@@ -60,7 +60,7 @@ const Dashboard = () => {
                         <PieChartComponent />
                     </div>
                 </div>
-                <div className="w-full h-full row-span-2 rounded-xl bg-white p-3 flex flex-col items-start justify-between border shadow-md">
+                <div className="w-full h-full row-span-2 rounded-xl bg-white p-3 flex flex-col items-start justify-between border shadow-md max-md:order-6">
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Subscriptions</p>
                         {/* <Users2Icon className='w-7 h-7 shrink-0' /> */}
@@ -78,7 +78,7 @@ const Dashboard = () => {
                         <PieChartComponent />
                     </div>
                 </div>
-                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between">
+                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between max-md:order-3">
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Monthly Total</p>
                         <IndianRupeeIcon className='w-7 h-7 shrink-0' />
@@ -93,7 +93,7 @@ const Dashboard = () => {
                         Monthly Growth
                     </p>
                 </div>
-                <div className="w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between">
+                <div className="w-full aspect-[16/6] md:aspect-[16/8] max-md:order-4 rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between">
                     <div className="w-full flex items-start justify-between">
                         <p className="font-semibold">Revenue</p>
                         <WalletIcon className='w-7 h-7 shrink-0' />
@@ -109,26 +109,26 @@ const Dashboard = () => {
                     </p>
                 </div>
             </div>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-6 gap-3">
-                <div className="grid grid-cols-1 grid-rows-2 gap-3">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-3 gap-3">
+                <div className="w-full grid grid-rows-2 grid-cols-1 gap-3 ">
                     <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" >
                         <div className="w-full flex items-center justify-between">
                             <h3 className="text-base font-semibold">
                                 Sale dynamics
                             </h3>
                         </div>
-                        <div className="w-full h-full">
+                        <div className="h-[90%] w-full">
                             <BarChartComponent />
                         </div>
                     </div>
-                    <div className="w-full aspect-video rounded-xl shadow-md bg-white" />
+                    <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" />
                 </div>
-                <div className="w-full grid grid-cols-1 grid-rows-8 gap-3">
+                <div className="w-full h-full grid grid-cols-1 grid-rows-7 gap-3">
                     <div className="w-full h-full row-span-3 grid grid-cols-2 gap-2">
                         <div className="w-full h-full rounded-xl shadow-md bg-white" />
                         <div className="w-full h-full rounded-xl shadow-md bg-white" />
                     </div>
-                    <div className="w-full h-full row-span-5 rounded-xl shadow-md bg-white" />
+                    <div className="w-full h-full row-span-4 rounded-xl shadow-md bg-white" />
                 </div>
             </div>
         </div>
