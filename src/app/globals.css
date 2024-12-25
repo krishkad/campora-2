@@ -67,7 +67,11 @@ body {
 
 @layer base {
   * {
-    @apply box-border font-playfair;
+    @apply box-border;
+  }
+
+  .root {
+    @apply font-playfair;
   }
 
   body {
@@ -107,7 +111,7 @@ body {
     @apply translate-y-full opacity-0;
   }
 
-  .box-item{
+  .box-item {
     @apply translate-y-36 opacity-0;
   }
 
@@ -136,7 +140,7 @@ body {
     @apply translate-y-48 opacity-0;
   }
 
-  
+
 
 
   .hide-scrollbar-y {
@@ -155,5 +159,3 @@ body {
 
 
 }
-
-

@@ -5,7 +5,7 @@ import Footer from "@/components/shared/footer";
 
 const RootLayout = ({ children }: { children: string }) => {
     return (
-        <div className="w-full">
+        <div className="w-full root">
               <Navbar />
             <main className="w-full">
                 {children}

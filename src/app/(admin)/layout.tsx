@@ -4,11 +4,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AlignJustifyIcon } from 'lucide-react';
 import React, { ReactNode } from 'react'
+import { Inter } from 'next/font/google'
+import { cn } from '@/lib/utils';
+
+const inter = Inter({ subsets: ['latin'] })
+
+
+
+
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
 
     return (
-        <div className="w-full flex">
+        <div className={cn("w-full flex", inter.className)}>
             <div className="hidden md:block w-[350px]">
                 <Sidebar />
             </div>
