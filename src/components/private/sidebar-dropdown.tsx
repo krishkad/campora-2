@@ -29,7 +29,7 @@ export default function SidebarDropdown() {
                     <AlignJustifyIcon className='w-5 h-5 inline' />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-56 ml-3">
                 <DropdownMenuLabel>Menu</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
