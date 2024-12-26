@@ -34,7 +34,7 @@ export default function SidebarDropdown() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     {ADMINROUTE.map((adlink, i) => (
-                        <DropdownMenuItem>
+                        <DropdownMenuItem key={i}>
                             <Link href={adlink.href}>
                                 {adlink.label}
                             </Link>
