@@ -8,6 +8,8 @@ import {
 import PieChartComponent from './pie-chart';
 import BarChartComponent from './bar-chart';
 import LineChartComponent from './line-chart';
+import { MdFreeCancellation, MdOutlineCancel } from 'react-icons/md';
+import RadialChartComponent from './radial-chart';
 
 const Dashboard = () => {
     return (
@@ -137,11 +139,53 @@ const Dashboard = () => {
                     <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" />
                 </div>
                 <div className="w-full h-full grid grid-cols-1 grid-rows-7 gap-3">
-                    <div className="w-full h-full row-span-3 grid grid-cols-2 gap-2">
-                        <div className="w-full h-full rounded-xl shadow-md bg-white" />
-                        <div className="w-full h-full rounded-xl shadow-md bg-white" />
+                    <div className="w-full h-full row-span-3 md:row-span-2 grid grid-cols-2 gap-2">
+                        <div className="w-full h-full rounded-xl shadow-md bg-white p-3 flex flex-col items-center justify-between" >
+                            <div className="w-full h-1/3 md:h-1/4 flex items-center justify-between">
+                                <MdOutlineCancel className='w-10 h-10 inline' />
+                                <div className="w-[70px] h-[70px] aspect-square">
+                                    <RadialChartComponent />
+                                </div>
+                            </div>
+                            <div className="w-full h-2/3 md:h-2/4 flex flex-col items-start justify-center ">
+                                <p className="text-xs font-semibold">
+                                    Cancellations
+                                </p>
+                                <h3 className="text-3xl md:text-4xl font-semibold">
+                                    21
+                                </h3>
+
+                                <p className="text-xs font-semibold text-muted-foreground">
+                                    This Month
+                                </p>
+                            </div>
+                        </div>
+                        <div className="w-full h-full rounded-xl shadow-md bg-white p-3 flex flex-col items-center justify-between" >
+                            <div className="w-full h-1/3 md:h-1/4 flex items-center justify-between">
+                                <MdFreeCancellation className='w-10 h-10 inline' />
+                                <div className="w-[70px] h-[70px] aspect-square">
+                                    <RadialChartComponent />
+                                </div>
+                            </div>
+                            <div className="w-full h-2/3 md:h-2/4 flex flex-col items-start justify-center ">
+                                <p className="text-xs font-semibold">
+                                    Cancellations
+                                </p>
+                                <h3 className="text-3xl md:text-4xl font-semibold">
+                                    21
+                                </h3>
+
+                                <p className="text-xs font-semibold text-muted-foreground">
+                                    This Month
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="w-full h-full row-span-4 rounded-xl shadow-md bg-white" />
+                    <div className="w-full h-full row-span-4 md:row-span-5 rounded-xl shadow-md bg-white p-5">
+                        <p className="text-base font-semibold">
+                            Latest Reservations
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
