@@ -21,6 +21,189 @@ import { GiCampingTent } from 'react-icons/gi';
 import { FaCalendarAlt, FaUsers, FaStar } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 
+
+
+export interface Booking {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    checkInDate: string; // ISO format: YYYY-MM-DD
+    checkOutDate: string; // ISO format: YYYY-MM-DD
+    paymentStatus: "Paid" | "Pending" | "Failed";
+    foodPreference: "Veg" | "Non-Veg";
+    numberOfGuests: number;
+    tentType: "Single" | "Double" | "Family";
+    message?: string;
+    specialRequests?: string;
+    bookingStatus: "Confirmed" | "Pending" | "Cancelled";
+    createdAt: string; // ISO format: YYYY-MM-DDTHH:mm:ssZ
+};
+
+export const campingBookings: Booking[] = [
+    {
+        id: 1,
+        name: "John Doe",
+        email: "johndoe@example.com",
+        phone: "1234567890",
+        address: "123 Main St, Springfield, USA",
+        checkInDate: "2024-01-15",
+        checkOutDate: "2024-01-20",
+        paymentStatus: "Paid",
+        foodPreference: "Non-Veg",
+        numberOfGuests: 4,
+        tentType: "Family",
+        message: "Please prepare a barbecue on the last night.",
+        specialRequests: "Need an extra blanket.",
+        bookingStatus: "Confirmed",
+        createdAt: "2023-12-25T10:00:00Z",
+    },
+    {
+        id: 2,
+        name: "Jane Smith",
+        email: "janesmith@example.com",
+        phone: "9876543210",
+        address: "456 Elm St, Metropolis, USA",
+        checkInDate: "2024-01-18",
+        checkOutDate: "2024-01-19",
+        paymentStatus: "Pending",
+        foodPreference: "Veg",
+        numberOfGuests: 2,
+        tentType: "Double",
+        bookingStatus: "Pending",
+        createdAt: "2023-12-28T14:30:00Z",
+    },
+    {
+        id: 3,
+        name: "Robert Johnson",
+        email: "robertj@example.com",
+        phone: "4561237890",
+        address: "789 Oak St, Gotham City, USA",
+        checkInDate: "2024-02-10",
+        checkOutDate: "2024-02-15",
+        paymentStatus: "Paid",
+        foodPreference: "Veg",
+        numberOfGuests: 3,
+        tentType: "Family",
+        specialRequests: "Please arrange for a guided trekking tour.",
+        bookingStatus: "Confirmed",
+        createdAt: "2023-12-30T09:45:00Z",
+    },
+    {
+        id: 4,
+        name: "Emily Davis",
+        email: "emilydavis@example.com",
+        phone: "8527419630",
+        address: "321 Maple St, Smallville, USA",
+        checkInDate: "2024-03-01",
+        checkOutDate: "2024-03-03",
+        paymentStatus: "Failed",
+        foodPreference: "Non-Veg",
+        numberOfGuests: 1,
+        tentType: "Single",
+        message: "Celebrating a birthday, please arrange a cake.",
+        bookingStatus: "Cancelled",
+        createdAt: "2024-01-05T11:20:00Z",
+    },
+    {
+        id: 5,
+        name: "Sophia Taylor",
+        email: "sophiataylor@example.com",
+        phone: "7418529630",
+        address: "987 Willow St, Star City, USA",
+        checkInDate: "2024-03-10",
+        checkOutDate: "2024-03-14",
+        paymentStatus: "Paid",
+        foodPreference: "Veg",
+        numberOfGuests: 5,
+        tentType: "Family",
+        specialRequests: "Close to the river.",
+        bookingStatus: "Confirmed",
+        createdAt: "2024-02-01T16:10:00Z",
+    },
+    {
+        id: 6,
+        name: "Liam Brown",
+        email: "liambrown@example.com",
+        phone: "9638527410",
+        address: "654 Cedar St, Central City, USA",
+        checkInDate: "2024-04-05",
+        checkOutDate: "2024-04-07",
+        paymentStatus: "Pending",
+        foodPreference: "Non-Veg",
+        numberOfGuests: 3,
+        tentType: "Double",
+        message: "Honeymoon trip, please arrange candles.",
+        bookingStatus: "Pending",
+        createdAt: "2024-02-15T11:45:00Z",
+    },
+    {
+        id: 7,
+        name: "William Green",
+        email: "williamgreen@example.com",
+        phone: "7894561230",
+        address: "321 Spruce St, Coast City, USA",
+        checkInDate: "2024-05-20",
+        checkOutDate: "2024-05-25",
+        paymentStatus: "Paid",
+        foodPreference: "Veg",
+        numberOfGuests: 4,
+        tentType: "Family",
+        specialRequests: "Need a guide for stargazing.",
+        bookingStatus: "Confirmed",
+        createdAt: "2024-03-10T08:30:00Z",
+    },
+    {
+        id: 8,
+        name: "Mia Wilson",
+        email: "miawilson@example.com",
+        phone: "8529637410",
+        address: "213 Birch St, Keystone City, USA",
+        checkInDate: "2024-06-15",
+        checkOutDate: "2024-06-18",
+        paymentStatus: "Failed",
+        foodPreference: "Non-Veg",
+        numberOfGuests: 2,
+        tentType: "Double",
+        bookingStatus: "Cancelled",
+        createdAt: "2024-03-25T10:20:00Z",
+    },
+    {
+        id: 9,
+        name: "Emma White",
+        email: "emmawhite@example.com",
+        phone: "9517538520",
+        address: "789 Maple Ave, National City, USA",
+        checkInDate: "2024-07-01",
+        checkOutDate: "2024-07-05",
+        paymentStatus: "Paid",
+        foodPreference: "Veg",
+        numberOfGuests: 3,
+        tentType: "Family",
+        specialRequests: "Quiet area, away from other groups.",
+        bookingStatus: "Confirmed",
+        createdAt: "2024-04-01T09:00:00Z",
+    },
+    {
+        id: 10,
+        name: "Noah Martinez",
+        email: "noahmartinez@example.com",
+        phone: "1472583690",
+        address: "456 Pine St, Emerald City, USA",
+        checkInDate: "2024-08-10",
+        checkOutDate: "2024-08-15",
+        paymentStatus: "Paid",
+        foodPreference: "Non-Veg",
+        numberOfGuests: 6,
+        tentType: "Family",
+        specialRequests: "Plan a group kayaking activity.",
+        bookingStatus: "Confirmed",
+        createdAt: "2024-04-15T13:40:00Z",
+    },
+] as const;
+
+
 export const ADMINROUTE = [
     { href: '/operator/dashboard', label: 'Dashboard', value: 'dashboard', icon: MdDashboard },
     { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites', icon: GiCampingTent },
@@ -82,7 +265,7 @@ export const best_choice: BestChoice[] = [
         description: "Area surrounded by nature",
         img: "/images/best-choice/nature.jpg"
     },
-        {
+    {
         icon: FaMusic,
         description: "DJ Music",
         img: "/images/best-choice/music.jpg"

@@ -10,6 +10,7 @@ import BarChartComponent from './bar-chart';
 import LineChartComponent from './line-chart';
 import { MdFreeCancellation, MdOutlineCancel } from 'react-icons/md';
 import RadialChartComponent from './radial-chart';
+import LatestReservations from './latest-reservation';
 
 const Dashboard = () => {
     return (
@@ -129,14 +130,19 @@ const Dashboard = () => {
                     <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" >
                         <div className="w-full flex items-center justify-between">
                             <h3 className="text-base font-semibold">
-                                Sale dynamics
+                                Booking dynamics
                             </h3>
                         </div>
                         <div className="h-[85%] w-full">
                             <BarChartComponent />
                         </div>
                     </div>
-                    <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" />
+                    <div className="w-full aspect-video rounded-xl shadow-md bg-white p-3" >
+
+                        <h2 className="text-base font-semibold">
+                            Customer Feedback
+                        </h2>
+                    </div>
                 </div>
                 <div className="w-full h-full grid grid-cols-1 grid-rows-7 gap-3">
                     <div className="w-full h-full row-span-3 md:row-span-2 grid grid-cols-2 gap-2">
@@ -181,10 +187,13 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full h-full row-span-4 md:row-span-5 rounded-xl shadow-md bg-white p-5">
+                    <div className="w-full h-full row-span-4 md:row-span-5 rounded-xl shadow-md bg-white p-3 flex flex-col items-start justify-between">
                         <p className="text-base font-semibold">
                             Latest Reservations
                         </p>
+                        <div className="h-[80%] w-full aspect-auto ">
+                            {/* <LatestReservations /> */}
+                        </div>
                     </div>
                 </div>
             </div>
