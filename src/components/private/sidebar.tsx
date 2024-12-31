@@ -1,29 +1,46 @@
-import React from 'react'
-import Logo from '../shared/logo'
-import { ADMINROUTE } from '@/constants/index.c'
-import { Button, buttonVariants } from '../ui/button'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
-const Sidebar = () => {
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar"
+import { ADMINROUTE } from "@/constants/index.c"
+import Link from 'next/link';
+import Logo from "../shared/logo";
+
+
+
+export default function AppSidebar() {
     return (
-        <div className="w-full h-svh space-y-3 p-3">
-            <div className="w-full py-5 flex justify-start">
-                <Logo IconClassName='!text-black' />
-            </div>
-            <div className="w-full flex items-center justify-center gap-1">
-
-            </div>
-            <div className="w-full space-y-3">
-                {ADMINROUTE.map((route, routeIndex) => {
-                    return <Link href={route.href} className={cn(buttonVariants({ variant: 'ghost' }), "w-full h-14 justify-start")} key={routeIndex}>
-                        <route.icon className='w-4 h-4 shrink-0 inline mr-2' />
-                        <span className="font-semibold">{route.label}</span>
-                    </Link>
-                })}
-            </div>
-        </div>
+        <Sidebar>
+            <SidebarContent>
+                <SidebarGroup>
+                    <SidebarGroupLabel className="pt-5">
+                        <Logo IconClassName="!text-black" />
+                    </SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu className="pt-10">
+                            {ADMINROUTE.map((item, i) => (
+                                <SidebarMenuItem key={i} className="h-14">
+                                    <SidebarMenuButton asChild className="h-full">
+                                        <Link href={item.href} className="size-full">
+                                            <item.icon className="w-5 h-6 " />
+                                            <span className="text-base">{item.label}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+        </Sidebar>
     )
 }
-
-export default Sidebar
