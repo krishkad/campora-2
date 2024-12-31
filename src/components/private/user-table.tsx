@@ -19,7 +19,7 @@ const UserTable = () => {
         {
             accessorKey: "phone",
             header: "Phone",
-            cell: ({ row }) => <div className="font-medium">{row.getValue("phone")}</div>
+            cell: ({ row }) => <p className="font-medium whitespace-nowrap">{row.getValue("phone")}</p>
         },
         {
             accessorKey: "address",

@@ -6,7 +6,7 @@ import UserTable from './user-table'
 const UserManagement = () => {
     return (
         <div className='w-full'>
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 <Card>
                     <CardContent>
                         <UserTable />

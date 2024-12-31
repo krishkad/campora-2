@@ -28,8 +28,8 @@ export default function AppSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu className="pt-10">
                             {ADMINROUTE.map((item, i) => (
-                                <SidebarMenuItem key={i} className="h-14">
-                                    <SidebarMenuButton asChild className="h-full">
+                                <SidebarMenuItem key={i} className="h-14 border-none">
+                                    <SidebarMenuButton asChild className="h-full border-none focus:border-none focus-visible:ring-0">
                                         <Link href={item.href} className="size-full">
                                             <item.icon className="w-5 h-6 " />
                                             <span className="text-base">{item.label}</span>

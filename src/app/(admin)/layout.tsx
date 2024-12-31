@@ -28,7 +28,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                 <main className="w-full h-svh overflow-y-scroll bg-gray-100  p-5">
 
 
-                    <div className="max-w-6xl mx-auto flex items-center justify-between gap-5">
+                    <div className="max-w-7xl mx-auto flex items-center justify-between gap-5">
                         <div className="flex items-center justify-center gap-3">
                             <SidebarTrigger />
                             <h4 className="text-base font-semibold">

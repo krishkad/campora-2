@@ -68,7 +68,7 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
                                 {headers.headers.map((header) => {
                                     const headline = header.column.columnDef.header;
                                     return <TableHead
-                                        className={cn('min-w-max', headline === 'No. of Guest' && "w-[100px]")}
+                                        className={cn('min-w-max', (headline === 'No. of Guest'|| headline === "Phone") && "w-[100px]")}
 
                                         key={header.id}
                                     >
@@ -95,7 +95,7 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
                                     {row.getVisibleCells().map((cell, i) => {
 
                                         return <TableCell
-                                            className={cn('min-w-max', ((i === 5) || (i === 4) || (i === 0)) && "min-w-[100px]")}
+                                            className={cn('min-w-max', ((i === 2) || (i === 5) || (i === 4) || (i === 0)) && "min-w-[130px] w-max")}
                                             key={cell.id}
                                         >
                                             {flexRender(

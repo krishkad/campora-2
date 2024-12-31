@@ -14,7 +14,7 @@ import LatestReservations from './latest-reservation';
 
 const Dashboard = () => {
     return (
-        <div className=' max-w-6xl mx-auto rounded-md'>
+        <div className=' max-w-7xl mx-auto rounded-md'>
             <div className="w-full grid grid-cols-1 md:grid-cols-4 grid-rows-8 md:grid-rows-2 gap-3">
                 <div className="relative w-full aspect-[16/6] md:aspect-[16/8]  rounded-xl bg-white shadow-md border p-3 flex flex-col items-start justify-between max-md:order-1" >
                     <div className="w-full flex items-start justify-between">
