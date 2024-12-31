@@ -3,11 +3,25 @@ import { Booking, campingBookings } from '@/constants/index.c';
 import { ColumnDef } from '@tanstack/react-table';
 import React from 'react'
 import { Button } from '../ui/button';
-import { ArrowDownUpIcon } from 'lucide-react';
+import { ArrowDownUpIcon, EllipsisVertical, SquareDotIcon } from 'lucide-react';
 import SortableTable from './sortable-table';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const BookingRoute = () => {
   const column: ColumnDef<Booking>[] = [
@@ -56,7 +70,12 @@ const BookingRoute = () => {
     {
       accessorKey: 'foodPreference',
       header: "Food",
-      cell: ({ row }) => <div className="font-medium">{row.getValue("foodPreference")}</div>
+      cell: ({ row }) => <div className="flex items-center gap-1 font-medium">
+        <SquareDotIcon
+          className={cn('w-4 h-4 shrink-0', row.getValue("foodPreference") === "Veg" ? "text-green-600" : "text-red-600")}
+          />
+        {row.getValue("foodPreference")}
+      </div>
     },
     {
       accessorKey: "numberOfGuests",
@@ -97,6 +116,70 @@ const BookingRoute = () => {
         </Badge>
       }
     },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        return <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size={"icon"}>
+              <EllipsisVertical />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56 mr-2">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                Profile
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                Billing
+                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                Settings
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                Keyboard shortcuts
+                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Booking Status</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Complete</DropdownMenuItem>
+                    <DropdownMenuItem>Pending</DropdownMenuItem>
+                    <DropdownMenuItem>Canceled</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuItem>
+                New Team
+                <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>GitHub</DropdownMenuItem>
+            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem disabled>API</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              Log out
+              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      }
+    }
   ];
 
   return (

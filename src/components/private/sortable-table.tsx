@@ -1,13 +1,20 @@
 "use client";
-import { Booking } from '@/constants/index.c';
+import { Booking, User } from '@/constants/index.c';
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from '@tanstack/react-table';
 import React, { useState } from 'react'
 import { Input } from '../ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
-import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { cn } from '@/lib/utils';
 
-const SortableTable = ({ data, columns, filter = true }: { data: Booking[], columns: ColumnDef<Booking>[], filter?: boolean }) => {
+
+interface SortableTableProps<T> {
+    data: T[],
+    columns: ColumnDef<T>[],
+    filter?: boolean
+}
+
+
+const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<T>) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});

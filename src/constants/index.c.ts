@@ -22,6 +22,174 @@ import { FaCalendarAlt, FaUsers, FaStar } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 
 
+// Define the structure of a user
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    role: Role;
+    joinedDate: Date;
+    isActive: boolean;
+  }
+  
+  // Define roles for a small camping hotel/resort
+  type Role =
+    | "ADMIN"
+    | "MANAGER"
+    | "RECEPTIONIST"
+    | "CHEF"
+    | "HOUSEKEEPING"
+    | "MAINTENANCE"
+    | "EVENT_COORDINATOR";
+  
+  // Define access permissions for each role
+  interface RoleAccess {
+    manageUsers: boolean;
+    manageReservations: boolean;
+    manageInventory: boolean;
+    manageEvents: boolean;
+    manageRooms: boolean;
+    viewReports: boolean;
+  }
+  
+  const roleAccess: Record<Role, RoleAccess> = {
+    ADMIN: {
+      manageUsers: true,
+      manageReservations: true,
+      manageInventory: true,
+      manageEvents: true,
+      manageRooms: true,
+      viewReports: true,
+    },
+    MANAGER: {
+      manageUsers: false,
+      manageReservations: true,
+      manageInventory: true,
+      manageEvents: true,
+      manageRooms: true,
+      viewReports: true,
+    },
+    RECEPTIONIST: {
+      manageUsers: false,
+      manageReservations: true,
+      manageInventory: false,
+      manageEvents: false,
+      manageRooms: true,
+      viewReports: false,
+    },
+    CHEF: {
+      manageUsers: false,
+      manageReservations: false,
+      manageInventory: true,
+      manageEvents: false,
+      manageRooms: false,
+      viewReports: false,
+    },
+    HOUSEKEEPING: {
+      manageUsers: false,
+      manageReservations: false,
+      manageInventory: false,
+      manageEvents: false,
+      manageRooms: true,
+      viewReports: false,
+    },
+    MAINTENANCE: {
+      manageUsers: false,
+      manageReservations: false,
+      manageInventory: false,
+      manageEvents: false,
+      manageRooms: true,
+      viewReports: false,
+    },
+    EVENT_COORDINATOR: {
+      manageUsers: false,
+      manageReservations: false,
+      manageInventory: false,
+      manageEvents: true,
+      manageRooms: false,
+      viewReports: false,
+    },
+  };
+  
+  // Users array with roles specific to a small camping hotel/resort
+  export const users: User[] = [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john.doe@campingresort.com",
+      phone: "+1-555-123-4567",
+      address: "123 Forest Trail, Campville",
+      role: "ADMIN",
+      joinedDate: new Date("2020-01-15"),
+      isActive: true,
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      email: "jane.smith@campingresort.com",
+      phone: "+1-555-234-5678",
+      address: "456 River Road, Campville",
+      role: "MANAGER",
+      joinedDate: new Date("2021-06-01"),
+      isActive: true,
+    },
+    {
+      id: 3,
+      name: "Carlos Garcia",
+      email: "carlos.garcia@campingresort.com",
+      phone: "+1-555-345-6789",
+      address: "789 Mountain Pass, Campville",
+      role: "CHEF",
+      joinedDate: new Date("2018-11-20"),
+      isActive: true,
+    },
+    {
+      id: 4,
+      name: "Emily Davis",
+      email: "emily.davis@campingresort.com",
+      phone: "+1-555-456-7890",
+      address: "321 Lakeview Lane, Campville",
+      role: "HOUSEKEEPING",
+      joinedDate: new Date("2019-04-10"),
+      isActive: true,
+    },
+    {
+      id: 5,
+      name: "Michael Brown",
+      email: "michael.brown@campingresort.com",
+      phone: "+1-555-567-8901",
+      address: "654 Canyon Road, Campville",
+      role: "MAINTENANCE",
+      joinedDate: new Date("2022-02-15"),
+      isActive: true,
+    },
+    {
+      id: 6,
+      name: "Sophia Wilson",
+      email: "sophia.wilson@campingresort.com",
+      phone: "+1-555-678-9012",
+      address: "987 Valley Drive, Campville",
+      role: "EVENT_COORDINATOR",
+      joinedDate: new Date("2023-05-01"),
+      isActive: true,
+    },
+    {
+      id: 7,
+      name: "Liam Johnson",
+      email: "liam.johnson@campingresort.com",
+      phone: "+1-555-789-0123",
+      address: "321 Sunset Blvd, Campville",
+      role: "RECEPTIONIST",
+      joinedDate: new Date("2023-03-15"),
+      isActive: true,
+    },
+  ];
+  
+  
+
+
 
 export interface Booking {
     id: number;
