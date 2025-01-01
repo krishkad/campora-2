@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { Input } from '../ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { cn } from '@/lib/utils';
+import CreateBooking from './create-booking';
 
 
 interface SortableTableProps<T> {
@@ -55,6 +56,8 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
                         }
                         className='max-w-sm'
                     />
+
+                    <CreateBooking />
                 </div>
             )}
 
@@ -68,7 +71,7 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
                                 {headers.headers.map((header) => {
                                     const headline = header.column.columnDef.header;
                                     return <TableHead
-                                        className={cn('min-w-max', (headline === 'No. of Guest'|| headline === "Phone") && "w-[100px]")}
+                                        className={cn('min-w-max', (headline === 'No. of Guest' || headline === "Phone") && "w-[100px]")}
 
                                         key={header.id}
                                     >
