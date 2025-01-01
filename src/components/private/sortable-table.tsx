@@ -1,7 +1,7 @@
 "use client";
 import { Booking, User } from '@/constants/index.c';
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from '@tanstack/react-table';
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { Input } from '../ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { cn } from '@/lib/utils';
@@ -12,10 +12,11 @@ interface SortableTableProps<T> {
     data: T[],
     columns: ColumnDef<T>[],
     filter?: boolean
+    model?: ReactNode
 }
 
 
-const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<T>) => {
+const SortableTable = <T,>({ data, columns, filter = true , model}: SortableTableProps<T>) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -45,7 +46,7 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
     return (
         <div className="w-full">
             {filter && (
-                <div className="w-full flex items-center justify-between py-4">
+                <div className="w-full flex flex-col sm:flex-row items-center justify-between py-4 gap-4">
                     <Input
                         placeholder='Search Name, Email'
                         value={(
@@ -57,7 +58,9 @@ const SortableTable = <T,>({ data, columns, filter = true }: SortableTableProps<
                         className='max-w-sm'
                     />
 
-                    <CreateBooking />
+                    <div className="w-full sm:w-max flex justify-end">
+                        {model}
+                    </div>
                 </div>
             )}
 

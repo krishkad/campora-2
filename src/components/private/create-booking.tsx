@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
+import { Button, buttonVariants } from '../ui/button';
 import { Calendar } from '../ui/calendar';
 import { addDays, format } from "date-fns"
 import {
@@ -22,7 +22,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 
@@ -77,15 +77,18 @@ const CreateBooking = () => {
 
     return (
         <Dialog >
-            <DialogTrigger>Create Booking</DialogTrigger>
+            <DialogTrigger className={cn(buttonVariants({ variant: 'default' }))}>
+                <PlusIcon className='w-4 h-4 shrink-0 inilne mr-0.5' />
+                Create Booking
+            </DialogTrigger>
             <DialogContent className='max-sm:max-w-[90%] max-w-2xl'>
                 <DialogHeader>
                     <DialogTitle className='focus:border-none focus-visible:ring-0'>Create Booking</DialogTitle>
                     <DialogDescription>
-                        Fill Guest Information and Booking on behave of Your Guest
+                        Fill Guest Information and Book on behave of Your Guest
                     </DialogDescription>
                 </DialogHeader>
-                <div className="w-full">
+                <div className="w-full mt-4">
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit((data) => { console.log(data) })}
@@ -146,7 +149,7 @@ const CreateBooking = () => {
                                         </FormItem>
                                     }}
                                 />
-                                <div className="w-full grid grid-cols-2 gap-5">
+                                <div className="w-full grid grid-cols-2 gap-2 sm:gap-5">
 
                                     <FormField
                                         control={form.control}
@@ -157,6 +160,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Input placeholder='Enter Guest Name'{...field} />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -169,6 +173,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Input placeholder='Enter Guest Email'{...field} />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -181,6 +186,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Input placeholder='Enter Guest Phone No.'{...field} type='number' />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -193,6 +199,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Input placeholder='Enter Guest Address'{...field} />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -230,6 +237,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Textarea placeholder='Message' className='resize-none' {...field} />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -242,6 +250,7 @@ const CreateBooking = () => {
                                                 <FormControl>
                                                     <Textarea placeholder='Eg. Birthday decoration, Proposal, etc' className='resize-none' {...field} />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         }}
                                     />
@@ -251,6 +260,7 @@ const CreateBooking = () => {
                             <Button type='submit' className='max-sm:w-full'>
                                 Book
                             </Button>
+
                         </form>
                     </Form>
                 </div>

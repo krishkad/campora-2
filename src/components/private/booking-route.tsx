@@ -22,6 +22,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import CreateBooking from './create-booking';
 
 const BookingRoute = () => {
   const column: ColumnDef<Booking>[] = [
@@ -73,7 +74,7 @@ const BookingRoute = () => {
       cell: ({ row }) => <div className="flex items-center gap-1 font-medium">
         <SquareDotIcon
           className={cn('w-4 h-4 shrink-0', row.getValue("foodPreference") === "Veg" ? "text-green-600" : "text-red-600")}
-          />
+        />
         {row.getValue("foodPreference")}
       </div>
     },
@@ -186,7 +187,7 @@ const BookingRoute = () => {
     <div className="max-w-7xl mx-auto p-1">
       <Card>
         <CardContent>
-          <SortableTable data={campingBookings} columns={column} />
+          <SortableTable data={campingBookings} columns={column} model={<CreateBooking />} />
         </CardContent>
       </Card>
 
