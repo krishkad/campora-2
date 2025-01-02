@@ -22,6 +22,35 @@ import { FaCalendarAlt, FaUsers, FaStar } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 
 
+export interface CampingListing {
+    // General Information
+    campName: string;
+    description: string;
+    totalCamps: number;
+  
+    // Pricing Information
+    pricing: {
+      costPerNightWithMeal: number;
+      costPerNightWithoutMeal: number;
+      mealCost?: {
+        veg: number;
+        nonVeg: number;
+      };
+    };
+
+    mealOptions: {
+      available: boolean;
+      types: ("Veg" | "Non-Veg")[];
+    };
+  
+    // Accommodation Details
+    accommodation: {
+      capacityPerCamp: number;
+    };
+  
+  }
+  
+
 // Define the structure of a user
 export interface User {
     id: number;

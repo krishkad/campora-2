@@ -16,7 +16,7 @@ interface SortableTableProps<T> {
 }
 
 
-const SortableTable = <T,>({ data, columns, filter = true , model}: SortableTableProps<T>) => {
+const SortableTable = <T,>({ data, columns, filter = true, model }: SortableTableProps<T>) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -46,7 +46,7 @@ const SortableTable = <T,>({ data, columns, filter = true , model}: SortableTabl
     return (
         <div className="w-full">
             {filter && (
-                <div className="w-full flex flex-col sm:flex-row items-center justify-between py-4 gap-4">
+                <div className="w-full flex items-center justify-between py-4 gap-4">
                     <Input
                         placeholder='Search Name, Email'
                         value={(
@@ -58,7 +58,7 @@ const SortableTable = <T,>({ data, columns, filter = true , model}: SortableTabl
                         className='max-w-sm'
                     />
 
-                    <div className="w-full sm:w-max flex justify-end">
+                    <div className="w-max flex justify-end">
                         {model}
                     </div>
                 </div>

@@ -79,7 +79,7 @@ const CreateBooking = () => {
         <Dialog >
             <DialogTrigger className={cn(buttonVariants({ variant: 'default' }))}>
                 <PlusIcon className='w-4 h-4 shrink-0 inilne mr-0.5' />
-                Create Booking
+                <span className="max-sm:hidden"> Create Booking</span>
             </DialogTrigger>
             <DialogContent className='max-sm:max-w-[90%] max-w-2xl'>
                 <DialogHeader>
@@ -101,7 +101,7 @@ const CreateBooking = () => {
                                     control={form.control}
                                     name='checkInAndOutDate'
                                     render={({ field }) => {
-                                        return <FormItem className='flex flex-col'>
+                                        return <FormItem className='flex flex-col gap-1'>
                                             <FormLabel>
                                                 Check In and Out Date
                                             </FormLabel>
@@ -257,9 +257,14 @@ const CreateBooking = () => {
                                 </div>
 
                             </div>
-                            <Button type='submit' className='max-sm:w-full'>
-                                Book
-                            </Button>
+                            <div className="w-full flex max-sm:flex-col items-center justify-between gap-3">
+                                <Button type='reset' variant={"outline"} onClick={() => form.reset()} className='max-sm:w-full'>
+                                    Reset
+                                </Button>
+                                <Button type='submit' className='max-sm:w-full'>
+                                    Book
+                                </Button>
+                            </div>
 
                         </form>
                     </Form>

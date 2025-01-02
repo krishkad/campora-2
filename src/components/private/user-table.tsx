@@ -46,7 +46,7 @@ const UserTable = () => {
             cell: ({ row }) => <div className="font-medium">{row.getValue("role")}</div>
         }
     ];
-
+    
     return (
         <div className='w-full'>
             <SortableTable data={users} columns={columns} />
