@@ -196,7 +196,7 @@ const CampsiteForm = () => {
                         }
                         <Button
                             variant={"outline"}
-                            className={cn('justify-self-end', !isDisabled && "bg-blue-600 text-white hover:bg-blue-800 hover:text-inherit")}
+                            className={cn('justify-self-end', !isDisabled && "bg-blue-600 text-white hover:bg-blue-500 hover:text-white")}
 
                             onClick={() => setIsDisabled(!isDisabled)}
                         >
