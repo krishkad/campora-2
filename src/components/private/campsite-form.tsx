@@ -95,7 +95,11 @@ const CampsiteForm = () => {
                                                 type='number'
                                                 value={field.value}
                                                 disabled={field.disabled}
-                                                onChange={field.onChange}
+                                                onChange={(e) => {
+                                                    const value = e.target.value ? parseInt(e.target.value, 10) : ""
+                                                    field.onChange(value);
+                                                }}
+
                                             />
                                         </FormControl>
                                     </FormItem>
@@ -115,7 +119,12 @@ const CampsiteForm = () => {
                                                 type={'number'}
                                                 disabled={field.disabled}
                                                 value={field.value}
-                                                onChange={field.onChange}
+                                                onChange={(e) => {
+                                                    const value = e.target.value ? parseInt(e.target.value, 10) : ''
+
+                                                    field.onChange(value);
+
+                                                }}
                                             />
                                         </FormControl>
                                     </FormItem>
@@ -136,7 +145,11 @@ const CampsiteForm = () => {
                                             placeholder='Price'
                                             disabled={field.disabled}
                                             value={field.value}
-                                            onChange={field.onChange}
+                                            onChange={(e) => {
+                                                const value = e.target.value ? parseInt(e.target.value, 10) : ""
+
+                                                field.onChange(value);
+                                            }}
                                         />
                                     </FormControl>
                                 </FormItem>
@@ -152,11 +165,14 @@ const CampsiteForm = () => {
                                         <FormLabel>Non-Veg Price</FormLabel>
                                         <FormControl>
                                             <Input
+                                                type='number'
                                                 placeholder='non-veg cost'
                                                 value={field.value}
                                                 disabled={field.disabled}
-                                                onChange={field.onChange}
-                                                type='number'
+                                                onChange={(e) => {
+                                                    const value = e.target.value ? parseInt(e.target.value, 10) : "";
+                                                    field.onChange(value);
+                                                }}
                                             />
                                         </FormControl>
                                     </FormItem>
@@ -171,11 +187,14 @@ const CampsiteForm = () => {
                                         <FormLabel>Veg Price</FormLabel>
                                         <FormControl>
                                             <Input
+                                                type='number'
                                                 placeholder='veg cost'
                                                 value={field.value}
                                                 disabled={field.disabled}
-                                                onChange={field.onChange}
-                                                type='number'
+                                                onChange={(e) => {
+                                                    const value = e.target.value ? parseInt(e.target.value, 10) : "";
+                                                    field.onChange(value);
+                                                }}
                                             />
                                         </FormControl>
                                     </FormItem>
