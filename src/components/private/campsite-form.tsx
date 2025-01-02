@@ -44,6 +44,8 @@ const CampsiteForm = () => {
         }
     });
 
+    const toggleEditMode = () => setIsDisabled(!isDisabled);
+
     return (
         <div className="w-full">
             <Form {...form}>
@@ -202,22 +204,21 @@ const CampsiteForm = () => {
                             />
                         </div>
                     </div>
+
                     <div className="w-full flex justify-between items-center">
-                        {isDisabled ? <div /> : <Button
+                        {isDisabled ? null : <Button
                             variant={"outline"}
                             type='reset'
-                            onClick={() => {
-                                form.reset();
-                            }}
+                            onClick={() => form.reset()}
                         >
                             Reset
                         </Button>
                         }
                         <Button
                             variant={"outline"}
-                            className={cn('justify-self-end', !isDisabled && "bg-blue-600 text-white hover:bg-blue-500 hover:text-white")}
+                            className={cn('ml-auto', !isDisabled && "bg-blue-600 text-white hover:bg-blue-500 hover:text-white")}
 
-                            onClick={() => setIsDisabled(!isDisabled)}
+                            onClick={toggleEditMode}
                         >
                             {isDisabled ? "Edit" : "Save"}
                         </Button>

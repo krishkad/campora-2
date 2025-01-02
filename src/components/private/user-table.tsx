@@ -3,6 +3,18 @@ import React from 'react'
 import { User, users } from '@/constants/index.c'
 import { ColumnDef } from '@tanstack/react-table'
 import SortableTable from './sortable-table';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '../ui/button';
+import { EllipsisVerticalIcon } from 'lucide-react';
+
 
 const UserTable = () => {
     const columns: ColumnDef<User>[] = [
@@ -44,9 +56,28 @@ const UserTable = () => {
             accessorKey: "role",
             header: "Role",
             cell: ({ row }) => <div className="font-medium">{row.getValue("role")}</div>
+        },
+        {
+            id: 'actions',
+            cell: ({ row }) => {
+                return <DropdownMenu>
+                    <DropdownMenuTrigger className={cn(buttonVariants({ size: "icon", variant: "ghost" }))}>
+                        <EllipsisVerticalIcon className='w-4 h-4 shrink-0 ' />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                        <DropdownMenuItem>Team</DropdownMenuItem>
+                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+            }
         }
     ];
-    
+
     return (
         <div className='w-full'>
             <SortableTable data={users} columns={columns} />
