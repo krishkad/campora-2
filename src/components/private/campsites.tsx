@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import CampsiteForm from './campsite-form';
 
 
@@ -17,6 +17,9 @@ const Campsites = () => {
                     <CardTitle>
                         Campsites Information
                     </CardTitle>
+                    <CardDescription>
+                        This information will help to calculate growth and dashboard graphs
+                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <CampsiteForm />
