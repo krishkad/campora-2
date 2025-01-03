@@ -158,8 +158,16 @@ const BookingRoute = () => {
                     <DropdownMenuItem>Complete</DropdownMenuItem>
                     <DropdownMenuItem>Pending</DropdownMenuItem>
                     <DropdownMenuItem>Canceled</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Payment Status</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Paid</DropdownMenuItem>
+                    <DropdownMenuItem>Pending</DropdownMenuItem>
+                    <DropdownMenuItem>Failed</DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>

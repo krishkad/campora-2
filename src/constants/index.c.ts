@@ -145,7 +145,7 @@ export interface User {
   // Users array with roles specific to a small camping hotel/resort
   export const users: User[] = [
     {
-      id: 1,
+      id: 10001,
       name: "John Doe",
       email: "john.doe@campingresort.com",
       phone: "+1-555-123-4567",
@@ -155,7 +155,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 2,
+      id: 10002,
       name: "Jane Smith",
       email: "jane.smith@campingresort.com",
       phone: "+1-555-234-5678",
@@ -165,7 +165,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 3,
+      id: 10003,
       name: "Carlos Garcia",
       email: "carlos.garcia@campingresort.com",
       phone: "+1-555-345-6789",
@@ -175,7 +175,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 4,
+      id: 10004,
       name: "Emily Davis",
       email: "emily.davis@campingresort.com",
       phone: "+1-555-456-7890",
@@ -185,7 +185,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 5,
+      id: 10005,
       name: "Michael Brown",
       email: "michael.brown@campingresort.com",
       phone: "+1-555-567-8901",
@@ -195,7 +195,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 6,
+      id: 10006,
       name: "Sophia Wilson",
       email: "sophia.wilson@campingresort.com",
       phone: "+1-555-678-9012",
@@ -205,7 +205,7 @@ export interface User {
       isActive: true,
     },
     {
-      id: 7,
+      id: 10007,
       name: "Liam Johnson",
       email: "liam.johnson@campingresort.com",
       phone: "+1-555-789-0123",
@@ -215,6 +215,7 @@ export interface User {
       isActive: true,
     },
   ];
+  
   
   
 

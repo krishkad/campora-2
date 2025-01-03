@@ -17,11 +17,18 @@ import { EllipsisVerticalIcon } from 'lucide-react';
 
 
 const UserTable = () => {
+   
+
     const columns: ColumnDef<User>[] = [
         {
             accessorKey: 'name',
             header: "Name",
-            cell: ({ row }) => <div className="font-medium">{row.getValue("name")}</div>
+            cell: ({ row }) => {
+                return (
+
+                    < div className="font-medium" > {row.getValue("name")}</div >
+                )
+            }
         },
         {
             accessorKey: 'email',
@@ -65,12 +72,14 @@ const UserTable = () => {
                         <EllipsisVerticalIcon className='w-4 h-4 shrink-0 ' />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                        <DropdownMenuItem>Team</DropdownMenuItem>
-                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem
+                            className='bg-red-500 text-white focus:bg-red-400 focus:text-white'
+                        >
+                            Delete
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -86,3 +95,6 @@ const UserTable = () => {
 }
 
 export default UserTable
+
+
+
