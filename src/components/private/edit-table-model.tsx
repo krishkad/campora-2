@@ -63,14 +63,6 @@ const EditTableModel = ({
         });
     }, [editableRow, form]);
 
-    console.log({
-        id: editableRow.id,
-        name: editableRow.name,
-        email: editableRow.email,
-        phone: editableRow.phone,
-        address: editableRow.address,
-        role: editableRow.role,
-    })
 
 
 

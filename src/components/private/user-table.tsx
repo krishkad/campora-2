@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/button';
 import { EllipsisVerticalIcon } from 'lucide-react';
 import EditTableModel from './edit-table-model';
+import DeleteUserModel from './delete-user-model';
 
 
 const UserTable = () => {
@@ -22,12 +23,13 @@ const UserTable = () => {
     const [editableRow, setEditableRow] = useState<Partial<User>>({
         id: 0,
         name: "",
-        email:'',
+        email: '',
         phone: '',
         address: "",
         isActive: true
     });
     const [modelOpen, setModelOpen] = useState<boolean>(false);
+    const [openDeleteModel, setopenDeleteModel] = useState(false);
 
     const columns: ColumnDef<User>[] = [
         {
@@ -94,6 +96,10 @@ const UserTable = () => {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                             className='bg-red-500 text-white focus:bg-red-400 focus:text-white'
+                            onClick={() => {
+                                setEditableRow(row.original);
+                                setopenDeleteModel(true);
+                            }}
                         >
                             Delete
                         </DropdownMenuItem>
@@ -108,6 +114,7 @@ const UserTable = () => {
         <div className='w-full'>
             <SortableTable data={tableData} columns={columns} />
             <EditTableModel open={modelOpen} onOpenChange={() => setModelOpen(!modelOpen)} editableRow={editableRow} />
+            <DeleteUserModel open={openDeleteModel} onOpenChange={() => setopenDeleteModel(!openDeleteModel)} user={editableRow}  />
         </div>
     )
 }
