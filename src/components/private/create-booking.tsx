@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/popover"
 import { CalendarIcon, PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ScrollArea } from '../ui/scroll-area';
 
 
 // export interface Booking {
@@ -81,194 +82,202 @@ const CreateBooking = () => {
                 <PlusIcon className='w-4 h-4 shrink-0 inilne mr-0.5' />
                 <span className="max-sm:hidden"> Create Booking</span>
             </DialogTrigger>
-            <DialogContent className='max-sm:max-w-[90%] max-w-2xl'>
-                <DialogHeader>
-                    <DialogTitle className='focus:border-none focus-visible:ring-0'>Create Booking</DialogTitle>
-                    <DialogDescription>
-                        Fill Guest Information and Book on behave of Your Guest
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="w-full mt-4">
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit((data) => { console.log(data) })}
-                            className='space-y-5 mx-auto'
-                        >
+            <DialogContent className='max-sm:max-w-[90%] h-max max-w-2xl'>
+                <ScrollArea className='w-full max-h-[92svh]'>
 
 
-                            <div className="w-full space-y-5">
-                                <FormField
-                                    control={form.control}
-                                    name='checkInAndOutDate'
-                                    render={({ field }) => {
-                                        return <FormItem className='flex flex-col gap-1'>
-                                            <FormLabel>
-                                                Check In and Out Date
-                                            </FormLabel>
-                                            <Popover>
-                                                <PopoverTrigger asChild>
-                                                    <FormControl>
-                                                        <Button
-                                                            id="date"
-                                                            variant={"outline"}
-                                                            className={cn(
-                                                                "w-full justify-start text-left font-normal",
-                                                                !field.value && "text-muted-foreground"
-                                                            )}
-                                                        >
-                                                            <CalendarIcon />
-                                                            {field.value?.from ? (
-                                                                field.value.to ? (
-                                                                    <>
-                                                                        {format(field.value.from, "LLL dd, y")} -{" "}
-                                                                        {format(field.value.to, "LLL dd, y")}
-                                                                    </>
-                                                                ) : (
-                                                                    format(new Date(field.value.from), "LLL dd, y")
-                                                                )
-                                                            ) : (
-                                                                <span>Pick a date</span>
-                                                            )}
-                                                        </Button>
-                                                    </FormControl>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="z-60 w-auto p-0 pointer-events-auto" align="start">
-                                                    <Calendar
-                                                        className="z-60"
-                                                        initialFocus
-                                                        mode="range"
-                                                        defaultMonth={field.value?.from}
-                                                        selected={field.value}
-                                                        onSelect={field.onChange}
-                                                        numberOfMonths={2}
-                                                    // {...field}
-                                                    />
-                                                </PopoverContent>
-                                            </Popover>
+                    <div className="w-full h-max">
 
-                                        </FormItem>
-                                    }}
-                                />
-                                <div className="w-full grid grid-cols-2 gap-2 sm:gap-5">
 
-                                    <FormField
-                                        control={form.control}
-                                        name='name'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Name</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder='Enter Guest Name'{...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='email'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Email</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder='Enter Guest Email'{...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='phone'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Phone</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder='Enter Guest Phone No.'{...field} type='number' />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='address'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Address</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder='Enter Guest Address'{...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='numberOfGuests'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>No. of Guest</FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder='Enter No. of Guest'
-                                                        type='number'
-                                                        value={field.value || ""}
-                                                        onChange={(e) => {
-                                                            // Convert the value to a number before updating the form state
-                                                            const value = e.target.value ? parseInt(e.target.value, 10) : '';
-                                                            field.onChange(value);
-                                                        }}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
+                        <DialogHeader>
+                            <DialogTitle className='focus:border-none focus-visible:ring-0'>Create Booking</DialogTitle>
+                            <DialogDescription>
+                                Fill Guest Information and Book on behave of Your Guest
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="w-full mt-4">
+                            <Form {...form}>
+                                <form
+                                    onSubmit={form.handleSubmit((data) => { console.log(data) })}
+                                    className='space-y-5 mx-auto'
+                                >
 
-                                </div>
-                                <div className="w-full space-y-5 grid-cols-1 md:grid-cols-2">
-                                    <FormField
-                                        control={form.control}
-                                        name='message'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Message</FormLabel>
-                                                <FormControl>
-                                                    <Textarea placeholder='Message' className='resize-none' {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='specialRequests'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Special Reguests</FormLabel>
-                                                <FormControl>
-                                                    <Textarea placeholder='Eg. Birthday decoration, Proposal, etc' className='resize-none' {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        }}
-                                    />
-                                </div>
 
-                            </div>
-                            <div className="w-full flex max-sm:flex-col items-center justify-between gap-3">
-                                <Button type='reset' variant={"outline"} onClick={() => form.reset()} className='max-sm:w-full'>
-                                    Reset
-                                </Button>
-                                <Button type='submit' className='max-sm:w-full'>
-                                    Book
-                                </Button>
-                            </div>
+                                    <div className="w-full space-y-5">
+                                        <FormField
+                                            control={form.control}
+                                            name='checkInAndOutDate'
+                                            render={({ field }) => {
+                                                return <FormItem className='flex flex-col gap-1'>
+                                                    <FormLabel>
+                                                        Check In and Out Date
+                                                    </FormLabel>
+                                                    <Popover>
+                                                        <PopoverTrigger asChild>
+                                                            <FormControl>
+                                                                <Button
+                                                                    id="date"
+                                                                    variant={"outline"}
+                                                                    className={cn(
+                                                                        "w-full justify-start text-left font-normal",
+                                                                        !field.value && "text-muted-foreground"
+                                                                    )}
+                                                                >
+                                                                    <CalendarIcon />
+                                                                    {field.value?.from ? (
+                                                                        field.value.to ? (
+                                                                            <>
+                                                                                {format(field.value.from, "LLL dd, y")} -{" "}
+                                                                                {format(field.value.to, "LLL dd, y")}
+                                                                            </>
+                                                                        ) : (
+                                                                            format(new Date(field.value.from), "LLL dd, y")
+                                                                        )
+                                                                    ) : (
+                                                                        <span>Pick a date</span>
+                                                                    )}
+                                                                </Button>
+                                                            </FormControl>
+                                                        </PopoverTrigger>
+                                                        <PopoverContent className="z-60 w-auto p-0 pointer-events-auto" align="start">
+                                                            <Calendar
+                                                                className="z-60"
+                                                                initialFocus
+                                                                mode="range"
+                                                                defaultMonth={field.value?.from}
+                                                                selected={field.value}
+                                                                onSelect={field.onChange}
+                                                                numberOfMonths={2}
+                                                            // {...field}
+                                                            />
+                                                        </PopoverContent>
+                                                    </Popover>
 
-                        </form>
-                    </Form>
-                </div>
+                                                </FormItem>
+                                            }}
+                                        />
+                                        <div className="w-full grid grid-cols-2 gap-2 sm:gap-5">
+
+                                            <FormField
+                                                control={form.control}
+                                                name='name'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Name</FormLabel>
+                                                        <FormControl>
+                                                            <Input placeholder='Enter Guest Name'{...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='email'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Email</FormLabel>
+                                                        <FormControl>
+                                                            <Input placeholder='Enter Guest Email'{...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='phone'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Phone</FormLabel>
+                                                        <FormControl>
+                                                            <Input placeholder='Enter Guest Phone No.'{...field} type='number' />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='address'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Address</FormLabel>
+                                                        <FormControl>
+                                                            <Input placeholder='Enter Guest Address'{...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='numberOfGuests'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>No. of Guest</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder='Enter No. of Guest'
+                                                                type='number'
+                                                                value={field.value || ""}
+                                                                onChange={(e) => {
+                                                                    // Convert the value to a number before updating the form state
+                                                                    const value = e.target.value ? parseInt(e.target.value, 10) : '';
+                                                                    field.onChange(value);
+                                                                }}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+
+                                        </div>
+                                        <div className="w-full space-y-5 grid-cols-1 md:grid-cols-2">
+                                            <FormField
+                                                control={form.control}
+                                                name='message'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Message</FormLabel>
+                                                        <FormControl>
+                                                            <Textarea placeholder='Message' className='resize-none' {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='specialRequests'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Special Reguests</FormLabel>
+                                                        <FormControl>
+                                                            <Textarea placeholder='Eg. Birthday decoration, Proposal, etc' className='resize-none' {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
+                                        </div>
+
+                                    </div>
+                                    <div className="w-full flex max-sm:flex-col items-center justify-between gap-3">
+                                        <Button type='reset' variant={"outline"} onClick={() => form.reset()} className='max-sm:w-full'>
+                                            Reset
+                                        </Button>
+                                        <Button type='submit' className='max-sm:w-full'>
+                                            Book
+                                        </Button>
+                                    </div>
+
+                                </form>
+                            </Form>
+                        </div>
+                    </div>
+                </ScrollArea>
             </DialogContent>
         </Dialog >
 

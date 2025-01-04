@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
+import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 
 
 const editableRowSchema = z.object({
@@ -68,72 +69,77 @@ const EditTableModel = ({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Edit</DialogTitle>
-                    <DialogDescription>
-                        Make changes to the selected row. Edited values will update the table and cannot be reverted.
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="w-full">
-                    <div className="w-full">
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(() => { })}>
-                                <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
+            <DialogContent className='max-sm:max-w-[90%] h-max'>
+                <ScrollArea className='w-full max-sm:max-h-[80vh]'>
+                    <div className="h-max">
+                        <DialogHeader className='pt-4'>
+                            <DialogTitle>Edit</DialogTitle>
+                            <DialogDescription>
+                                Make changes to the selected row. Edited values will update the table and cannot be reverted.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="w-full">
+                            <div className="w-full">
+                                <Form {...form}>
+                                    <form onSubmit={form.handleSubmit(() => { })}>
+                                        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                                    <FormField
-                                        control={form.control}
-                                        name='name'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Name</FormLabel>
-                                                <FormControl>
-                                                    <Input type='text' value={field.value} onChange={field.onChange} />
-                                                </FormControl>
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='email'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Email</FormLabel>
-                                                <FormControl>
-                                                    <Input value={field.value} onChange={field.onChange} />
-                                                </FormControl>
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='phone'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Phone</FormLabel>
-                                                <FormControl>
-                                                    <Input value={field.value} onChange={field.onChange} />
-                                                </FormControl>
-                                            </FormItem>
-                                        }}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name='role'
-                                        render={({ field }) => {
-                                            return <FormItem>
-                                                <FormLabel>Role</FormLabel>
-                                                <FormControl>
-                                                    <Input value={field.value} onChange={field.onChange} />
-                                                </FormControl>
-                                            </FormItem>
-                                        }}
-                                    />
-                                </div>
-                            </form>
-                        </Form>
+                                            <FormField
+                                                control={form.control}
+                                                name='name'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Name</FormLabel>
+                                                        <FormControl>
+                                                            <Input type='text' value={field.value} onChange={field.onChange} />
+                                                        </FormControl>
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='email'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Email</FormLabel>
+                                                        <FormControl>
+                                                            <Input value={field.value} onChange={field.onChange} />
+                                                        </FormControl>
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='phone'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Phone</FormLabel>
+                                                        <FormControl>
+                                                            <Input value={field.value} onChange={field.onChange} />
+                                                        </FormControl>
+                                                    </FormItem>
+                                                }}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name='role'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Role</FormLabel>
+                                                        <FormControl>
+                                                            <Input value={field.value} onChange={field.onChange} />
+                                                        </FormControl>
+                                                    </FormItem>
+                                                }}
+                                            />
+                                        </div>
+                                    </form>
+                                </Form>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <ScrollBar orientation='vertical' />
+                </ScrollArea>
             </DialogContent>
         </Dialog>
 

@@ -23,8 +23,8 @@ const DeleteUserModel = ({
 }) => {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent>
-                <DialogHeader>
+            <DialogContent className='max-sm:max-w-[90%]'>
+                <DialogHeader className='pt-4'>
                     <DialogTitle>
                         Do your really want to delete {user.name}?
                     </DialogTitle>
