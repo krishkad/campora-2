@@ -38,8 +38,6 @@ const EditTableModel = ({
     editableRow: Partial<User>
 }) => {
 
-    if (editableRow.id === 0) return;
-
 
     const form = useForm<z.infer<typeof editableRowSchema>>({
         resolver: zodResolver(editableRowSchema),
