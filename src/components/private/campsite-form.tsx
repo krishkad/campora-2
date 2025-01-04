@@ -57,12 +57,11 @@ const CampsiteForm = () => {
                         <FormField
                             control={form.control}
                             name='campName'
-                            disabled={isDisabled}
                             render={({ field }) => {
                                 return <FormItem>
                                     <FormLabel>Camp Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder='Camp Name' {...field} />
+                                        <Input placeholder='Camp Name' {...field} readOnly={isDisabled} />
                                     </FormControl>
                                 </FormItem>
                             }}
@@ -71,12 +70,11 @@ const CampsiteForm = () => {
                         <FormField
                             control={form.control}
                             name='description'
-                            disabled={isDisabled}
                             render={({ field }) => {
                                 return <FormItem>
                                     <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input placeholder='Description' {...field} />
+                                        <Input placeholder='Description' {...field} readOnly={isDisabled} />
                                     </FormControl>
                                 </FormItem>
                             }}
@@ -96,7 +94,7 @@ const CampsiteForm = () => {
                                                 placeholder='Total Camps'
                                                 type='number'
                                                 value={field.value}
-                                                disabled={field.disabled}
+                                                readOnly={field.disabled}
                                                 onChange={(e) => {
                                                     const value = e.target.value ? parseInt(e.target.value, 10) : ""
                                                     field.onChange(value);
@@ -119,7 +117,7 @@ const CampsiteForm = () => {
                                             <Input
                                                 placeholder='Capacity'
                                                 type={'number'}
-                                                disabled={field.disabled}
+                                                readOnly={field.disabled}
                                                 value={field.value}
                                                 onChange={(e) => {
                                                     const value = e.target.value ? parseInt(e.target.value, 10) : ''
@@ -145,7 +143,7 @@ const CampsiteForm = () => {
                                         <Input
                                             type='number'
                                             placeholder='Price'
-                                            disabled={field.disabled}
+                                            readOnly={field.disabled}
                                             value={field.value}
                                             onChange={(e) => {
                                                 const value = e.target.value ? parseInt(e.target.value, 10) : ""
@@ -170,7 +168,7 @@ const CampsiteForm = () => {
                                                 type='number'
                                                 placeholder='non-veg cost'
                                                 value={field.value}
-                                                disabled={field.disabled}
+                                                readOnly={field.disabled}
                                                 onChange={(e) => {
                                                     const value = e.target.value ? parseInt(e.target.value, 10) : "";
                                                     field.onChange(value);
@@ -192,7 +190,7 @@ const CampsiteForm = () => {
                                                 type='number'
                                                 placeholder='veg cost'
                                                 value={field.value}
-                                                disabled={field.disabled}
+                                                readOnly={field.disabled}
                                                 onChange={(e) => {
                                                     const value = e.target.value ? parseInt(e.target.value, 10) : "";
                                                     field.onChange(value);

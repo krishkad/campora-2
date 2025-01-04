@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import { User, users } from '@/constants/index.c'
 import { ColumnDef } from '@tanstack/react-table'
 import SortableTable from './sortable-table';
@@ -14,10 +14,20 @@ import {
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/button';
 import { EllipsisVerticalIcon } from 'lucide-react';
+import EditTableModel from './edit-table-model';
 
 
 const UserTable = () => {
-   
+    const [tableData, setTableData] = useState<User[]>(users);
+    const [editableRow, setEditableRow] = useState<Partial<User>>({
+        id: 0,
+        name: "",
+        email:'',
+        phone: '',
+        address: "",
+        isActive: true
+    });
+    const [modelOpen, setModelOpen] = useState<boolean>(false);
 
     const columns: ColumnDef<User>[] = [
         {
@@ -25,7 +35,6 @@ const UserTable = () => {
             header: "Name",
             cell: ({ row }) => {
                 return (
-
                     < div className="font-medium" > {row.getValue("name")}</div >
                 )
             }
@@ -74,7 +83,15 @@ const UserTable = () => {
                     <DropdownMenuContent>
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={() => {
+                                setEditableRow(row.original);
+                                setModelOpen(true);
+                            }
+                            }
+                        >
+                            Edit
+                        </DropdownMenuItem>
                         <DropdownMenuItem
                             className='bg-red-500 text-white focus:bg-red-400 focus:text-white'
                         >
@@ -89,7 +106,8 @@ const UserTable = () => {
 
     return (
         <div className='w-full'>
-            <SortableTable data={users} columns={columns} />
+            <SortableTable data={tableData} columns={columns} />
+            <EditTableModel open={modelOpen} onOpenChange={() => setModelOpen(!modelOpen)} editableRow={editableRow} />
         </div>
     )
 }
