@@ -22,10 +22,21 @@ import { SheetClose } from "../ui/sheet";
 
 
 export default function AppSidebar() {
-
-
   
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+  
+      window.addEventListener("resize", handleResize);
+  
+      // Cleanup the event listener on unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
 
     return (
         <Sidebar>
@@ -39,7 +50,7 @@ export default function AppSidebar() {
                             {ADMINROUTE.map((item, i) => (
                                 <SidebarMenuItem key={i} className="h-14 border-none">
                                     <SidebarMenuButton asChild className="h-full border-none focus:border-none focus-visible:ring-0">
-                                        {window.innerWidth >= MOBILE_BREAKPOINT ? (
+                                        {screenWidth >= MOBILE_BREAKPOINT ? (
 
 
                                             <Link href={item.href} className="size-full">
