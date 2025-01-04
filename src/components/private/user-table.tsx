@@ -52,7 +52,7 @@ const UserTable = () => {
         {
             accessorKey: "address",
             header: "Address",
-            cell: ({ row }) => <div className="font-medium">{row.getValue("address")}</div>
+            cell: ({ row }) => <div className="font-medium whitespace-nowrap">{row.getValue("address")}</div>
         },
         {
             accessorKey: "joinedDate",
