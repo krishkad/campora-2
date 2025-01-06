@@ -40,7 +40,7 @@ const Settings = () => {
 
 
   return (
-    <div className='max-w-5xl mx-auto'>
+    <div className='max-w-4xl mx-auto'>
       <div className="w-full space-y-5">
         <Card>
           <CardHeader>
