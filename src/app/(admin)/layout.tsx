@@ -11,6 +11,11 @@ import SidebarDropdown from '@/components/private/sidebar-dropdown';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import { ADMINROUTE } from '@/constants/index.c';
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+  } from "@/components/ui/avatar";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +35,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                 {/* <div className="hidden md:block w-[260px]"> */}
                 <AppSidebar />
                 {/* </div> */}
-                <main className="w-full h-svh overflow-y-scroll bg-gray-100  p-5">
+                <main className="w-full h-svh overflow-y-scroll bg-gray-100   p-5">
 
 
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-5">
@@ -41,11 +46,10 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                             </h4>
                         </div>
                         <div className="flex items-center justify-center gap-3">
-                            <Input
-                                placeholder='Search Here'
-                                type='text'
-                                className='bg-white w-32'
-                            />
+                            <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
                         </div>
                     </div>
                     <div className="w-full mt-6">
