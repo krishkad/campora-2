@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/chart"
 
 const chartData = [
-    { month: "January", desktop: 100 },
+    { month: "January", desktop: 70 },
     { month: "February", desktop: 150 },
     { month: "March", desktop: 120 },
     { month: "April", desktop: 180 },

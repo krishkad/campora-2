@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 // import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import SidebarDropdown from '@/components/private/sidebar-dropdown';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { usePathname } from 'next/navigation';
+import { ADMINROUTE } from '@/constants/index.c';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +19,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
+    const pathname = usePathname();
+
+    const title = ADMINROUTE.find((route) => route.href === pathname);
 
     return (
         <SidebarProvider>
@@ -31,8 +36,8 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-5">
                         <div className="flex items-center justify-center gap-3">
                             <SidebarTrigger />
-                            <h4 className="text-base font-semibold">
-                                Dashboard
+                            <h4 className="text-base font-semibold whitespace-nowrap text-ellipsis">
+                                {title ? title.label : "Dashboard"}
                             </h4>
                         </div>
                         <div className="flex items-center justify-center gap-3">

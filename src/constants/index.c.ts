@@ -407,7 +407,6 @@ export const ADMINROUTE = [
     { href: '/operator/campsites', label: 'Manage Campsites', value: 'campsites', icon: GiCampingTent },
     { href: '/operator/bookings', label: 'Booking Management', value: 'bookings', icon: FaCalendarAlt },
     { href: '/operator/users', label: 'User Management', value: 'users', icon: FaUsers },
-    { href: '/operator/reviews', label: 'Reviews and Ratings', value: 'reviews', icon: FaStar },
     { href: '/operator/settings', label: 'Settings', value: 'settings', icon: FiSettings },
 ] as const;
 
