@@ -49,7 +49,7 @@ const Settings = () => {
           <CardContent>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(() => { })}>
-                <div className="w-full space-y-3">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <FormField
                     control={form.control}
                     name='holiday_name'
