@@ -192,7 +192,7 @@ const BookingRoute = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-1">
+    <div className="max-w-7xl mx-auto">
       <Card>
         <CardContent>
           <SortableTable data={campingBookings} columns={column} model={<CreateBooking />} />
