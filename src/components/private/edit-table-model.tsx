@@ -51,10 +51,12 @@ const editableRowSchema = z.object({
 const EditTableModel = ({
     open,
     onOpenChange,
-    editableRow
+    editableRow,
+    handleEditUser
 }: {
     open: boolean
     onOpenChange: (value: boolean) => void
+    handleEditUser: (value: Partial<User>) => void
     editableRow: Partial<User>
 }) => {
 
@@ -101,7 +103,11 @@ const EditTableModel = ({
                         <div className="w-full">
                             <Form {...form}>
                                 <form
-                                    onSubmit={form.handleSubmit(() => { })}
+                                    onSubmit={form.handleSubmit((user) => {
+                                        onOpenChange(!open);
+                                        console.log({ user });
+                                        handleEditUser(user);
+                                    })}
                                     className='space-y-5'
                                 >
                                     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -168,10 +174,22 @@ const EditTableModel = ({
                                             }}
                                         />
                                     </div>
+                                    <FormField
+                                        control={form.control}
+                                        name='address'
+                                        render={({ field }) => {
+                                            return <FormItem>
+                                                <FormLabel>Address</FormLabel>
+                                                <FormControl>
+                                                    <Input value={field.value} onChange={field.onChange} />
+                                                </FormControl>
+                                            </FormItem>
+                                        }}
+                                    />
                                     <div className="w-full flex items-center justify-end">
-                                        <Button 
-                                        className='text-white hover:text-white bg-blue-600 hover:bg-blue-500'
-                                        onClick={() => onOpenChange(!open)}
+                                        <Button
+                                            className='text-white hover:text-white bg-blue-600 hover:bg-blue-500'
+                                            type='submit'
                                         >
                                             Save Changes
                                         </Button>

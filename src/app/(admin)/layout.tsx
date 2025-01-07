@@ -15,7 +15,8 @@ import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-  } from "@/components/ui/avatar";
+} from "@/components/ui/avatar";
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -57,7 +58,8 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
                     </div>
 
                 </main>
-            </div >
+            </div>
+            <Toaster />
         </SidebarProvider>
     )
 }

@@ -16,6 +16,7 @@ import { buttonVariants } from '../ui/button';
 import { EllipsisVerticalIcon } from 'lucide-react';
 import EditTableModel from './edit-table-model';
 import DeleteUserModel from './delete-user-model';
+import { useToast } from '@/hooks/use-toast';
 
 
 const UserTable = () => {
@@ -30,6 +31,31 @@ const UserTable = () => {
     });
     const [modelOpen, setModelOpen] = useState<boolean>(false);
     const [openDeleteModel, setopenDeleteModel] = useState(false);
+    const { toast } = useToast();
+
+
+    const handleEditUser = (user: Partial<User>) => {
+        const userIndex = tableData.findIndex((usr) => usr.id === user.id);
+        if (userIndex !== -1) {
+            tableData[userIndex].role = user.role ? user.role : tableData[userIndex].role
+            tableData[userIndex].name = user.name ? user.name : tableData[userIndex].name
+            tableData[userIndex].email = user.email ? user.email : tableData[userIndex].email
+            tableData[userIndex].phone = user.phone ? user.phone : tableData[userIndex].phone
+            tableData[userIndex].address = user.address ? user.address : tableData[userIndex].address
+            setTableData(tableData);
+            toast({
+                title: `${user.name} is Updated`
+            })
+            
+        }
+        else {
+            toast({
+                variant: "destructive",
+                title: `${user.name} is Update Failded`
+            })
+        }
+
+    }
 
     const columns: ColumnDef<User>[] = [
         {
@@ -112,9 +138,9 @@ const UserTable = () => {
 
     return (
         <div className='w-full'>
-            <SortableTable data={tableData} columns={columns} />
-            <EditTableModel open={modelOpen} onOpenChange={() => setModelOpen(!modelOpen)} editableRow={editableRow} />
-            <DeleteUserModel open={openDeleteModel} onOpenChange={() => setopenDeleteModel(!openDeleteModel)} user={editableRow}  />
+            <SortableTable key={JSON.stringify(tableData)} data={tableData} columns={columns} />
+            <EditTableModel open={modelOpen} onOpenChange={() => setModelOpen(!modelOpen)} editableRow={editableRow} handleEditUser={handleEditUser} />
+            <DeleteUserModel open={openDeleteModel} onOpenChange={() => setopenDeleteModel(!openDeleteModel)} user={editableRow} />
         </div>
     )
 }

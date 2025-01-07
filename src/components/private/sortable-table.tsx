@@ -1,11 +1,9 @@
 "use client";
-import { Booking, User } from '@/constants/index.c';
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from '@tanstack/react-table';
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { Input } from '../ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { cn } from '@/lib/utils';
-import CreateBooking from './create-booking';
 
 
 interface SortableTableProps<T> {
@@ -21,6 +19,13 @@ const SortableTable = <T,>({ data, columns, filter = true, model }: SortableTabl
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = useState({});
+    
+
+    useEffect(() => {
+        setSorting([]);
+        setColumnFilters([]);
+        setRowSelection({});
+    }, [data]);
 
     const table = useReactTable({
         data,
@@ -99,7 +104,7 @@ const SortableTable = <T,>({ data, columns, filter = true, model }: SortableTabl
                                     data-state={row.getIsSelected() && "selected"}
                                 >
                                     {row.getVisibleCells().map((cell, i) => {
-                                        
+
                                         return <TableCell
                                             className={cn('min-w-max', ((i === 2) || (i === 5) || (i === 4) || (i === 0)) && "min-w-[130px] w-max")}
                                             key={cell.id}
