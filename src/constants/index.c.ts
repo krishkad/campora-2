@@ -27,29 +27,29 @@ export interface CampingListing {
     campName: string;
     description: string;
     totalCamps: number;
-  
+
     // Pricing Information
     pricing: {
-      costPerNightWithMeal: number;
-      costPerNightWithoutMeal: number;
-      mealCost?: {
-        veg: number;
-        nonVeg: number;
-      };
+        costPerNightWithMeal: number;
+        costPerNightWithoutMeal: number;
+        mealCost?: {
+            veg: number;
+            nonVeg: number;
+        };
     };
 
     mealOptions: {
-      available: boolean;
-      types: ("Veg" | "Non-Veg")[];
+        available: boolean;
+        types: ("Veg" | "Non-Veg")[];
     };
-  
+
     // Accommodation Details
     accommodation: {
-      capacityPerCamp: number;
+        capacityPerCamp: number;
     };
-  
-  }
-  
+
+}
+
 
 // Define the structure of a user
 export interface User {
@@ -61,10 +61,10 @@ export interface User {
     role: Role;
     joinedDate: Date;
     isActive: boolean;
-  }
-  
-  // Define roles for a small camping hotel/resort
-  type Role =
+}
+
+// Define roles for a small camping hotel/resort
+type Role =
     | "ADMIN"
     | "MANAGER"
     | "RECEPTIONIST"
@@ -72,156 +72,165 @@ export interface User {
     | "HOUSEKEEPING"
     | "MAINTENANCE"
     | "EVENT_COORDINATOR";
-  
-  // Define access permissions for each role
-  interface RoleAccess {
+
+// Define access permissions for each role
+interface RoleAccess {
     manageUsers: boolean;
     manageReservations: boolean;
     manageInventory: boolean;
     manageEvents: boolean;
     manageRooms: boolean;
     viewReports: boolean;
-  }
-  
-  const roleAccess: Record<Role, RoleAccess> = {
+}
+
+const roleAccess: Record<Role, RoleAccess> = {
     ADMIN: {
-      manageUsers: true,
-      manageReservations: true,
-      manageInventory: true,
-      manageEvents: true,
-      manageRooms: true,
-      viewReports: true,
+        manageUsers: true,
+        manageReservations: true,
+        manageInventory: true,
+        manageEvents: true,
+        manageRooms: true,
+        viewReports: true,
     },
     MANAGER: {
-      manageUsers: false,
-      manageReservations: true,
-      manageInventory: true,
-      manageEvents: true,
-      manageRooms: true,
-      viewReports: true,
+        manageUsers: false,
+        manageReservations: true,
+        manageInventory: true,
+        manageEvents: true,
+        manageRooms: true,
+        viewReports: true,
     },
     RECEPTIONIST: {
-      manageUsers: false,
-      manageReservations: true,
-      manageInventory: false,
-      manageEvents: false,
-      manageRooms: true,
-      viewReports: false,
+        manageUsers: false,
+        manageReservations: true,
+        manageInventory: false,
+        manageEvents: false,
+        manageRooms: true,
+        viewReports: false,
     },
     CHEF: {
-      manageUsers: false,
-      manageReservations: false,
-      manageInventory: true,
-      manageEvents: false,
-      manageRooms: false,
-      viewReports: false,
+        manageUsers: false,
+        manageReservations: false,
+        manageInventory: true,
+        manageEvents: false,
+        manageRooms: false,
+        viewReports: false,
     },
     HOUSEKEEPING: {
-      manageUsers: false,
-      manageReservations: false,
-      manageInventory: false,
-      manageEvents: false,
-      manageRooms: true,
-      viewReports: false,
+        manageUsers: false,
+        manageReservations: false,
+        manageInventory: false,
+        manageEvents: false,
+        manageRooms: true,
+        viewReports: false,
     },
     MAINTENANCE: {
-      manageUsers: false,
-      manageReservations: false,
-      manageInventory: false,
-      manageEvents: false,
-      manageRooms: true,
-      viewReports: false,
+        manageUsers: false,
+        manageReservations: false,
+        manageInventory: false,
+        manageEvents: false,
+        manageRooms: true,
+        viewReports: false,
     },
     EVENT_COORDINATOR: {
-      manageUsers: false,
-      manageReservations: false,
-      manageInventory: false,
-      manageEvents: true,
-      manageRooms: false,
-      viewReports: false,
+        manageUsers: false,
+        manageReservations: false,
+        manageInventory: false,
+        manageEvents: true,
+        manageRooms: false,
+        viewReports: false,
     },
-  };
-  
-  // Users array with roles specific to a small camping hotel/resort
-  export const users: User[] = [
+};
+
+// Users array with roles specific to a small camping hotel/resort
+export const users: User[] = [
     {
-      id: 10001,
-      name: "John Doe",
-      email: "john.doe@campingresort.com",
-      phone: "+1-555-123-4567",
-      address: "123 Forest Trail, Campville",
-      role: "ADMIN",
-      joinedDate: new Date("2020-01-15"),
-      isActive: true,
-    },
-    {
-      id: 10002,
-      name: "Jane Smith",
-      email: "jane.smith@campingresort.com",
-      phone: "+1-555-234-5678",
-      address: "456 River Road, Campville",
-      role: "MANAGER",
-      joinedDate: new Date("2021-06-01"),
-      isActive: true,
+        id: 10001,
+        name: "John Doe",
+        email: "john.doe@campingresort.com",
+        phone: "+1-555-123-4567",
+        address: "123 Forest Trail, Campville",
+        role: "ADMIN",
+        joinedDate: new Date("2020-01-15"),
+        isActive: true,
     },
     {
-      id: 10003,
-      name: "Carlos Garcia",
-      email: "carlos.garcia@campingresort.com",
-      phone: "+1-555-345-6789",
-      address: "789 Mountain Pass, Campville",
-      role: "CHEF",
-      joinedDate: new Date("2018-11-20"),
-      isActive: true,
+        id: 10002,
+        name: "Jane Smith",
+        email: "jane.smith@campingresort.com",
+        phone: "+1-555-234-5678",
+        address: "456 River Road, Campville",
+        role: "MANAGER",
+        joinedDate: new Date("2021-06-01"),
+        isActive: true,
     },
     {
-      id: 10004,
-      name: "Emily Davis",
-      email: "emily.davis@campingresort.com",
-      phone: "+1-555-456-7890",
-      address: "321 Lakeview Lane, Campville",
-      role: "HOUSEKEEPING",
-      joinedDate: new Date("2019-04-10"),
-      isActive: true,
+        id: 10003,
+        name: "Carlos Garcia",
+        email: "carlos.garcia@campingresort.com",
+        phone: "+1-555-345-6789",
+        address: "789 Mountain Pass, Campville",
+        role: "CHEF",
+        joinedDate: new Date("2018-11-20"),
+        isActive: true,
     },
     {
-      id: 10005,
-      name: "Michael Brown",
-      email: "michael.brown@campingresort.com",
-      phone: "+1-555-567-8901",
-      address: "654 Canyon Road, Campville",
-      role: "MAINTENANCE",
-      joinedDate: new Date("2022-02-15"),
-      isActive: true,
+        id: 10004,
+        name: "Emily Davis",
+        email: "emily.davis@campingresort.com",
+        phone: "+1-555-456-7890",
+        address: "321 Lakeview Lane, Campville",
+        role: "HOUSEKEEPING",
+        joinedDate: new Date("2019-04-10"),
+        isActive: true,
     },
     {
-      id: 10006,
-      name: "Sophia Wilson",
-      email: "sophia.wilson@campingresort.com",
-      phone: "+1-555-678-9012",
-      address: "987 Valley Drive, Campville",
-      role: "EVENT_COORDINATOR",
-      joinedDate: new Date("2023-05-01"),
-      isActive: true,
+        id: 10005,
+        name: "Michael Brown",
+        email: "michael.brown@campingresort.com",
+        phone: "+1-555-567-8901",
+        address: "654 Canyon Road, Campville",
+        role: "MAINTENANCE",
+        joinedDate: new Date("2022-02-15"),
+        isActive: true,
     },
     {
-      id: 10007,
-      name: "Liam Johnson",
-      email: "liam.johnson@campingresort.com",
-      phone: "+1-555-789-0123",
-      address: "321 Sunset Blvd, Campville",
-      role: "RECEPTIONIST",
-      joinedDate: new Date("2023-03-15"),
-      isActive: true,
+        id: 10006,
+        name: "Sophia Wilson",
+        email: "sophia.wilson@campingresort.com",
+        phone: "+1-555-678-9012",
+        address: "987 Valley Drive, Campville",
+        role: "EVENT_COORDINATOR",
+        joinedDate: new Date("2023-05-01"),
+        isActive: true,
     },
-  ];
-  
-  
-  
+    {
+        id: 10007,
+        name: "Liam Johnson",
+        email: "liam.johnson@campingresort.com",
+        phone: "+1-555-789-0123",
+        address: "321 Sunset Blvd, Campville",
+        role: "RECEPTIONIST",
+        joinedDate: new Date("2023-03-15"),
+        isActive: true,
+    },
+];
 
 
 
-  export interface Booking {
+
+// export type BookingStatus | "Confirmed" | "Pending" | "Cancelled"
+
+export type BookingStatus =
+    | "Confirmed"
+    | "Pending"
+    | "Cancelled";
+
+export type PaymentStatus =
+    | "Paid" | "Pending" | "Failed";
+
+
+export interface Booking {
     id: number;
     name: string;
     email: string;
@@ -229,13 +238,13 @@ export interface User {
     address: string;
     checkInDate: string; // ISO format: YYYY-MM-DD
     checkOutDate: string; // ISO format: YYYY-MM-DD
-    paymentStatus: "Paid" | "Pending" | "Failed";
+    paymentStatus: PaymentStatus;
     foodPreference: "Veg" | "Non-Veg";
     numberOfGuests: number;
     tentType: "Single" | "Double" | "Family";
     message?: string;
     specialRequests?: string;
-    bookingStatus: "Confirmed" | "Pending" | "Cancelled";
+    bookingStatus: BookingStatus;
     createdAt: string; // ISO format: YYYY-MM-DDTHH:mm:ssZ
     amount: number; // Total booking amount in currency units
 };

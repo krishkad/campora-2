@@ -1,7 +1,7 @@
 "use client";
-import { Booking, campingBookings } from '@/constants/index.c';
+import { Booking, BookingStatus, campingBookings, PaymentStatus } from '@/constants/index.c';
 import { ColumnDef } from '@tanstack/react-table';
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Button } from '../ui/button';
 import { ArrowDownUpIcon, EllipsisVertical, SquareDotIcon } from 'lucide-react';
 import SortableTable from './sortable-table';
@@ -23,8 +23,56 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import CreateBooking from './create-booking';
+import { useToast } from '@/hooks/use-toast';
 
 const BookingRoute = () => {
+  const [bookings, setBookings] = useState<Booking[]>(campingBookings);
+  const { toast } = useToast();
+
+
+
+
+
+
+
+  const handleBookingStatus = (status: BookingStatus, bookingId: number) => {
+    const bookIndex = campingBookings.findIndex((book) => book.id === bookingId);
+
+    if (bookIndex > -1) {
+      campingBookings[bookIndex].bookingStatus = status;
+      setBookings(bookings);
+      toast({
+        title: `Booking Status Changed to ${status}`,
+        description: `${campingBookings[bookIndex].name} booking updated`
+      })
+    }
+    else {
+      toast({
+        title: "Something went wrong"
+      })
+    }
+
+  }
+
+  const handlePaymentStatus = (status: PaymentStatus, bookingId: number) => {
+    const bookIndex = campingBookings.findIndex((book) => book.id === bookingId);
+
+    if (bookIndex > -1) {
+      campingBookings[bookIndex].paymentStatus = status;
+      setBookings(bookings);
+      toast({
+        title: `Booking Status Changed to ${status}`,
+        description: `${campingBookings[bookIndex].name} booking updated`
+      })
+    }
+    else {
+      toast({
+        title: "Something went wrong"
+      })
+    }
+
+  }
+
   const column: ColumnDef<Booking>[] = [
     {
       accessorKey: 'name',
@@ -167,9 +215,27 @@ const BookingRoute = () => {
                 <DropdownMenuSubTrigger>Booking Status</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem>Complete</DropdownMenuItem>
-                    <DropdownMenuItem>Pending</DropdownMenuItem>
-                    <DropdownMenuItem>Canceled</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handleBookingStatus("Confirmed", row.original.id)
+                      }}
+                    >
+                      Confirmed
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handleBookingStatus("Pending", row.original.id)
+                      }}
+                    >
+                      Pending
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handleBookingStatus("Cancelled", row.original.id)
+                      }}
+                    >
+                      Cancelled
+                    </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
@@ -177,9 +243,27 @@ const BookingRoute = () => {
                 <DropdownMenuSubTrigger>Payment Status</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem>Paid</DropdownMenuItem>
-                    <DropdownMenuItem>Pending</DropdownMenuItem>
-                    <DropdownMenuItem>Failed</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handlePaymentStatus("Paid", row.original.id);
+                      }}
+                    >
+                      Paid
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handlePaymentStatus("Pending", row.original.id);
+                      }}
+                    >
+                      Pending
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handlePaymentStatus("Failed", row.original.id);
+                      }}
+                    >
+                      Failed
+                    </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
@@ -203,11 +287,12 @@ const BookingRoute = () => {
     }
   ];
 
+
   return (
     <div className="max-w-7xl mx-auto">
       <Card>
         <CardContent>
-          <SortableTable data={campingBookings} columns={column} model={<CreateBooking />} />
+          <SortableTable key={JSON.stringify(bookings)} data={bookings} columns={column} model={<CreateBooking />} />
         </CardContent>
       </Card>
 
