@@ -221,7 +221,7 @@ export interface User {
 
 
 
-export interface Booking {
+  export interface Booking {
     id: number;
     name: string;
     email: string;
@@ -237,6 +237,7 @@ export interface Booking {
     specialRequests?: string;
     bookingStatus: "Confirmed" | "Pending" | "Cancelled";
     createdAt: string; // ISO format: YYYY-MM-DDTHH:mm:ssZ
+    amount: number; // Total booking amount in currency units
 };
 
 export const campingBookings: Booking[] = [
@@ -256,6 +257,7 @@ export const campingBookings: Booking[] = [
         specialRequests: "Need an extra blanket.",
         bookingStatus: "Confirmed",
         createdAt: "2023-12-25T10:00:00Z",
+        amount: 800,
     },
     {
         id: 2,
@@ -271,6 +273,7 @@ export const campingBookings: Booking[] = [
         tentType: "Double",
         bookingStatus: "Pending",
         createdAt: "2023-12-28T14:30:00Z",
+        amount: 200,
     },
     {
         id: 3,
@@ -287,6 +290,7 @@ export const campingBookings: Booking[] = [
         specialRequests: "Please arrange for a guided trekking tour.",
         bookingStatus: "Confirmed",
         createdAt: "2023-12-30T09:45:00Z",
+        amount: 600,
     },
     {
         id: 4,
@@ -303,6 +307,7 @@ export const campingBookings: Booking[] = [
         message: "Celebrating a birthday, please arrange a cake.",
         bookingStatus: "Cancelled",
         createdAt: "2024-01-05T11:20:00Z",
+        amount: 150,
     },
     {
         id: 5,
@@ -319,6 +324,7 @@ export const campingBookings: Booking[] = [
         specialRequests: "Close to the river.",
         bookingStatus: "Confirmed",
         createdAt: "2024-02-01T16:10:00Z",
+        amount: 1000,
     },
     {
         id: 6,
@@ -335,6 +341,7 @@ export const campingBookings: Booking[] = [
         message: "Honeymoon trip, please arrange candles.",
         bookingStatus: "Pending",
         createdAt: "2024-02-15T11:45:00Z",
+        amount: 450,
     },
     {
         id: 7,
@@ -351,6 +358,7 @@ export const campingBookings: Booking[] = [
         specialRequests: "Need a guide for stargazing.",
         bookingStatus: "Confirmed",
         createdAt: "2024-03-10T08:30:00Z",
+        amount: 750,
     },
     {
         id: 8,
@@ -366,6 +374,7 @@ export const campingBookings: Booking[] = [
         tentType: "Double",
         bookingStatus: "Cancelled",
         createdAt: "2024-03-25T10:20:00Z",
+        amount: 300,
     },
     {
         id: 9,
@@ -382,6 +391,7 @@ export const campingBookings: Booking[] = [
         specialRequests: "Quiet area, away from other groups.",
         bookingStatus: "Confirmed",
         createdAt: "2024-04-01T09:00:00Z",
+        amount: 700,
     },
     {
         id: 10,
@@ -398,8 +408,10 @@ export const campingBookings: Booking[] = [
         specialRequests: "Plan a group kayaking activity.",
         bookingStatus: "Confirmed",
         createdAt: "2024-04-15T13:40:00Z",
+        amount: 1200,
     },
 ] as const;
+
 
 
 export const ADMINROUTE = [

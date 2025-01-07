@@ -45,7 +45,7 @@ const Booking = () => {
                         <div className="w-full grid grid-cols-2 gap-5">
                             <div className="w-full space-y-1">
 
-                                <NumberSelect placeHolder={"no. of People"} selectValueClassName='h-12' />
+                                <NumberSelect placeHolder={"no. of Kids"} selectValueClassName='h-12' />
                             </div>
                             <div className="w-full space-y-1">
                                 <NumberSelect placeHolder={"no. of Guest"} selectValueClassName='h-12' />

@@ -55,8 +55,10 @@ const BookingSchema = z.object({
         to: z.date()
     }),
     numberOfGuests: z.number().min(1, "At least one guest required"),
+    numberOfKids: z.number().min(1, "At least one kids required"),
     message: z.string().optional(),
     specialRequests: z.string().optional(),
+    amount: z.number()
 })
 
 const CreateBooking = () => {
@@ -70,8 +72,10 @@ const CreateBooking = () => {
             address: "",
             checkInAndOutDate: { from: new Date(), to: addDays(new Date(), 1) },
             numberOfGuests: 1,
+            numberOfKids: 1,
             message: "",
-            specialRequests: ""
+            specialRequests: "",
+            amount: 120
         }
     })
 
@@ -232,9 +236,44 @@ const CreateBooking = () => {
                                                     </FormItem>
                                                 }}
                                             />
+                                            <FormField
+                                                control={form.control}
+                                                name='numberOfKids'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>No. of Kids</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder='Enter No. of Kids'
+                                                                type='number'
+                                                                value={field.value || ""}
+                                                                onChange={(e) => {
+                                                                    // Convert the value to a number before updating the form state
+                                                                    const value = e.target.value ? parseInt(e.target.value, 10) : '';
+                                                                    field.onChange(value);
+                                                                }}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
 
                                         </div>
                                         <div className="w-full space-y-5 grid-cols-1 md:grid-cols-2">
+                                            <FormField
+                                                control={form.control}
+                                                name='amount'
+                                                render={({ field }) => {
+                                                    return <FormItem>
+                                                        <FormLabel>Amount</FormLabel>
+                                                        <FormControl>
+                                                            <Input placeholder='Amount' {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                }}
+                                            />
                                             <FormField
                                                 control={form.control}
                                                 name='message'

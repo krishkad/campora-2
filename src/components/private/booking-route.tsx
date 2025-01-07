@@ -106,6 +106,13 @@ const BookingRoute = () => {
       cell: ({ row }) => <div className="font-medium">{row.getValue("tentType")}</div>
     },
     {
+      accessorKey: 'amount',
+      header: "Amount",
+      cell: ({ row }) => {
+        return <p className="font-medium">{row.getValue("amount")}</p>
+      }
+    },
+    {
       accessorKey: 'paymentStatus',
       header: "Payment Status",
       cell: ({ row }) => {
@@ -128,7 +135,12 @@ const BookingRoute = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 mr-2">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              <div className="w-full flex flex-col gap-px">
+                <span className="font-semibold text-base">{row.original.name}</span>
+                <span className="font-medium text-muted-foreground text-sm">{row.original.email}</span>
+              </div>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
