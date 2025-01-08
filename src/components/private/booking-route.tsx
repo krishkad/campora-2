@@ -3,7 +3,7 @@ import { Booking, BookingStatus, campingBookings, PaymentStatus } from '@/consta
 import { ColumnDef } from '@tanstack/react-table';
 import React, { useEffect, useMemo, useState } from 'react'
 import { Button } from '../ui/button';
-import { ArrowDownUpIcon, EllipsisVertical, SquareDotIcon } from 'lucide-react';
+import { ArrowDownUpIcon, CircleCheckIcon, CircleMinusIcon, CircleXIcon, EllipsisVertical, SquareDotIcon } from 'lucide-react';
 import SortableTable from './sortable-table';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -214,27 +214,28 @@ const BookingRoute = () => {
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>Booking Status</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
+                  <DropdownMenuSubContent className='space-y-1'>
                     <DropdownMenuItem
+
                       onClick={() => {
                         handleBookingStatus("Confirmed", row.original.id)
                       }}
                     >
-                      Confirmed
+                      Confirmed <CircleCheckIcon className='w-5 h-5 inline shrink-0 fill-green-600 text-white' />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         handleBookingStatus("Pending", row.original.id)
                       }}
                     >
-                      Pending
+                      Pending <CircleMinusIcon className='w-5 h-5 shrink-0 inline fill-yellow-500 text-white' />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         handleBookingStatus("Cancelled", row.original.id)
                       }}
                     >
-                      Cancelled
+                      Cancelled <CircleXIcon className='w-5 h-5 shrink-0 inline fill-red-500 text-white' />
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -248,21 +249,21 @@ const BookingRoute = () => {
                         handlePaymentStatus("Paid", row.original.id);
                       }}
                     >
-                      Paid
+                      Paid<CircleCheckIcon className='w-5 h-5 inline shrink-0 fill-green-600 text-white' />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         handlePaymentStatus("Pending", row.original.id);
                       }}
                     >
-                      Pending
+                      Pending<CircleMinusIcon className='w-5 h-5 shrink-0 inline fill-yellow-500 text-white' />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         handlePaymentStatus("Failed", row.original.id);
                       }}
                     >
-                      Failed
+                      Failed <CircleXIcon className='w-5 h-5 shrink-0 inline fill-red-500 text-white' />
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -301,3 +302,9 @@ const BookingRoute = () => {
 }
 
 export default BookingRoute
+
+
+
+
+
+
