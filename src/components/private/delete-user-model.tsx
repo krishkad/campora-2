@@ -1,47 +1,52 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from '../ui/button';
-import { User } from '@/constants/index.c';
+import { Button } from "../ui/button";
+import { User } from "@/constants/index.c";
 
 const DeleteUserModel = ({
-    open,
-    onOpenChange,
-    user
+  open,
+  onOpenChange,
+  user,
+  handleDeleteUser,
 }: {
-    open: boolean,
-    onOpenChange: (value: boolean) => void,
-    user: Partial<User>
+  open: boolean;
+  onOpenChange: (value: boolean) => void;
+  user: Partial<User>;
+  handleDeleteUser: (value: Partial<User>) => void;
 }) => {
-    return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className='max-sm:max-w-[90%]'>
-                <DialogHeader className='pt-4'>
-                    <DialogTitle>
-                        Do your really want to delete {user.name}?
-                    </DialogTitle>
-                    <DialogDescription/>
-                </DialogHeader>
-                <div className="w-full flex items-center justify-between">
-                    <Button variant={'outline'} onClick={() => onOpenChange(!open)}>
-                        No
-                    </Button>
-                    <Button variant={'destructive'} onClick={() => onOpenChange(!open)}>
-                        Yes Delete
-                    </Button>
-                </div>
-            </DialogContent>
-        </Dialog>
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-sm:max-w-[90%]">
+        <DialogHeader className="pt-4">
+          <DialogTitle>Do your really want to delete {user.name}?</DialogTitle>
+          <DialogDescription />
+        </DialogHeader>
+        <div className="w-full flex items-center justify-between">
+          <Button variant={"outline"} onClick={() => onOpenChange(!open)}>
+            No
+          </Button>
+          <Button
+            variant={"destructive"}
+            onClick={() => {
+              onOpenChange(!open);
+              handleDeleteUser(user);
+            }}
+          >
+            Yes Delete
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
-    )
-}
-
-export default DeleteUserModel
+export default DeleteUserModel;
