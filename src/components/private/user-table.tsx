@@ -40,7 +40,7 @@ const UserTable = () => {
   useEffect(() => {
     if (!isLoading && error === null && users) {
       setTableData(users);
-      console.log("user if");
+      console.log(users);
     } else if (!isLoading && error) {
       toast({
         title: "failed to fetch users",
