@@ -31,7 +31,7 @@ const LatestReservations = () => {
 
     return (
         <div className='w-full'>
-            <SortableTable data={campingBookings} columns={column} filter={false} />
+            {/* <SortableTable data={campingBookings} columns={column} filter={false} /> */}
         </div>
     )
 }
