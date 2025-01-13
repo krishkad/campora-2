@@ -72,6 +72,7 @@ const BookingRoute = () => {
     if (bookingData !== null) {
       if (JSON.stringify(bookingData) !== JSON.stringify(bookings)) {
         setBookings(bookingData);
+        console.log({ bookingData });
       }
     }
     if (!isLoading && typeof error === "string") {
