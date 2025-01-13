@@ -19,7 +19,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       {
         ...body,
       },
-      { writeConcern: { w: "majority" } }
+      { new: true, returnDocument: "after" }
     );
 
     if (!update_booking)

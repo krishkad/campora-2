@@ -1,7 +1,6 @@
 import { ConnectToDatabase } from "@/database/db";
 import UserDb from "@/database/models/user";
 import { NextRequest, NextResponse } from "next/server";
-import { IoBody } from "react-icons/io5";
 
 export async function PUT(req: NextRequest): Promise<NextResponse> {
   try {
