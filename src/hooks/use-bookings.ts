@@ -29,6 +29,10 @@ export function useBookings() {
 
   useEffect(() => {
     fetchBookings();
+    const intervalId = setInterval(fetchBookings, 15000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return { bookings, isLoading, error };
