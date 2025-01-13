@@ -14,9 +14,13 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
         message: "booking id not found",
       });
 
-    const update_booking = await BookingsDb.findByIdAndUpdate(body._id, {
-      ...body,
-    });
+    const update_booking = await BookingsDb.findByIdAndUpdate(
+      body._id,
+      {
+        ...body,
+      },
+      { writeConcern: { w: "majority" } }
+    );
 
     if (!update_booking)
       return NextResponse.json({
@@ -24,8 +28,8 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
         message: "failed to update the booking",
       });
 
-    const updated_booking = await BookingsDb.findById(body._id, {
-      ...body,
+    const updated_booking = await BookingsDb.findById(body._id, null, {
+      readConcern: { level: "majority" },
     });
     return NextResponse.json({
       success: true,
