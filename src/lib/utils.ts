@@ -1,3 +1,4 @@
+import { Booking } from "@/constants/index.c";
 import { clsx, type ClassValue } from "clsx"
 import dayjs, { Dayjs } from "dayjs";
 import { twMerge } from "tailwind-merge"
@@ -56,3 +57,6 @@ export function deserializeDayHours(hourMatrix: string[][]) {
 export function getCurrentDay(day: Dayjs) {
   return day.format('DD-MM-YYYY') === dayjs().format('DD-MM-YYYY');
 };
+
+
+

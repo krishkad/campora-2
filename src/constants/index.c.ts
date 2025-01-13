@@ -20,6 +20,8 @@ import { MdDashboard } from "react-icons/md";
 import { GiCampingTent } from "react-icons/gi";
 import { FaCalendarAlt, FaUsers, FaStar } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 export interface CampingListing {
   // General Information
@@ -50,18 +52,22 @@ export interface CampingListing {
 
 // Define the structure of a user
 export interface User {
-  id: number;
+  imageUrl?: string;
+  _id?: mongoose.Schema.Types.ObjectId | string;
   name: string;
   email: string;
   phone: string;
   address: string;
-  role: Role;
-  joinedDate: Date;
-  isActive: boolean;
+  role?: Role;
+  joinedDate?: Date;
+  isActive?: boolean;
+  createdAt?: string; // ISO Date string format
+  updatedAt?: string; // ISO Date string format
+  __v?: number;
 }
 
 // Define roles for a small camping hotel/resort
-type Role =
+export type Role =
   | "ADMIN"
   | "MANAGER"
   | "RECEPTIONIST"
@@ -142,7 +148,7 @@ const roleAccess: Record<Role, RoleAccess> = {
 // Users array with roles specific to a small camping hotel/resort
 export const users: User[] = [
   {
-    id: 10001,
+    _id: uuidv4(),
     name: "John Doe",
     email: "john.doe@campingresort.com",
     phone: "+1-555-123-4567",
@@ -152,7 +158,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10002,
+    _id: uuidv4(),
     name: "Jane Smith",
     email: "jane.smith@campingresort.com",
     phone: "+1-555-234-5678",
@@ -162,7 +168,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10003,
+    _id: uuidv4(),
     name: "Carlos Garcia",
     email: "carlos.garcia@campingresort.com",
     phone: "+1-555-345-6789",
@@ -172,7 +178,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10004,
+    _id: uuidv4(),
     name: "Emily Davis",
     email: "emily.davis@campingresort.com",
     phone: "+1-555-456-7890",
@@ -182,7 +188,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10005,
+    _id: uuidv4(),
     name: "Michael Brown",
     email: "michael.brown@campingresort.com",
     phone: "+1-555-567-8901",
@@ -192,7 +198,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10006,
+    _id: uuidv4(),
     name: "Sophia Wilson",
     email: "sophia.wilson@campingresort.com",
     phone: "+1-555-678-9012",
@@ -202,7 +208,7 @@ export const users: User[] = [
     isActive: true,
   },
   {
-    id: 10007,
+    _id: uuidv4(),
     name: "Liam Johnson",
     email: "liam.johnson@campingresort.com",
     phone: "+1-555-789-0123",
@@ -220,30 +226,32 @@ export type BookingStatus = "Confirmed" | "Pending" | "Cancelled";
 export type PaymentStatus = "Paid" | "Pending" | "Failed";
 
 export interface Booking {
-  id: number;
+  _id: string | mongoose.Schema.Types.ObjectId;
   name: string;
   email: string;
   phone: string;
   address: string;
   checkInAndOutDate: {
-    form: Date;
-    to: Date;
+    form: Date | string;
+    to: Date | string;
   };
-  paymentStatus: PaymentStatus;
+  paymentStatus?: PaymentStatus;
   foodPreference: "Veg" | "Non-Veg";
   numberOfGuests: number;
   numberOfKids: number;
   // tentType: "Single" | "Double" | "Family";
   message?: string;
   specialRequests?: string;
-  bookingStatus: BookingStatus;
-  createdAt: string; // ISO format: YYYY-MM-DDTHH:mm:ssZ
-  amount: number; // Total booking amount in currency units
+  bookingStatus?: BookingStatus;
+  amount?: number; // Total booking amount in currency units
+  createdAt?: string; // ISO Date string format
+  updatedAt?: string; // ISO Date string format
+  __v?: number;
 }
 
 export const campingBookings: Booking[] = [
   {
-    id: 1,
+    _id: uuidv4(),
     name: "John Doe",
     email: "johndoe@example.com",
     phone: "1234567890",
@@ -263,7 +271,7 @@ export const campingBookings: Booking[] = [
     amount: 800,
   },
   {
-    id: 2,
+    _id: uuidv4(),
     name: "Jane Smith",
     email: "janesmith@example.com",
     phone: "9876543210",
@@ -281,7 +289,7 @@ export const campingBookings: Booking[] = [
     amount: 200,
   },
   {
-    id: 3,
+    _id: uuidv4(),
     name: "Robert Johnson",
     email: "robertj@example.com",
     phone: "4561237890",
@@ -300,7 +308,7 @@ export const campingBookings: Booking[] = [
     amount: 600,
   },
   {
-    id: 4,
+    _id: uuidv4(),
     name: "Emily Davis",
     email: "emilydavis@example.com",
     phone: "8527419630",
@@ -319,7 +327,7 @@ export const campingBookings: Booking[] = [
     amount: 150,
   },
   {
-    id: 5,
+    _id: uuidv4(),
     name: "Sophia Taylor",
     email: "sophiataylor@example.com",
     phone: "7418529630",
@@ -338,7 +346,7 @@ export const campingBookings: Booking[] = [
     amount: 1000,
   },
   {
-    id: 6,
+    _id: uuidv4(),
     name: "Liam Brown",
     email: "liambrown@example.com",
     phone: "9638527410",
@@ -357,7 +365,7 @@ export const campingBookings: Booking[] = [
     amount: 450,
   },
   {
-    id: 7,
+    _id: uuidv4(),
     name: "William Green",
     email: "williamgreen@example.com",
     phone: "7894561230",
@@ -376,7 +384,7 @@ export const campingBookings: Booking[] = [
     amount: 750,
   },
   {
-    id: 8,
+    _id: uuidv4(),
     name: "Mia Wilson",
     email: "miawilson@example.com",
     phone: "8529637410",
@@ -394,7 +402,7 @@ export const campingBookings: Booking[] = [
     amount: 300,
   },
   {
-    id: 9,
+    _id: uuidv4(),
     name: "Emma White",
     email: "emmawhite@example.com",
     phone: "9517538520",
@@ -413,7 +421,7 @@ export const campingBookings: Booking[] = [
     amount: 700,
   },
   {
-    id: 10,
+    _id: uuidv4(),
     name: "Noah Martinez",
     email: "noahmartinez@example.com",
     phone: "1472583690",
@@ -431,26 +439,6 @@ export const campingBookings: Booking[] = [
     createdAt: "2024-04-15T13:40:00Z",
     amount: 1200,
   },
-//   {
-//     address: "adfadfadfadfafdadfadfaf",
-//     amount: 1200,
-//     bookingStatus: "Pending",
-//     checkInAndOutDate: {
-//       form: new Date("Thu Jan 09 2025 15:45:19 GMT+0530 (India Standard Time)"),
-//       to: new Date("Fri Jan 10 2025 15:45:19 GMT+0530 (India Standard Time)"),
-//     },
-//     createdAt: "2025-01-09T10:15:48.479Z",
-//     email: "test_email@gmail.com",
-//     foodPreference: "Non-Veg",
-//     id: 64,
-//     message: "",
-//     name: "test_name",
-//     numberOfGuests: 2,
-//     numberOfKids: 1,
-//     paymentStatus: "Pending",
-//     phone: "98765432110",
-//     specialRequests: "",
-//   },
 ];
 
 export const ADMINROUTE = [

@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { User, users } from "@/constants/index.c";
+import React, { useEffect, useState } from "react";
+import { User, users as user_constants } from "@/constants/index.c";
 import { ColumnDef } from "@tanstack/react-table";
 import SortableTable from "./sortable-table";
 import {
@@ -17,11 +17,15 @@ import { EllipsisVerticalIcon } from "lucide-react";
 import EditTableModel from "./edit-table-model";
 import DeleteUserModel from "./delete-user-model";
 import { useToast } from "@/hooks/use-toast";
+import { v4 as uuidv4 } from "uuid";
+import { getUsers } from "@/hooks/get-users";
+import { updateUser } from "@/hooks/update-users";
+import { deleteUser } from "@/hooks/delete-user";
 
 const UserTable = () => {
-  const [tableData, setTableData] = useState<User[]>(users);
+  const [tableData, setTableData] = useState<User[]>(user_constants);
   const [editableRow, setEditableRow] = useState<Partial<User>>({
-    id: 0,
+    _id: uuidv4(),
     name: "",
     email: "",
     phone: "",
@@ -31,29 +35,59 @@ const UserTable = () => {
   const [modelOpen, setModelOpen] = useState<boolean>(false);
   const [openDeleteModel, setopenDeleteModel] = useState(false);
   const { toast } = useToast();
+  const { error, isLoading, users } = getUsers();
 
-  const handleEditUser = (user: Partial<User>) => {
-    const userIndex = tableData.findIndex((usr) => usr.id === user.id);
-    if (userIndex !== -1) {
-      tableData[userIndex].role = user.role
-        ? user.role
-        : tableData[userIndex].role;
-      tableData[userIndex].name = user.name
-        ? user.name
-        : tableData[userIndex].name;
-      tableData[userIndex].email = user.email
-        ? user.email
-        : tableData[userIndex].email;
-      tableData[userIndex].phone = user.phone
-        ? user.phone
-        : tableData[userIndex].phone;
-      tableData[userIndex].address = user.address
-        ? user.address
-        : tableData[userIndex].address;
-      setTableData(tableData);
+  useEffect(() => {
+    if (!isLoading && error === null && users) {
+      setTableData(users);
+    } else if (!isLoading && error) {
       toast({
-        title: `${user.name} is Updated`,
+        title: "failed to fetch users",
+        description: error,
+        variant: "destructive",
       });
+    } else {
+    }
+  }, [users]);
+
+  const handleEditUser = async (user: Partial<User>) => {
+    const userIndex = tableData.findIndex((usr) => usr._id === user._id);
+    if (userIndex !== -1) {
+      const { data, error } = await updateUser({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+      });
+      if (data && error === null) {
+        tableData[userIndex].role = user.role
+          ? user.role
+          : tableData[userIndex].role;
+        tableData[userIndex].name = user.name
+          ? user.name
+          : tableData[userIndex].name;
+        tableData[userIndex].email = user.email
+          ? user.email
+          : tableData[userIndex].email;
+        tableData[userIndex].phone = user.phone
+          ? user.phone
+          : tableData[userIndex].phone;
+        tableData[userIndex].address = user.address
+          ? user.address
+          : tableData[userIndex].address;
+        setTableData(tableData);
+        toast({
+          title: `${user.name} is Updated`,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: `Update Failded`,
+          description: error,
+        });
+      }
     } else {
       toast({
         variant: "destructive",
@@ -62,11 +96,34 @@ const UserTable = () => {
     }
   };
 
-  const handleDeleteUser = (user: Partial<User>) => {
-    const filtered_table_data = tableData.filter((item) => item.id !== user.id);
+  const handleDeleteUser = async (user: Partial<User>) => {
+    if (!user._id) {
+      const { data, error } = await deleteUser(user);
 
-    if (filtered_table_data.length < 1) return;
-    setTableData(filtered_table_data);
+      if (data && error === null) {
+        const filtered_table_data = tableData.filter(
+          (item) => item._id !== user._id
+        );
+
+        if (filtered_table_data.length < 1) return;
+        setTableData(filtered_table_data);
+        toast({
+          title: "user deleted",
+        });
+      } else {
+        toast({
+          title: "something went wrong",
+          description: error,
+          variant: "destructive",
+        });
+      }
+    } else {
+      toast({
+        title: "something went wrong",
+        description: "user id missing!",
+        variant: "destructive",
+      });
+    }
   };
 
   const columns: ColumnDef<User>[] = [
@@ -164,6 +221,7 @@ const UserTable = () => {
         key={JSON.stringify(tableData)}
         data={tableData}
         columns={columns}
+        isLoading={isLoading}
       />
       <EditTableModel
         open={modelOpen}

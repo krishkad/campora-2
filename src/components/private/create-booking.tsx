@@ -35,6 +35,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
+import { v4 as uuidv4 } from "uuid";
 
 // export interface Booking {
 //     id: number;
@@ -55,7 +56,6 @@ import { Booking } from "@/constants/index.c";
 // };
 
 const BookingSchema = z.object({
-  id: z.number().min(5, "id must have at least 5 characters"),
   name: z.string().min(2, "Name must have at least 2 characters"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must have at least 10 digits"),
@@ -76,12 +76,11 @@ const BookingSchema = z.object({
 const CreateBooking = ({
   handleCreateBooking,
 }: {
-  handleCreateBooking: (value: Booking) => void;
+  handleCreateBooking: (value: Partial<Booking>) => void;
 }) => {
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
-      id: 111111,
       name: "",
       email: "",
       phone: "",
@@ -118,10 +117,9 @@ const CreateBooking = ({
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit((data) => {
-                    const randomId = Math.floor(Math.random() * 100);
-
+                    const randomId = uuidv4();
                     handleCreateBooking({
-                      id: randomId,
+                      // _id: randomId,
                       name: data.name,
                       email: data.email,
                       phone: data.phone,
@@ -391,7 +389,7 @@ const CreateBooking = ({
                               <FormControl>
                                 <Input
                                   placeholder="Amount"
-                                  value={field.value}
+                                  value={field.value || ""}
                                   onChange={(e) => {
                                     const value = parseInt(e.target.value, 10);
                                     field.onChange(value);

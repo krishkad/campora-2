@@ -22,12 +22,14 @@ import {
   TableRow,
 } from "../ui/table";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface SortableTableProps<T> {
   data: T[];
   columns: ColumnDef<T>[];
   filter?: boolean;
   model?: ReactNode;
+  isLoading: boolean;
 }
 
 const SortableTable = <T,>({
@@ -35,6 +37,7 @@ const SortableTable = <T,>({
   columns,
   filter = true,
   model,
+  isLoading = true,
 }: SortableTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -138,9 +141,17 @@ const SortableTable = <T,>({
                         )}
                         key={cell.id}
                       >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
+                        {isLoading ? (
+                          <div className="py-2">
+                            <Skeleton className={cn("h-4 w-[130px]", i === 1 ? "w-[200px]": "w-[130px]")} />
+                          </div>
+                        ) : (
+                          <>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </>
                         )}
                       </TableCell>
                     );

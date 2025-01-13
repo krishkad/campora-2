@@ -37,22 +37,52 @@ import {
 import CreateBooking from "./create-booking";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
+import { getBookings } from "@/hooks/get-bookings";
+import { createBooking } from "@/hooks/create-booking";
+import { updateBooking } from "@/hooks/update-booking";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>(campingBookings);
   const { toast } = useToast();
+  const { bookings: bookingData, error, isLoading } = getBookings();
 
-  const handleBookingStatus = (status: BookingStatus, bookingId: number) => {
-    const bookIndex = bookings.findIndex((book) => book.id === bookingId);
-    const booking = bookings.find((book) => book.id === bookingId);
-
-    if (bookIndex > -1) {
-      bookings[bookIndex].bookingStatus = status;
-      setBookings(bookings);
+  useEffect(() => {
+    if (bookingData) {
+      setBookings(bookingData);
+    } else if (!isLoading && error) {
       toast({
-        title: `Booking Status Changed to ${status}`,
-        description: `${bookings[bookIndex].name} booking updated`,
+        title: "failed to fetch bookings",
+        description: error,
+        variant: "destructive",
       });
+    } else {
+    }
+  }, [bookingData]);
+
+  const handleBookingStatus = async (
+    status: BookingStatus,
+    bookingId: string
+  ) => {
+    const bookIndex = bookings.findIndex((book) => book._id === bookingId);
+    if (bookIndex > -1) {
+      const { data, error } = await updateBooking({
+        _id: bookings[bookIndex]._id,
+        bookingStatus: status,
+      });
+      if (data && error === null) {
+        bookings[bookIndex].bookingStatus = status;
+        setBookings(bookings);
+        toast({
+          title: `Booking Status Changed to ${status}`,
+          description: `${bookings[bookIndex].name} booking updated`,
+        });
+      } else {
+        toast({
+          title: `Something went wrong`,
+          description: error,
+          variant: "destructive",
+        });
+      }
     } else {
       toast({
         title: `Something went wrong ${bookIndex}`,
@@ -60,18 +90,32 @@ const BookingRoute = () => {
     }
   };
 
-  const handlePaymentStatus = (status: PaymentStatus, bookingId: number) => {
-    const bookIndex = bookings.findIndex(
-      (book) => book.id === bookingId
-    );
+  const handlePaymentStatus = async (
+    status: PaymentStatus,
+    bookingId: string
+  ) => {
+    const bookIndex = bookings.findIndex((book) => book._id === bookingId);
 
     if (bookIndex > -1) {
-      bookings[bookIndex].paymentStatus = status;
-      setBookings(bookings);
-      toast({
-        title: `Booking Status Changed to ${status}`,
-        description: `${bookings[bookIndex].name} booking updated`,
+      const { data, error } = await updateBooking({
+        _id: bookings[bookIndex]._id,
+        paymentStatus: status,
       });
+
+      if (data && error === null) {
+        bookings[bookIndex].paymentStatus = status;
+        setBookings(bookings);
+        toast({
+          title: `Booking Status Changed to ${status}`,
+          description: `${bookings[bookIndex].name} booking updated`,
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: error,
+          variant: "destructive",
+        });
+      }
     } else {
       toast({
         title: "Something went wrong",
@@ -79,12 +123,17 @@ const BookingRoute = () => {
     }
   };
 
-  const handleCreateBooking = (booking: Booking) => {
-    if (!booking) return;
-    setBookings((bookings) => [...bookings, booking]);
-    toast({
-      title: "Booking Created"
-    })
+  const handleCreateBooking = async (bookingProp: Partial<Booking>) => {
+    if (!bookingProp) return;
+
+    const { booking: newBooking, error } = await createBooking(bookingProp);
+
+    if (error === null && newBooking) {
+      setBookings((bookings) => [...bookings, newBooking]);
+      toast({
+        title: "Booking Created",
+      });
+    }
   };
 
   const column: ColumnDef<Booking>[] = [
@@ -299,7 +348,12 @@ const BookingRoute = () => {
                     <DropdownMenuSubContent className="space-y-1">
                       <DropdownMenuItem
                         onClick={() => {
-                          handleBookingStatus("Confirmed", row.original.id);
+                          handleBookingStatus(
+                            "Confirmed",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Confirmed{" "}
@@ -307,7 +361,12 @@ const BookingRoute = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => {
-                          handleBookingStatus("Pending", row.original.id);
+                          handleBookingStatus(
+                            "Pending",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Pending{" "}
@@ -315,7 +374,12 @@ const BookingRoute = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => {
-                          handleBookingStatus("Cancelled", row.original.id);
+                          handleBookingStatus(
+                            "Cancelled",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Cancelled{" "}
@@ -332,7 +396,12 @@ const BookingRoute = () => {
                     <DropdownMenuSubContent>
                       <DropdownMenuItem
                         onClick={() => {
-                          handlePaymentStatus("Paid", row.original.id);
+                          handlePaymentStatus(
+                            "Paid",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Paid
@@ -340,7 +409,12 @@ const BookingRoute = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => {
-                          handlePaymentStatus("Pending", row.original.id);
+                          handlePaymentStatus(
+                            "Pending",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Pending
@@ -348,7 +422,12 @@ const BookingRoute = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => {
-                          handlePaymentStatus("Failed", row.original.id);
+                          handlePaymentStatus(
+                            "Failed",
+                            typeof row.original._id === "string"
+                              ? row.original._id
+                              : ""
+                          );
                         }}
                       >
                         Failed{" "}
@@ -386,6 +465,7 @@ const BookingRoute = () => {
             key={JSON.stringify(bookings)}
             data={bookings}
             columns={column}
+            isLoading={isLoading}
             model={<CreateBooking handleCreateBooking={handleCreateBooking} />}
           />
         </CardContent>
