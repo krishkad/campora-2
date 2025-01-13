@@ -11,7 +11,13 @@ export function useBookings() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get("/api/bookings/get-all");
+      const response = await axios.get("/api/bookings/get-all", {
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+      });
+
       if (!response.data.success as boolean) {
         setError(response.data.message);
         setIsLoading(false);
