@@ -25,6 +25,7 @@ export function useBookings() {
       if (response.data.success as boolean) {
         setbookings(response.data.data);
         setIsLoading(false);
+        console.log({ data: response.data.data });
       }
     } catch (error: any) {
       setError(error.message);
