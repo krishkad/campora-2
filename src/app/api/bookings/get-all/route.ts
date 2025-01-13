@@ -9,8 +9,10 @@ export async function GET(req: Request): Promise<NextResponse> {
 
     // Fetch bookings from the database
     console.log("Fetching bookings from database...");
-    const bookings = await BookingsDb.find().read("primary").exec();
-    // console.log("Fetched bookings:", bookings);
+    const bookings = await BookingsDb.find()
+      .read("primaryPreferred") // Use primaryPreferred to reduce latency while avoiding stale data
+      .lean() // Optimize performance by returning plain JavaScript objects
+      .exec();
 
     // Check if bookings exist
     if (!bookings || bookings.length === 0) {
