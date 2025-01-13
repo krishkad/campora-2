@@ -97,6 +97,7 @@ const BookingRoute = () => {
       if (data && error === null) {
         bookings[bookIndex].bookingStatus = status;
         setBookings(bookings);
+        console.log({ data });
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
