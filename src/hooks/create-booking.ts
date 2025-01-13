@@ -1,12 +1,10 @@
 import { Booking } from "@/constants/index.c";
 import axios from "axios";
 
-export const createBooking = async (
-  newBooking: Partial<Booking>
-): Promise<{
+export async function createBooking(newBooking: Partial<Booking>): Promise<{
   booking: Booking | null;
   error: string | null;
-}> => {
+}> {
   try {
     const response = await axios.post("/api/bookings/create", newBooking);
     if (!response.data.success as boolean) {
@@ -22,4 +20,4 @@ export const createBooking = async (
   }
 
   return { booking: null, error: "failed to create booking" };
-};
+}

@@ -1,7 +1,7 @@
 import { User } from "@/constants/index.c";
 import axios from "axios";
 
-export const deleteUser = async (userProps: Partial<User>) => {
+export async function deleteUser(userProps: Partial<User>) {
   try {
     const response = await axios.delete("/api/users/delete", {
       data: {
@@ -19,4 +19,4 @@ export const deleteUser = async (userProps: Partial<User>) => {
   } catch (error: any) {
     return { error: error.message, data: null };
   }
-};
+}

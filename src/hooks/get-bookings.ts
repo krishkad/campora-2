@@ -2,7 +2,7 @@ import { Booking } from "@/constants/index.c";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const getBookings = () => {
+export function getBookings() {
   const [bookings, setbookings] = useState<Booking[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,4 +32,4 @@ export const getBookings = () => {
   }, []);
 
   return { bookings, isLoading, error };
-};
+}

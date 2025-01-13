@@ -1,12 +1,10 @@
 import { Booking } from "@/constants/index.c";
 import axios from "axios";
 
-export const updateBooking = async (
-  bookingProps: Partial<Booking>
-): Promise<{
+export async function updateBooking(bookingProps: Partial<Booking>): Promise<{
   data: Partial<Booking> | null;
   error: string | null;
-}> => {
+}> {
   if (!bookingProps) return { data: null, error: "bookingProps missing!" };
 
   try {
@@ -27,4 +25,4 @@ export const updateBooking = async (
     console.log(error.message);
     return { data: null, error: error.message };
   }
-};
+}

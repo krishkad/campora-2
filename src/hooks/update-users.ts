@@ -1,7 +1,7 @@
 import { User } from "@/constants/index.c";
 import axios from "axios";
 
-export const updateUser = async (userProps: Partial<User>) => {
+export async function updateUser(userProps: Partial<User>) {
   try {
     const response = await axios.put("/api/users/update", { ...userProps });
 
@@ -15,4 +15,4 @@ export const updateUser = async (userProps: Partial<User>) => {
   } catch (error: any) {
     return { error: error.message, data: null };
   }
-};
+}

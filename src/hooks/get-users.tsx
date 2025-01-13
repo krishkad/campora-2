@@ -2,7 +2,7 @@ import { User } from "@/constants/index.c";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const getUsers = () => {
+export function getUsers() {
   const [users, setUsers] = useState<User[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -38,4 +38,4 @@ export const getUsers = () => {
   }, []);
 
   return { users, isLoading, error };
-};
+}
