@@ -69,18 +69,17 @@ const BookingRoute = () => {
   const { bookings: bookingData, error, isLoading } = useBookings();
 
   useEffect(() => {
-    if (
-      bookingData !== null &&
-      JSON.stringify(bookingData) !== JSON.stringify(bookings)
-    ) {
-      setBookings(bookingData);
-    } else if (!isLoading && error) {
+    if (bookingData !== null) {
+      if (JSON.stringify(bookingData) !== JSON.stringify(bookings)) {
+        setBookings(bookingData);
+      }
+    }
+    if (!isLoading && typeof error === "string") {
       toast({
         title: "failed to fetch bookings",
         description: error,
         variant: "destructive",
       });
-    } else {
     }
   }, [bookingData]);
 
