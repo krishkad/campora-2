@@ -9,7 +9,7 @@ export async function GET(req: Request): Promise<NextResponse> {
 
     // Fetch bookings from the database
     console.log("Fetching bookings from database...");
-    const bookings = await BookingsDb.find().read("primary");
+    const bookings = await BookingsDb.find().read("primary").exec();
     console.log("Fetched bookings:", bookings);
 
     // Check if bookings exist
@@ -21,8 +21,9 @@ export async function GET(req: Request): Promise<NextResponse> {
         },
         {
           headers: {
-            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-          }
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+          },
         }
       );
     }
@@ -35,7 +36,8 @@ export async function GET(req: Request): Promise<NextResponse> {
       },
       {
         headers: {
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
         },
       }
     );
@@ -48,7 +50,8 @@ export async function GET(req: Request): Promise<NextResponse> {
       },
       {
         headers: {
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
         },
       }
     );
