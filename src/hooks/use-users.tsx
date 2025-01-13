@@ -1,35 +1,41 @@
-import { Booking } from "@/constants/index.c";
+import { User } from "@/constants/index.c";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export function getBookings() {
-  const [bookings, setbookings] = useState<Booking[] | null>(null);
+export function useUsers() {
+  const [users, setUsers] = useState<User[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchBookings = async () => {
+  const fetchUser = async () => {
     setIsLoading(true);
     setError(null);
+    setUsers(null);
     try {
-      const response = await axios.get("/api/bookings/get-all");
+      const response = await axios.get("/api/users/get-all");
+
       if (!response.data.success as boolean) {
+        setIsLoading(false);
         setError(response.data.message);
-        setIsLoading(false);
+        setUsers(null);
       }
+
       if (response.data.success as boolean) {
-        setbookings(response.data.data);
         setIsLoading(false);
+        setError(null);
+        setUsers(response.data.data);
       }
     } catch (error: any) {
+      console.log("error while fetching users: ", error.message);
       setError(error.message);
-      console.log("error while fetching bookings: ", error.message);
       setIsLoading(false);
+      setUsers(null);
     }
   };
 
   useEffect(() => {
-    fetchBookings();
+    fetchUser();
   }, []);
 
-  return { bookings, isLoading, error };
+  return { users, isLoading, error };
 }

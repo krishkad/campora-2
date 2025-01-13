@@ -18,7 +18,7 @@ import EditTableModel from "./edit-table-model";
 import DeleteUserModel from "./delete-user-model";
 import { useToast } from "@/hooks/use-toast";
 import { v4 as uuidv4 } from "uuid";
-import { getUsers } from "@/hooks/get-users";
+import { useUsers } from "@/hooks/use-users";
 import { updateUser } from "@/hooks/update-users";
 import { deleteUser } from "@/hooks/delete-user";
 
@@ -35,7 +35,7 @@ const UserTable = () => {
   const [modelOpen, setModelOpen] = useState<boolean>(false);
   const [openDeleteModel, setopenDeleteModel] = useState(false);
   const { toast } = useToast();
-  const { error, isLoading, users } = getUsers();
+  const { error, isLoading, users } = useUsers();
 
   useEffect(() => {
     if (!isLoading && error === null && users) {

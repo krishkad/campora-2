@@ -37,14 +37,14 @@ import {
 import CreateBooking from "./create-booking";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
-import { getBookings } from "@/hooks/get-bookings";
+import { useBookings } from "@/hooks/use-bookings";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>(campingBookings);
   const { toast } = useToast();
-  const { bookings: bookingData, error, isLoading } = getBookings();
+  const { bookings: bookingData, error, isLoading } = useBookings();
 
   useEffect(() => {
     if (bookingData) {
