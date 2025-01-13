@@ -24,10 +24,13 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
         message: "failed to update the booking",
       });
 
+    const updated_booking = await BookingsDb.findById(body._id, {
+      ...body,
+    });
     return NextResponse.json({
       success: true,
       message: "updated successfully",
-      data: update_booking,
+      data: updated_booking,
     });
   } catch (error: any) {
     console.log("error while updating booking: ", error.message);
