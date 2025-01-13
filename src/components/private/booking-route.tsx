@@ -40,14 +40,39 @@ import { format } from "date-fns";
 import { useBookings } from "@/hooks/use-bookings";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
+import { v4 as uuidv4 } from "uuid";
 
 const BookingRoute = () => {
-  const [bookings, setBookings] = useState<Booking[]>(campingBookings);
+  const [bookings, setBookings] = useState<Booking[]>([
+    {
+      _id: uuidv4(),
+      name: "John Doe",
+      email: "johndoe@example.com",
+      phone: "1234567890",
+      address: "123 Main St, Springfield, USA",
+      checkInAndOutDate: {
+        form: new Date("2024-01-15"),
+        to: new Date("2024-01-20"),
+      },
+      paymentStatus: "Paid",
+      foodPreference: "Non-Veg",
+      numberOfGuests: 4,
+      numberOfKids: 2,
+      message: "Please prepare a barbecue on the last night.",
+      specialRequests: "Need an extra blanket.",
+      bookingStatus: "Confirmed",
+      createdAt: "2023-12-25T10:00:00Z",
+      amount: 800,
+    },
+  ]);
   const { toast } = useToast();
   const { bookings: bookingData, error, isLoading } = useBookings();
 
   useEffect(() => {
-    if (bookingData) {
+    if (
+      bookingData !== null &&
+      JSON.stringify(bookingData) !== JSON.stringify(bookings)
+    ) {
       setBookings(bookingData);
     } else if (!isLoading && error) {
       toast({
