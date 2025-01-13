@@ -7,27 +7,30 @@ interface MongooseConnection {
     promise: Promise<Mongoose> | null;
 }
 
-// Create a variable to hold the cached connection
+// Cached connection object
 const cached: MongooseConnection = {
     conn: null,
     promise: null,
 };
 
 export const ConnectToDatabase = async (): Promise<Mongoose> => {
-    if (cached.conn) return cached.conn;
+    if (cached.conn && mongoose.connection.readyState === 1) {
+        return cached.conn; // Return existing connection if available
+    }
 
-    if (!MONGODB_URL) throw new Error("Missing MONGODB_URL");
+    if (!MONGODB_URL) {
+        throw new Error("Missing MONGODB_URL");
+    }
 
-    // Create a new connection promise if it doesn't exist
     if (!cached.promise) {
+        // Create a new connection promise
         cached.promise = mongoose.connect(MONGODB_URL, {
-            dbName: "Campora", // Change this to your actual database name
+            dbName: "Campora",
             bufferCommands: false,
-            // No need for useNewUrlParser and useUnifiedTopology
+            readPreference: "primary", // Always read from primary in production
         });
     }
 
-    // Wait for the promise to resolve
-    cached.conn = await cached.promise;
+    cached.conn = await cached.promise; // Wait for connection to resolve
     return cached.conn;
 };

@@ -13,7 +13,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json({ success: false, message: "_id is missing!" });
     }
 
-    const updated_user = await UserDb.findByIdAndUpdate(body._id, { ...IoBody });
+    const updated_user = await UserDb.findByIdAndUpdate(body._id, { ...body });
 
     if (!updated_user)
       return NextResponse.json({
