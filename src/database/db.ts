@@ -1,44 +1,55 @@
 import mongoose, { Mongoose } from "mongoose";
 
-const MONGODB_URL = process.env.MONGODB_URL;
+const MONGODB_URL = process.env.MONGODB_URL || "";
+console.log(MONGODB_URL);
+if (!MONGODB_URL) {
+  throw new Error(
+    "Please define the MONGODB_URL environment variable inside .env.local"
+  );
+}
 
+// Define an interface for the cached connection
 interface MongooseConnection {
   conn: Mongoose | null;
   promise: Promise<Mongoose> | null;
 }
 
-// Use global caching for serverless environments like Vercel
-const globalAny = global as any;
+// Cache the connection across hot reloads in development and serverless environments
+const globalForMongoose = global as typeof globalThis & {
+  mongoose: MongooseConnection;
+};
 
-let cached: MongooseConnection = globalAny.mongoose;
-if (!cached) {
-  cached = globalAny.mongoose = { conn: null, promise: null };
+let cached: MongooseConnection;
+
+if (!globalForMongoose.mongoose) {
+  globalForMongoose.mongoose = { conn: null, promise: null };
 }
 
-export const ConnectToDatabase = async (): Promise<Mongoose> => {
-  if (!MONGODB_URL) {
-    throw new Error("Missing MONGODB_URL");
-  }
-  console.log({ NODE_ENV: process.env.NODE_ENV });
-  if (process.env.NODE_ENV === "production") {
-    console.log("Production environment detected, clearing cached connection.");
-    cached.conn = null;
-  }
+cached = globalForMongoose.mongoose;
 
-  // Use the cached connection if it exists and is ready
-  if (cached.conn && mongoose.connection.readyState === 1) {
-    console.log("Using cached database connection.");
+/**
+ * ConnectToDatabase - A reliable database connection function for serverless environments.
+ */
+export const ConnectToDatabase = async (): Promise<Mongoose> => {
+  if (cached.conn) {
     return cached.conn;
   }
 
-  // Create a new connection promise if it doesn't exist
   if (!cached.promise) {
-    console.log("Creating a new database connection.");
-    cached.promise = mongoose.connect(MONGODB_URL);
+    cached.promise = mongoose.connect(MONGODB_URL, {
+      dbName: "Campora", // Change this to your database name
+      bufferCommands: false, // Disable buffering for reliability
+      readPreference: "primary", // Ensure reads come from the primary node
+    });
   }
 
-  // Wait for the promise to resolve
-  cached.conn = await cached.promise;
-  console.log("Connected to the database.");
-  return cached.conn;
+  try {
+    cached.conn = await cached.promise;
+    console.log("Successfully connected to MongoDB.");
+    return cached.conn;
+  } catch (error) {
+    cached.promise = null; // Reset the promise cache on error
+    console.error("Failed to connect to MongoDB:", error);
+    throw error;
+  }
 };
