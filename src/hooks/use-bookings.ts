@@ -17,7 +17,7 @@ export function useBookings(): {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("/api/bookings/get-all", {
+      const response = await fetch("/api/bookings/all", {
         method: "GET",
         cache: "no-store",
       });
