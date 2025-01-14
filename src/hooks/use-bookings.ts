@@ -17,10 +17,13 @@ export function useBookings(): {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("/api/bookings/all", {
-        method: "GET",
-        cache: "no-store",
-      });
+      const response = await fetch(
+        `/api/bookings/all?timestamp=${Date.now()}`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
 
       const { data, success, message } = await response.json();
 
