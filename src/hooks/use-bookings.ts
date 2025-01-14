@@ -18,7 +18,7 @@ export function useBookings(): {
     setError(null);
     try {
       const response = await fetch(
-        `/api/bookings/all?timestamp=${Date.now()}`,
+        `http://localhost:3000/api/bookings/all?timestamp=${Date.now()}`,
         {
           method: "GET",
           cache: "no-store",
