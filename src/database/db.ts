@@ -1,10 +1,10 @@
 import mongoose, { Mongoose } from "mongoose";
 
-const MONGODB_URL = process.env.MONGODB_URL || "";
-console.log(MONGODB_URL);
-if (!MONGODB_URL) {
+const MONGODB_URI = process.env.MONGODB_URI || "";
+console.log(MONGODB_URI);
+if (!MONGODB_URI) {
   throw new Error(
-    "Please define the MONGODB_URL environment variable inside .env.local"
+    "Please define the MONGODB_URI environment variable inside .env.local"
   );
 }
 
@@ -32,11 +32,12 @@ cached = globalForMongoose.mongoose;
  */
 export const ConnectToDatabase = async (): Promise<Mongoose> => {
   if (cached.conn) {
+    console.log("Using cached connect of MongoDb");
     return cached.conn;
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URL, {
+    cached.promise = mongoose.connect(MONGODB_URI, {
       dbName: "Campora", // Change this to your database name
       bufferCommands: false, // Disable buffering for reliability
       readPreference: "primary", // Ensure reads come from the primary node

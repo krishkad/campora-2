@@ -66,7 +66,7 @@ const BookingRoute = () => {
     },
   ]);
   const { toast } = useToast();
-  const { bookings: bookingData, error, isLoading } = useBookings();
+  const { bookings: bookingData, error, isLoading, refetch } = useBookings();
 
   useEffect(() => {
     if (bookingData !== null) {
@@ -97,7 +97,7 @@ const BookingRoute = () => {
       if (data && error === null) {
         bookings[bookIndex].bookingStatus = status;
         console.log({ update_data: data });
-        setBookings(data ?? data);
+        refetch();
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -130,7 +130,7 @@ const BookingRoute = () => {
 
       if (data && error === null) {
         bookings[bookIndex].paymentStatus = status;
-        setBookings(bookings);
+        refetch();
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
