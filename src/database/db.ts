@@ -19,6 +19,11 @@ export const ConnectToDatabase = async (): Promise<Mongoose> => {
   if (!MONGODB_URL) {
     throw new Error("Missing MONGODB_URL");
   }
+  console.log({ NODE_ENV: process.env.NODE_ENV });
+  if (process.env.NODE_ENV === "production") {
+    console.log("Production environment detected, clearing cached connection.");
+    cached.conn = null;
+  }
 
   // Use the cached connection if it exists and is ready
   if (cached.conn && mongoose.connection.readyState === 1) {
