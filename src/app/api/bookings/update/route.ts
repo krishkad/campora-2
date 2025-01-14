@@ -15,11 +15,11 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       });
 
     const update_booking = await BookingsDb.findByIdAndUpdate(
-      _id,
+      { _id: _id },
       {
         ...body,
       },
-      { new: true, returnDocument: "after" }
+      { new: true }
     );
 
     if (!update_booking)
@@ -32,7 +32,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       readConcern: { level: "majority" },
     });
 
-    console.log({ update: update_booking, find: updated_booking });
     return NextResponse.json({
       success: true,
       message: "updated successfully",
