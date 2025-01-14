@@ -4,44 +4,62 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest): Promise<NextResponse> {
   try {
+    // Connect to the database
     await ConnectToDatabase();
 
+    // Parse and validate the request body
     const { _id, ...body } = await req.json();
+    if (!_id) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Booking ID is required.",
+        },
+        { status: 400 }
+      );
+    }
 
-    if (!body._id)
-      return NextResponse.json({
-        success: false,
-        message: "booking id not found",
-      });
-
-    const update_booking = await BookingsDb.findByIdAndUpdate(
-      { _id: _id },
-      {
-        ...body,
-      },
-      { new: true }
+    // Update the booking
+    const updatedBooking = await BookingsDb.findByIdAndUpdate(
+      _id,
+      { ...body },
+      { new: true, runValidators: true }
     );
 
-    if (!update_booking)
-      return NextResponse.json({
-        success: false,
-        message: "failed to update the booking",
-      });
+    // Check if the update was successful
+    if (!updatedBooking) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Failed to update the booking. Booking not found.",
+        },
+        { status: 404 }
+      );
+    }
 
-    const updated_booking = await BookingsDb.findById(body._id, null, {
+    // Fetch the updated booking to ensure data consistency
+    const refreshedBooking = await BookingsDb.findById(_id, null, {
       readConcern: { level: "majority" },
     });
 
-    return NextResponse.json({
-      success: true,
-      message: "updated successfully",
-      data: updated_booking,
-    });
+    // Respond with the updated booking
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Booking updated successfully.",
+        data: refreshedBooking,
+      },
+      { status: 200 }
+    );
   } catch (error: any) {
-    console.log("error while updating booking: ", error.message);
-    return NextResponse.json({
-      message: "error while updating booking",
-      success: false,
-    });
+    console.error("Error while updating booking:", error.message);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "An error occurred while updating the booking.",
+        error: error.message,
+      },
+      { status: 500 }
+    );
   }
 }
