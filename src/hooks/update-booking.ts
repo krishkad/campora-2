@@ -18,12 +18,7 @@ export async function updateBooking(bookingProps: Partial<Booking>): Promise<{
 
     if (response.data.success as boolean) {
       console.log({ updateReturn: response.data.data });
-      const fetchall = await axios.get("/api/bookings/get-all");
-      if (!fetchall.data.success as boolean)
-        return { data: null, error: fetchall.data.message };
-
-      if (fetchall.data.success as boolean)
-        return { data: fetchall.data.data, error: null };
+      return { data: response.data.data, error: null };
     }
 
     return { data: null, error: response.data.message };
