@@ -226,7 +226,7 @@ export type BookingStatus = "Confirmed" | "Pending" | "Cancelled";
 export type PaymentStatus = "Paid" | "Pending" | "Failed";
 
 export interface Booking {
-  _id: string | mongoose.Schema.Types.ObjectId;
+  _id?: string;
   name: string;
   email: string;
   phone: string;

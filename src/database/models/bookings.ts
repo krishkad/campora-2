@@ -8,12 +8,6 @@ type BookingDocument = Booking & mongoose.Document;
 // Define the schema
 const bookingsSchema = new mongoose.Schema<BookingDocument>(
   {
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      unique: true,
-      auto: true, // Automatically generate _id if not provided
-    },
     name: {
       type: String,
       required: true,
