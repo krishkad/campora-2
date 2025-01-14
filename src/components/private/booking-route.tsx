@@ -41,6 +41,7 @@ import { useBookings } from "@/hooks/use-bookings";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
 import { v4 as uuidv4 } from "uuid";
+import { PUBLIC_URL } from "@/lib/public-url";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
@@ -82,6 +83,21 @@ const BookingRoute = () => {
         variant: "destructive",
       });
     }
+
+    const fetchallbookings = async () => {
+      const response = await fetch(
+        `${PUBLIC_URL}/api/bookings/all?timestamp=${Date.now()}`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
+
+      const data = await response.json();
+      console.log({ fetchall: data });
+    };
+
+    fetchallbookings();
   }, [bookingData]);
 
   const handleBookingStatus = async (
