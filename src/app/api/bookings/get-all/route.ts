@@ -9,7 +9,7 @@ export async function GET(req: Request): Promise<NextResponse> {
 
     // Fetch bookings from the database
     console.log("Fetching bookings from database...");
-    const bookings = await BookingsDb.find().read("primary");
+    const bookings = await BookingsDb.find().exec();
 
     // Check if bookings exist
     if (!bookings || bookings.length === 0) {
