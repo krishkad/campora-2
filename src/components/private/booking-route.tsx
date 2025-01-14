@@ -37,68 +37,17 @@ import {
 import CreateBooking from "./create-booking";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
-import { useBookings } from "@/hooks/use-bookings";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
-import { v4 as uuidv4 } from "uuid";
-import { PUBLIC_URL } from "@/lib/public-url";
 
-const BookingRoute = () => {
-  const [bookings, setBookings] = useState<Booking[]>([
-    {
-      _id: uuidv4(),
-      name: "John Doe",
-      email: "johndoe@example.com",
-      phone: "1234567890",
-      address: "123 Main St, Springfield, USA",
-      checkInAndOutDate: {
-        form: new Date("2024-01-15"),
-        to: new Date("2024-01-20"),
-      },
-      paymentStatus: "Paid",
-      foodPreference: "Non-Veg",
-      numberOfGuests: 4,
-      numberOfKids: 2,
-      message: "Please prepare a barbecue on the last night.",
-      specialRequests: "Need an extra blanket.",
-      bookingStatus: "Confirmed",
-      createdAt: "2023-12-25T10:00:00Z",
-      amount: 800,
-    },
-  ]);
+const BookingRoute = ({ response }: { response: Booking[] }) => {
+  const [bookings, setBookings] = useState<Booking[]>(response);
   const { toast } = useToast();
-  const { bookings: bookingData, error, isLoading, refetch } = useBookings();
 
   useEffect(() => {
-    if (bookingData !== null) {
-      if (JSON.stringify(bookingData) !== JSON.stringify(bookings)) {
-        setBookings(bookingData);
-        console.log({ bookingData });
-      }
-    }
-    if (!isLoading && typeof error === "string") {
-      toast({
-        title: "failed to fetch bookings",
-        description: error,
-        variant: "destructive",
-      });
-    }
-
-    const fetchallbookings = async () => {
-      const response = await fetch(
-        `${PUBLIC_URL}/api/bookings/all?timestamp=${Date.now()}`,
-        {
-          method: "GET",
-          cache: "no-store",
-        }
-      );
-
-      const data = await response.json();
-      console.log({ fetchall: data });
-    };
-
-    fetchallbookings();
-  }, [bookingData]);
+    setBookings(response);
+    console.log({ response });
+  }, [response]);
 
   const handleBookingStatus = async (
     status: BookingStatus,
@@ -113,7 +62,6 @@ const BookingRoute = () => {
       if (data && error === null) {
         bookings[bookIndex].bookingStatus = status;
         console.log({ update_data: data });
-        refetch();
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -146,7 +94,6 @@ const BookingRoute = () => {
 
       if (data && error === null) {
         bookings[bookIndex].paymentStatus = status;
-        refetch();
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -507,7 +454,7 @@ const BookingRoute = () => {
             key={JSON.stringify(bookings)}
             data={bookings}
             columns={column}
-            isLoading={isLoading}
+            isLoading={false}
             model={<CreateBooking handleCreateBooking={handleCreateBooking} />}
           />
         </CardContent>
