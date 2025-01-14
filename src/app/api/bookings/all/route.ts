@@ -1,16 +1,15 @@
 import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function GET(): Promise<NextResponse> {
   try {
     // Establish fresh DB connection
-    const { body } = await req.json();
-    await ConnectToDatabase();
+    await ConnectToDatabase()
 
     // Fetch bookings from the database
     console.log("Fetching bookings from database...");
-    const bookings = await BookingsDb.find({ ...body })
+    const bookings = await BookingsDb.find()
       .read("primary") // Ensures it reads from the primary replica set
       .exec();
 
@@ -32,7 +31,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
 
-    console.log("bookings: ", bookings);
+
+    console.log("bookings: " , bookings);
     // Return the bookings
     return NextResponse.json(
       {

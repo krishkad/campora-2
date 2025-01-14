@@ -1,4 +1,5 @@
 import { Booking } from "@/constants/index.c";
+import { PUBLIC_URL } from "@/lib/public-url";
 import { useEffect, useState } from "react";
 
 import { useCallback } from "react";
@@ -18,13 +19,10 @@ export function useBookings(): {
     setError(null);
     try {
       const response = await fetch(
-        `/api/bookings/all?timestamp=${Date.now()}`,
+        `${PUBLIC_URL}/api/bookings/all?timestamp=${Date.now()}`,
         {
-          method: "POST",
+          method: "GET",
           cache: "no-store",
-          body: JSON.stringify({
-            createdAt: -1,
-          }),
         }
       );
 
