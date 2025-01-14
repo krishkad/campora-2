@@ -9,10 +9,7 @@ export async function GET(req: Request): Promise<NextResponse> {
 
     // Fetch bookings from the database
     console.log("Fetching bookings from database...");
-    const bookings = await BookingsDb.find({})
-      .read("primary") // Use primaryPreferred to reduce latency while avoiding stale data
-      .lean() // Optimize performance by returning plain JavaScript objects
-      .exec();
+    const bookings = await BookingsDb.find().read("primary");
 
     // Check if bookings exist
     if (!bookings || bookings.length === 0) {
@@ -29,7 +26,6 @@ export async function GET(req: Request): Promise<NextResponse> {
         }
       );
     }
-
 
     // Return the bookings
     return NextResponse.json(

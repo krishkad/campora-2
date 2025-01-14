@@ -23,7 +23,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     const updatedBooking = await BookingsDb.findByIdAndUpdate(
       _id,
       { ...body },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true, writeConcern: { w: "majority" } }
     );
 
     // Check if the update was successful

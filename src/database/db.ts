@@ -35,6 +35,7 @@ export const ConnectToDatabase = async (): Promise<Mongoose> => {
       readPreference: "primary",
       retryWrites: true,
       socketTimeoutMS: 45000, // Adjust timeout as needed
+
     });
   }
 
