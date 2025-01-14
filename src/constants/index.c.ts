@@ -53,7 +53,7 @@ export interface CampingListing {
 // Define the structure of a user
 export interface User {
   imageUrl?: string;
-  _id?: mongoose.Schema.Types.ObjectId | string;
+  _id?: string;
   name: string;
   email: string;
   phone: string;

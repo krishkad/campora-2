@@ -30,7 +30,6 @@ export async function GET(req: Request): Promise<NextResponse> {
       );
     }
 
-    console.log(JSON.stringify(bookings));
 
     // Return the bookings
     return NextResponse.json(

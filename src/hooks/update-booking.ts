@@ -2,7 +2,7 @@ import { Booking } from "@/constants/index.c";
 import axios from "axios";
 
 export async function updateBooking(bookingProps: Partial<Booking>): Promise<{
-  data: Partial<Booking> | null;
+  data: Booking[] | null;
   error: string | null;
 }> {
   if (!bookingProps) return { data: null, error: "bookingProps missing!" };
@@ -17,7 +17,12 @@ export async function updateBooking(bookingProps: Partial<Booking>): Promise<{
     }
 
     if (response.data.success as boolean) {
-      return { data: response.data.data, error: null };
+      const fetchall = await axios.get("/api/bookings/get-all");
+      if (!fetchall.data.success as boolean)
+        return { data: null, error: fetchall.data.message };
+
+      if (fetchall.data.success as boolean)
+        return { data: fetchall.data.data, error: null };
     }
 
     return { data: null, error: response.data.message };

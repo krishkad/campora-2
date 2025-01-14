@@ -5,9 +5,6 @@ type IUser = User & mongoose.Document;
 
 const userSchema = new mongoose.Schema<IUser>(
   {
-    _id: {
-      type: mongoose.Schema.ObjectId,
-    },
     imageUrl: {
       type: String,
     },
