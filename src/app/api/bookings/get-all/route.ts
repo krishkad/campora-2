@@ -30,6 +30,8 @@ export async function GET(req: Request): Promise<NextResponse> {
       );
     }
 
+    console.log({ bookings });
+
     // Return the bookings
     return NextResponse.json(
       {

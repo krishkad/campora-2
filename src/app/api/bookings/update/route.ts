@@ -6,7 +6,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
   try {
     await ConnectToDatabase();
 
-    const body = await req.json();
+    const { _id, ...body } = await req.json();
 
     if (!body._id)
       return NextResponse.json({
@@ -15,7 +15,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       });
 
     const update_booking = await BookingsDb.findByIdAndUpdate(
-      body._id,
+      _id,
       {
         ...body,
       },
@@ -31,6 +31,8 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     const updated_booking = await BookingsDb.findById(body._id, null, {
       readConcern: { level: "majority" },
     });
+
+    console.log({ update: update_booking, find: updated_booking });
     return NextResponse.json({
       success: true,
       message: "updated successfully",
