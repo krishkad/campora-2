@@ -1,10 +1,14 @@
 import { Booking } from "@/constants/index.c";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 import { useCallback } from "react";
 
-export function useBookings() {
+export function useBookings(): {
+  bookings: Booking[] | null;
+  isLoading: boolean;
+  error: string | null;
+  refetch: () => void;
+} {
   const [bookings, setbookings] = useState<Booking[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -13,18 +17,18 @@ export function useBookings() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get("/api/bookings/get-all", {
-        headers: {
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-        },
+      const response = await fetch("/api/bookings/get-all", {
+        method: "GET",
+        cache: "no-store",
       });
 
-      console.log({ data: response });
-      if (!response.data.success) {
-        setError(response.data.message);
+      const { data, success, message } = await response.json();
+
+      console.log({ data, message, response });
+      if (!success) {
+        setError(message);
       } else {
-        setbookings(response.data.data);
+        setbookings(data);
       }
     } catch (error: any) {
       setError(error.message);

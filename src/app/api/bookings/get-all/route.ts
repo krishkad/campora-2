@@ -33,6 +33,8 @@ export async function GET(): Promise<NextResponse> {
       );
     }
 
+
+    console.log("bookings: " , bookings);
     // Return the bookings
     return NextResponse.json(
       {
