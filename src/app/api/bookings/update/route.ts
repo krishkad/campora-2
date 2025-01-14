@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     // Update the booking
     const updatedBooking = await BookingsDb.findByIdAndUpdate(
       _id,
-      { ...body },
+      { $set: { ...body } },
       { new: true, runValidators: true, writeConcern: { w: "majority" } }
     );
 
@@ -39,7 +39,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
 
     // Fetch the updated booking to ensure data consistency
     const refreshedBooking = await BookingsDb.findById(_id, null, {
-      readConcern: { level: "majority" },
+      readConcern: { w: "majority" },
     });
 
     // Respond with the updated booking

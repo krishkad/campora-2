@@ -29,14 +29,7 @@ export const ConnectToDatabase = async (): Promise<Mongoose> => {
   // Create a new connection promise if it doesn't exist
   if (!cached.promise) {
     console.log("Creating a new database connection.");
-    cached.promise = mongoose.connect(MONGODB_URL, {
-      dbName: "Campora", // Change this to your actual database name
-      bufferCommands: false,
-      readPreference: "primary",
-      retryWrites: true,
-      socketTimeoutMS: 45000, // Adjust timeout as needed
-
-    });
+    cached.promise = mongoose.connect(MONGODB_URL);
   }
 
   // Wait for the promise to resolve
