@@ -18,7 +18,7 @@ export const useBookings = (): {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${PUBLIC_URL}/api/bookings/all`, {
+      const response = await fetch(`/api/bookings`, {
         method: "GET",
         cache: "reload",
       });
