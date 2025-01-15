@@ -20,7 +20,7 @@ export const useBookings = (): {
     try {
       const response = await fetch(`${PUBLIC_URL}/api/bookings/all`, {
         method: "GET",
-        cache: "no-store",
+        cache: "reload",
       });
 
       const { data, success, message } = await response.json();

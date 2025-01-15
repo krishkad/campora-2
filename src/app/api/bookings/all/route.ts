@@ -1,23 +1,28 @@
 import { ConnectToDatabase } from "@/database/db";
-import BookingsDb from "@/database/models/bookings";
 import { NextResponse } from "next/server";
 
-export async function GET(): Promise<NextResponse> {
+export async function GET() {
   try {
-    await ConnectToDatabase();
-    const bookings = await BookingsDb.find().lean();
+    const connection = await ConnectToDatabase();
+    // You can now use `connection` (which is a `mongoose.Connection` object)
+    // For example, querying the database:
+    const bookings = await connection.connection
+      .collection("bookings")
+      .find()
+      .toArray();
 
-    if (!bookings || bookings.length <= 0)
+    if (!bookings || bookings.length === 0) {
       return NextResponse.json({
         success: false,
-        message: "no bookings found",
+        message: "No bookings found",
       });
+    }
 
     return NextResponse.json({ data: bookings, success: true });
-  } catch (error: any) {
-    console.log("error in get all bookings api: ", error.message);
+  } catch (error) {
+    console.error("Error in GET request:", error);
     return NextResponse.json({
-      message: "error in get all bookings api",
+      message: "Error fetching bookings",
       success: false,
     });
   }
