@@ -1,8 +1,10 @@
+export const dynamic = "force-dynamic";
+
 import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function handler() {
   try {
     await ConnectToDatabase();
     // You can now use `connection` (which is a `mongoose.Connection` object)
