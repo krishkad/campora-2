@@ -42,7 +42,6 @@ import { updateBooking } from "@/hooks/update-booking";
 import { useMutation } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
 import { GetBookings } from "@/actions/get-bookings";
-import { fetchBookings } from "@/hooks/use-bookings";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
