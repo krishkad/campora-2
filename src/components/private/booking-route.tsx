@@ -137,6 +137,7 @@ const BookingRoute = () => {
 
       if (data && error === null) {
         bookings[bookIndex].paymentStatus = status;
+        setBookings(bookings);
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -497,7 +498,7 @@ const BookingRoute = () => {
     };
 
     fetchdata();
-  }, []);
+  }, [bookings]);
 
   return (
     <div className="max-w-7xl mx-auto">
