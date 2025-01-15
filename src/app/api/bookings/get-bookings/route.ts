@@ -4,7 +4,7 @@ import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
 import { NextResponse } from "next/server";
 
-export async function handler() {
+export async function GET() {
   try {
     await ConnectToDatabase();
     // You can now use `connection` (which is a `mongoose.Connection` object)
