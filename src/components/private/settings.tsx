@@ -38,7 +38,7 @@ const Settings = () => {
     },
   });
 
-  const { data, loading, error } = useFetchData("/api/bookings/get-bookings");
+  const { data, loading, error } = useFetchData("/api/bookings/update");
 
   console.log({ fetchdata: data, loading, error });
 
