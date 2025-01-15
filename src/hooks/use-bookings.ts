@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 import { useCallback } from "react";
 
-export function useBookings(): {
+export const useBookings = (): {
   bookings: Booking[] | null;
   isLoading: boolean;
   error: string | null;
   refetch: () => void;
-} {
+} => {
   const [bookings, setbookings] = useState<Booking[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,13 +18,10 @@ export function useBookings(): {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        `${PUBLIC_URL}/api/bookings/all?timestamp=${Date.now()}`,
-        {
-          method: "GET",
-          cache: "no-store",
-        }
-      );
+      const response = await fetch(`${PUBLIC_URL}/api/bookings/all`, {
+        method: "GET",
+        cache: "no-store",
+      });
 
       const { data, success, message } = await response.json();
 
@@ -47,4 +44,4 @@ export function useBookings(): {
   }, [fetchBookings]);
 
   return { bookings, isLoading, error, refetch: fetchBookings };
-}
+};

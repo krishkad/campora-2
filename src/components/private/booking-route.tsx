@@ -39,15 +39,59 @@ import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
+import { useMutation } from "@tanstack/react-query";
+import { v4 as uuidv4 } from "uuid";
+import { GetBookings } from "@/actions/get-bookings";
+import { useBookings } from "@/hooks/use-bookings";
 
-const BookingRoute = ({ response }: { response: Booking[] }) => {
-  const [bookings, setBookings] = useState<Booking[]>(response);
+const BookingRoute = () => {
+  const [bookings, setBookings] = useState<Booking[]>([
+    {
+      _id: uuidv4(),
+      name: "Robert Johnson",
+      email: "robertj@example.com",
+      phone: "4561237890",
+      address: "789 Oak St, Gotham City, USA",
+      checkInAndOutDate: {
+        form: new Date("2024-02-10"),
+        to: new Date("2024-02-15"),
+      },
+      paymentStatus: "Paid",
+      foodPreference: "Veg",
+      numberOfGuests: 3,
+      numberOfKids: 1,
+      specialRequests: "Please arrange for a guided trekking tour.",
+      bookingStatus: "Confirmed",
+      createdAt: "2023-12-30T09:45:00Z",
+      amount: 600,
+    },
+  ]);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const { bookings: data } = useBookings();
 
-  useEffect(() => {
-    setBookings(response);
-    console.log({ response });
-  }, [response]);
+  const { mutate } = useMutation({
+    mutationKey: ["get-bookings"],
+    mutationFn: GetBookings,
+    onSuccess: ({ bookings: data, error }) => {
+      if (data !== null && error === null) {
+        setBookings(data);
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: error,
+        });
+      }
+      setIsLoading(false);
+    },
+    onError({ message }) {
+      toast({
+        title: "Something went wrong",
+        description: message,
+      });
+      setIsLoading(false);
+    },
+  });
 
   const handleBookingStatus = async (
     status: BookingStatus,
@@ -446,6 +490,11 @@ const BookingRoute = ({ response }: { response: Booking[] }) => {
     },
   ];
 
+  useEffect(() => {
+    mutate();
+    console.log({ data });
+  }, [data]);
+
   return (
     <div className="max-w-7xl mx-auto">
       <Card>
@@ -454,7 +503,7 @@ const BookingRoute = ({ response }: { response: Booking[] }) => {
             key={JSON.stringify(bookings)}
             data={bookings}
             columns={column}
-            isLoading={false}
+            isLoading={isLoading}
             model={<CreateBooking handleCreateBooking={handleCreateBooking} />}
           />
         </CardContent>
