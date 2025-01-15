@@ -103,7 +103,7 @@ const BookingRoute = () => {
         bookingStatus: status,
       });
       if (data && error === null) {
-        bookings[bookIndex].bookingStatus = status;
+        mutate();
         console.log({ update_data: data });
         toast({
           title: `Booking Status Changed to ${status}`,
@@ -136,8 +136,7 @@ const BookingRoute = () => {
       });
 
       if (data && error === null) {
-        bookings[bookIndex].paymentStatus = status;
-        setBookings(bookings);
+        mutate();
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -492,13 +491,7 @@ const BookingRoute = () => {
 
   useEffect(() => {
     mutate();
-    const fetchdata = async () => {
-      const data = await fetchBookings();
-      console.log(data.data);
-    };
-
-    fetchdata();
-  }, [bookings]);
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto">
