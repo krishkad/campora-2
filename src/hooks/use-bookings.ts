@@ -1,47 +1,20 @@
 import { Booking } from "@/constants/index.c";
-import { PUBLIC_URL } from "@/lib/public-url";
-import { useEffect, useState } from "react";
+import axios from "axios";
 
-import { useCallback } from "react";
-
-export const useBookings = (): {
-  bookings: Booking[] | null;
-  isLoading: boolean;
+export async function fetchBookings(): Promise<{
+  data: Booking[] | null;
   error: string | null;
-  refetch: () => void;
-} => {
-  const [bookings, setbookings] = useState<Booking[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+}> {
+  try {
+    const response = await axios.get("/api/bookings");
 
-  const fetchBookings = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`/api/bookings`, {
-        method: "GET",
-        cache: "reload",
-      });
-
-      const { data, success, message } = await response.json();
-
-      console.log({ data, message, response });
-      if (!success) {
-        setError(message);
-      } else {
-        setbookings(data);
-      }
-    } catch (error: any) {
-      setError(error.message);
-      console.error("Error while fetching bookings: ", error.message);
-    } finally {
-      setIsLoading(false);
+    if (!response.data.success) {
+      return { data: null, error: response.data.message };
     }
-  }, []);
 
-  useEffect(() => {
-    fetchBookings();
-  }, [fetchBookings]);
-
-  return { bookings, isLoading, error, refetch: fetchBookings };
-};
+    return { data: response.data.data, error: null };
+  } catch (error: any) {
+    console.error("Error while fetching bookings:", error.message);
+    return { data: null, error: error.message || "An unknown error occurred." };
+  }
+}

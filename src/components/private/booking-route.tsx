@@ -42,7 +42,7 @@ import { updateBooking } from "@/hooks/update-booking";
 import { useMutation } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
 import { GetBookings } from "@/actions/get-bookings";
-import { useBookings } from "@/hooks/use-bookings";
+import { fetchBookings } from "@/hooks/use-bookings";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
@@ -68,7 +68,6 @@ const BookingRoute = () => {
   ]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
-  const { bookings: data } = useBookings();
 
   const { mutate } = useMutation({
     mutationKey: ["get-bookings"],
@@ -492,8 +491,13 @@ const BookingRoute = () => {
 
   useEffect(() => {
     mutate();
-    console.log({ data });
-  }, [data]);
+    const fetchdata = async () => {
+      const data = await fetchBookings();
+      console.log(data.data);
+    };
+
+    fetchdata();
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto">
