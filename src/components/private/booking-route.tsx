@@ -66,7 +66,8 @@ const BookingRoute = () => {
   useEffect(() => {
     if (data && error === null && !loading) {
       setBookings(data);
-    } else {
+    } 
+    if(!loading && error) {
       toast({
         title: "Failed to fetch bookigs",
         description: error,
