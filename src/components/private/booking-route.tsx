@@ -70,7 +70,7 @@ const BookingRoute = () => {
       toast({
         title: "Failed to fetch bookigs",
         description: error,
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   }, [data]);
@@ -126,7 +126,8 @@ const BookingRoute = () => {
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
         });
-      } else {
+      }
+      if (error && !loading) {
         toast({
           title: "Something went wrong",
           description: error,
