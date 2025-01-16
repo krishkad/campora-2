@@ -13,7 +13,12 @@ export default function useFetchData(endpoint: string) {
           throw new Error("Failed to fetch data");
         }
         const result = await response.json();
-        setData(result);
+
+        if (result.success as boolean) {
+          setData(result.data);
+        } else {
+          setData(null);
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {

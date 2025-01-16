@@ -18,9 +18,9 @@ import EditTableModel from "./edit-table-model";
 import DeleteUserModel from "./delete-user-model";
 import { useToast } from "@/hooks/use-toast";
 import { v4 as uuidv4 } from "uuid";
-import { useUsers } from "@/hooks/use-users";
 import { updateUser } from "@/hooks/update-users";
 import { deleteUser } from "@/hooks/delete-user";
+import useFetchData from "@/hooks/use-fetchdata";
 
 const UserTable = () => {
   const [tableData, setTableData] = useState<User[]>(user_constants);
@@ -35,23 +35,21 @@ const UserTable = () => {
   const [modelOpen, setModelOpen] = useState<boolean>(false);
   const [openDeleteModel, setopenDeleteModel] = useState(false);
   const { toast } = useToast();
-  const { error, isLoading, users } = useUsers();
+  const { error, loading, data } = useFetchData("/api/users/get-all");
 
   useEffect(() => {
-    if (!isLoading && error === null && users) {
-      setTableData(users);
-      console.log(users);
-    } else if (!isLoading && error) {
+    if (!loading && error === null && data) {
+      setTableData(data);
+      console.log(data);
+    }
+    if (!loading && error) {
       toast({
         title: "failed to fetch users",
         description: error,
         variant: "destructive",
       });
-      console.log("user else if");
-    } else {
-      console.log("user else");
     }
-  }, [users]);
+  }, [data]);
 
   const handleEditUser = async (user: Partial<User>) => {
     const userIndex = tableData.findIndex((usr) => usr._id === user._id);
@@ -224,7 +222,7 @@ const UserTable = () => {
         key={JSON.stringify(tableData)}
         data={tableData}
         columns={columns}
-        isLoading={isLoading}
+        isLoading={loading}
       />
       <EditTableModel
         open={modelOpen}

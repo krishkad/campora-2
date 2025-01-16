@@ -1,12 +1,7 @@
 "use client";
-import {
-  Booking,
-  BookingStatus,
-  campingBookings,
-  PaymentStatus,
-} from "@/constants/index.c";
+import { Booking, BookingStatus, PaymentStatus } from "@/constants/index.c";
 import { ColumnDef } from "@tanstack/react-table";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
   ArrowDownUpIcon,
@@ -39,9 +34,8 @@ import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
-import { useMutation } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
-import { GetBookings } from "@/actions/get-bookings";
+import useFetchData from "@/hooks/use-fetchdata";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
@@ -65,31 +59,21 @@ const BookingRoute = () => {
       amount: 600,
     },
   ]);
-  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  const { mutate } = useMutation({
-    mutationKey: ["get-bookings"],
-    mutationFn: GetBookings,
-    onSuccess: ({ bookings: data, error }) => {
-      if (data !== null && error === null) {
-        setBookings(data);
-      } else {
-        toast({
-          title: "Something went wrong",
-          description: error,
-        });
-      }
-      setIsLoading(false);
-    },
-    onError({ message }) {
+  const { data, error, loading } = useFetchData("/api/bookings/get-bookings");
+
+  useEffect(() => {
+    if (data && error === null && !loading) {
+      setBookings(data);
+    } else {
       toast({
-        title: "Something went wrong",
-        description: message,
+        title: "Failed to fetch bookigs",
+        description: error,
+        variant: "destructive"
       });
-      setIsLoading(false);
-    },
-  });
+    }
+  }, [data]);
 
   const handleBookingStatus = async (
     status: BookingStatus,
@@ -102,7 +86,8 @@ const BookingRoute = () => {
         bookingStatus: status,
       });
       if (data && error === null) {
-        mutate();
+        bookings[bookIndex].bookingStatus = status;
+        setBookings(bookings);
         console.log({ update_data: data });
         toast({
           title: `Booking Status Changed to ${status}`,
@@ -135,7 +120,8 @@ const BookingRoute = () => {
       });
 
       if (data && error === null) {
-        mutate();
+        bookings[bookIndex].paymentStatus = status;
+        setBookings(bookings);
         toast({
           title: `Booking Status Changed to ${status}`,
           description: `${bookings[bookIndex].name} booking updated`,
@@ -488,10 +474,6 @@ const BookingRoute = () => {
     },
   ];
 
-  useEffect(() => {
-    mutate();
-  }, []);
-
   return (
     <div className="max-w-7xl mx-auto">
       <Card>
@@ -500,7 +482,7 @@ const BookingRoute = () => {
             key={JSON.stringify(bookings)}
             data={bookings}
             columns={column}
-            isLoading={isLoading}
+            isLoading={loading}
             model={<CreateBooking handleCreateBooking={handleCreateBooking} />}
           />
         </CardContent>
