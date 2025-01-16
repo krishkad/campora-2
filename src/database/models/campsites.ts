@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 
 const campsitesSchema = new mongoose.Schema(
   {
-    _id: {
-      type: mongoose.Schema.ObjectId,
-      required: true,
-      unique: true,
-      auto: true,
-    },
     camp_name: {
       type: String,
     },
@@ -33,7 +27,7 @@ const campsitesSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Campsite =
-  mongoose.models['campsites'] || mongoose.model("campsites", campsitesSchema);
+const CampsitesDb =
+  mongoose.models["campsites"] || mongoose.model("campsites", campsitesSchema);
 
-export default Campsite;
+export default CampsitesDb;

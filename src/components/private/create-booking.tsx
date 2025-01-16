@@ -196,6 +196,7 @@ const CreateBooking = ({
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
+                                  disabled={(date) => date > new Date()}
                                   // {...field}
                                 />
                               </PopoverContent>

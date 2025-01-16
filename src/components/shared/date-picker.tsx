@@ -68,6 +68,7 @@ export default function DatePicker({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
+            disabled={(date) => date > new Date()}
           />
         </PopoverContent>
       </Popover>
