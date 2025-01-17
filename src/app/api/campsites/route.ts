@@ -29,3 +29,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     });
   }
 }
+
+export async function GET(): Promise<NextResponse> {
+  try {
+    await ConnectToDatabase();
+    const campsite = await CampsitesDb.findOne().sort({ createdAt: -1 });
+
+    if (!campsite)
+      return NextResponse.json({
+        success: false,
+        message: "campsite not found",
+      });
+
+    return NextResponse.json({ data: campsite, success: true });
+  } catch (error: any) {
+    console.log("error in get campsite api: ", error.message);
+    return NextResponse.json({
+      success: false,
+      message: "error in get campsite api",
+    });
+  }
+}
