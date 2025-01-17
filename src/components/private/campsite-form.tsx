@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import useFetchData from "@/hooks/use-fetchdata";
 import { ICampsite } from "@/database/models/campsites";
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "../ui/skeleton";
 
 const campsiteSchema = z.object({
   camp_name: z.string().optional(),
@@ -81,11 +82,15 @@ const CampsiteForm = () => {
                   <FormItem>
                     <FormLabel>Camp Name</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Camp Name"
-                        {...field}
-                        readOnly={isDisabled}
-                      />
+                      {!loading ? (
+                        <Input
+                          placeholder="Camp Name"
+                          {...field}
+                          readOnly={isDisabled}
+                        />
+                      ) : (
+                        <Skeleton className="h-9 w-full" />
+                      )}
                     </FormControl>
                   </FormItem>
                 );
@@ -100,11 +105,15 @@ const CampsiteForm = () => {
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Description"
-                        {...field}
-                        readOnly={isDisabled}
-                      />
+                      {!loading ? (
+                        <Input
+                          placeholder="Description"
+                          {...field}
+                          readOnly={isDisabled}
+                        />
+                      ) : (
+                        <Skeleton className="h-9 w-full" />
+                      )}
                     </FormControl>
                   </FormItem>
                 );
@@ -120,18 +129,22 @@ const CampsiteForm = () => {
                     <FormItem>
                       <FormLabel>Total Camps</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Total Camps"
-                          type="number"
-                          value={field.value}
-                          readOnly={field.disabled}
-                          onChange={(e) => {
-                            const value = e.target.value
-                              ? parseInt(e.target.value, 10)
-                              : "";
-                            field.onChange(value);
-                          }}
-                        />
+                        {!loading ? (
+                          <Input
+                            placeholder="Total Camps"
+                            type="number"
+                            value={field.value}
+                            readOnly={field.disabled}
+                            onChange={(e) => {
+                              const value = e.target.value
+                                ? parseInt(e.target.value, 10)
+                                : "";
+                              field.onChange(value);
+                            }}
+                          />
+                        ) : (
+                          <Skeleton className="h-9 w-full" />
+                        )}
                       </FormControl>
                     </FormItem>
                   );
@@ -147,19 +160,23 @@ const CampsiteForm = () => {
                     <FormItem>
                       <FormLabel>Capacity per Camp</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Capacity"
-                          type={"number"}
-                          readOnly={field.disabled}
-                          value={field.value}
-                          onChange={(e) => {
-                            const value = e.target.value
-                              ? parseInt(e.target.value, 10)
-                              : "";
+                        {!loading ? (
+                          <Input
+                            placeholder="Capacity"
+                            type={"number"}
+                            readOnly={field.disabled}
+                            value={field.value}
+                            onChange={(e) => {
+                              const value = e.target.value
+                                ? parseInt(e.target.value, 10)
+                                : "";
 
-                            field.onChange(value);
-                          }}
-                        />
+                              field.onChange(value);
+                            }}
+                          />
+                        ) : (
+                          <Skeleton className="h-9 w-full" />
+                        )}
                       </FormControl>
                     </FormItem>
                   );
@@ -176,19 +193,23 @@ const CampsiteForm = () => {
                   <FormItem>
                     <FormLabel>Camp Price Without Meal</FormLabel>
                     <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="Price"
-                        readOnly={field.disabled}
-                        value={field.value}
-                        onChange={(e) => {
-                          const value = e.target.value
-                            ? parseInt(e.target.value, 10)
-                            : "";
+                      {!loading ? (
+                        <Input
+                          type="number"
+                          placeholder="Price"
+                          readOnly={field.disabled}
+                          value={field.value}
+                          onChange={(e) => {
+                            const value = e.target.value
+                              ? parseInt(e.target.value, 10)
+                              : "";
 
-                          field.onChange(value);
-                        }}
-                      />
+                            field.onChange(value);
+                          }}
+                        />
+                      ) : (
+                        <Skeleton className="h-9 w-full" />
+                      )}
                     </FormControl>
                   </FormItem>
                 );
@@ -204,18 +225,22 @@ const CampsiteForm = () => {
                     <FormItem>
                       <FormLabel>Non-Veg Price</FormLabel>
                       <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="non-veg cost"
-                          value={field.value}
-                          readOnly={field.disabled}
-                          onChange={(e) => {
-                            const value = e.target.value
-                              ? parseInt(e.target.value, 10)
-                              : "";
-                            field.onChange(value);
-                          }}
-                        />
+                        {!loading ? (
+                          <Input
+                            type="number"
+                            placeholder="non-veg cost"
+                            value={field.value}
+                            readOnly={field.disabled}
+                            onChange={(e) => {
+                              const value = e.target.value
+                                ? parseInt(e.target.value, 10)
+                                : "";
+                              field.onChange(value);
+                            }}
+                          />
+                        ) : (
+                          <Skeleton className="h-9 w-full" />
+                        )}
                       </FormControl>
                     </FormItem>
                   );
@@ -230,18 +255,22 @@ const CampsiteForm = () => {
                     <FormItem>
                       <FormLabel>Veg Price</FormLabel>
                       <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="veg cost"
-                          value={field.value}
-                          readOnly={field.disabled}
-                          onChange={(e) => {
-                            const value = e.target.value
-                              ? parseInt(e.target.value, 10)
-                              : "";
-                            field.onChange(value);
-                          }}
-                        />
+                        {!loading ? (
+                          <Input
+                            type="number"
+                            placeholder="veg cost"
+                            value={field.value}
+                            readOnly={field.disabled}
+                            onChange={(e) => {
+                              const value = e.target.value
+                                ? parseInt(e.target.value, 10)
+                                : "";
+                              field.onChange(value);
+                            }}
+                          />
+                        ) : (
+                          <Skeleton className="h-9 w-full" />
+                        )}
                       </FormControl>
                     </FormItem>
                   );
