@@ -80,7 +80,12 @@ const EditTableModel = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-sm:max-w-[90%] h-max">
+      <DialogContent
+        className="max-sm:max-w-[90%] h-max"
+        onPointerDown={(e) => {
+          e.currentTarget.removeAttribute("aria-hidden");
+        }}
+      >
         {/* <ScrollArea className='w-full max-sm:max-h-[80vh]'> */}
         <div className="h-max">
           <DialogHeader className="pt-4">
