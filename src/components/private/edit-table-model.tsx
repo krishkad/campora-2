@@ -79,7 +79,13 @@ const EditTableModel = ({
   }, [editableRow, form]);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        onOpenChange(open);
+        form.reset();
+      }}
+    >
       <DialogContent
         className="max-sm:max-w-[90%] h-max"
         onPointerDown={(e) => {

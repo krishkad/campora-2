@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import * as React from "react";
@@ -17,9 +15,8 @@ import {
 } from "@/components/ui/popover";
 import dayjs from "dayjs";
 
-
 interface DatePickerTypes extends React.HTMLAttributes<HTMLDivElement> {
-  ButtonClassName?: string
+  ButtonClassName?: string;
 }
 
 export default function DatePicker({
@@ -41,9 +38,6 @@ export default function DatePicker({
     return "Pick a date";
   }, [date]);
 
-
-
-
   return (
     <div className={cn("w-full grid gap-2", className)}>
       <Popover>
@@ -53,7 +47,8 @@ export default function DatePicker({
             variant="outline"
             className={cn(
               "w-full justify-start text-left font-normal rounded-full",
-              !date && "text-muted-foreground", ButtonClassName
+              !date && "text-muted-foreground",
+              ButtonClassName
             )}
           >
             <CalendarIcon />
@@ -68,12 +63,10 @@ export default function DatePicker({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
-            disabled={(date) => date > new Date()}
+            disabled={(date) => date < new Date()}
           />
         </PopoverContent>
       </Popover>
     </div>
-
-  
   );
 }
