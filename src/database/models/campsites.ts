@@ -1,5 +1,18 @@
 import mongoose from "mongoose";
 
+export interface ICampsite {
+  _id?: string;
+  camp_name: string;
+  camp_description: string;
+  total_camps: number;
+  capacity_per_camp: number;
+  camp_price_without_meal: number;
+  non_veg_price: number;
+  veg_price: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 const campsitesSchema = new mongoose.Schema(
   {
     camp_name: {

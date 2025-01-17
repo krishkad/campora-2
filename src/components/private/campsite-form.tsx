@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,22 +7,18 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import useFetchData from "@/hooks/use-fetchdata";
+import { ICampsite } from "@/database/models/campsites";
+import { useToast } from "@/hooks/use-toast";
 
 const campsiteSchema = z.object({
-  campName: z.string().optional(),
-  description: z.string().optional(),
-  totalCamps: z.number(),
-  pricing: z.object({
-    costperNightWithMeal: z.number(),
-    costPerNightWithoutMeal: z.number(),
-    mealCost: z
-      .object({
-        veg: z.number(),
-        nonVeg: z.number(),
-      })
-      .optional(),
-  }),
-  capacityPerCamp: z.number(),
+  camp_name: z.string().optional(),
+  camp_description: z.string().optional(),
+  total_camps: z.number(),
+  capacity_per_camp: z.number(),
+  camp_price_without_meal: z.number(),
+  non_veg_price: z.number(),
+  veg_price: z.number(),
 });
 
 const CampsiteForm = () => {
@@ -30,22 +26,44 @@ const CampsiteForm = () => {
   const form = useForm<z.infer<typeof campsiteSchema>>({
     resolver: zodResolver(campsiteSchema),
     defaultValues: {
-      campName: "",
-      description: "",
-      totalCamps: 6,
-      pricing: {
-        costperNightWithMeal: 3800,
-        costPerNightWithoutMeal: 2500,
-        mealCost: {
-          veg: 200,
-          nonVeg: 300,
-        },
-      },
-      capacityPerCamp: 4,
+      camp_name: "",
+      camp_description: "",
+      total_camps: 6,
+      capacity_per_camp: 5,
+      camp_price_without_meal: 300,
+      non_veg_price: 100,
+      veg_price: 50,
     },
   });
 
   const toggleEditMode = () => setIsDisabled(!isDisabled);
+  const { toast } = useToast();
+  const {
+    data,
+    loading,
+    error,
+  }: { data: null | ICampsite; loading: boolean; error: string | null } =
+    useFetchData("/api/campsites");
+
+  useEffect(() => {
+    if (data && error === null && !loading) {
+      form.reset({
+        camp_name: data?.camp_name,
+        camp_description: data?.camp_description,
+        total_camps: data?.total_camps,
+        capacity_per_camp: data.capacity_per_camp,
+        camp_price_without_meal: data.camp_price_without_meal,
+        non_veg_price: data.non_veg_price,
+        veg_price: data.veg_price,
+      });
+    }
+    if (error && !loading) {
+      toast({
+        title: "failed to fetch campsite",
+        description: error,
+      });
+    }
+  }, [data, error, loading]);
 
   return (
     <div className="w-full">
@@ -57,7 +75,7 @@ const CampsiteForm = () => {
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
             <FormField
               control={form.control}
-              name="campName"
+              name="camp_name"
               render={({ field }) => {
                 return (
                   <FormItem>
@@ -76,7 +94,7 @@ const CampsiteForm = () => {
 
             <FormField
               control={form.control}
-              name="description"
+              name="camp_description"
               render={({ field }) => {
                 return (
                   <FormItem>
@@ -95,7 +113,7 @@ const CampsiteForm = () => {
             <div className="w-full grid grid-cols-2 gap-5">
               <FormField
                 control={form.control}
-                name="totalCamps"
+                name="total_camps"
                 disabled={isDisabled}
                 render={({ field }) => {
                   return (
@@ -122,7 +140,7 @@ const CampsiteForm = () => {
 
               <FormField
                 control={form.control}
-                name="capacityPerCamp"
+                name="capacity_per_camp"
                 disabled={isDisabled}
                 render={({ field }) => {
                   return (
@@ -151,7 +169,7 @@ const CampsiteForm = () => {
 
             <FormField
               control={form.control}
-              name="pricing.costPerNightWithoutMeal"
+              name="camp_price_without_meal"
               disabled={isDisabled}
               render={({ field }) => {
                 return (
@@ -179,7 +197,7 @@ const CampsiteForm = () => {
             <div className="w-full grid grid-cols-2  gap-5">
               <FormField
                 control={form.control}
-                name="pricing.mealCost.nonVeg"
+                name="non_veg_price"
                 disabled={isDisabled}
                 render={({ field }) => {
                   return (
@@ -205,7 +223,7 @@ const CampsiteForm = () => {
               />
               <FormField
                 control={form.control}
-                name="pricing.mealCost.veg"
+                name="veg_price"
                 disabled={isDisabled}
                 render={({ field }) => {
                   return (

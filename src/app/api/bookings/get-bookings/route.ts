@@ -10,14 +10,14 @@ export async function GET() {
     // You can now use `connection` (which is a `mongoose.Connection` object)
     // For example, querying the database:
     const bookings = await BookingsDb.find().lean();
-    console.log("Bookings fetched:", JSON.stringify(bookings));
+
+    
     if (!bookings || bookings.length === 0) {
       return NextResponse.json({
         success: false,
         message: "No bookings found",
       });
     }
-    console.log("Bookings fetched:", JSON.stringify(bookings));
 
     return NextResponse.json({ data: bookings, success: true });
   } catch (error) {

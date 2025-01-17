@@ -61,13 +61,18 @@ const BookingRoute = () => {
   ]);
   const { toast } = useToast();
 
-  const { data, error, loading } = useFetchData("/api/bookings/get-bookings");
+  const {
+    data,
+    error,
+    loading,
+  }: { data: Booking[] | null; error: string | null; loading: boolean } =
+    useFetchData("/api/bookings/get-bookings");
 
   useEffect(() => {
     if (data && error === null && !loading) {
       setBookings(data);
-    } 
-    if(!loading && error) {
+    }
+    if (!loading && error) {
       toast({
         title: "Failed to fetch bookigs",
         description: error,

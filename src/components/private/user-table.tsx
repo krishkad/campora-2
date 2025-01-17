@@ -35,7 +35,12 @@ const UserTable = () => {
   const [modelOpen, setModelOpen] = useState<boolean>(false);
   const [openDeleteModel, setopenDeleteModel] = useState(false);
   const { toast } = useToast();
-  const { error, loading, data } = useFetchData("/api/users/get-all");
+  const {
+    error,
+    loading,
+    data,
+  }: { data: User[] | null; loading: boolean; error: string | null } =
+    useFetchData("/api/users/get-all");
 
   useEffect(() => {
     if (!loading && error === null && data) {

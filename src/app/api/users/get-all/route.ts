@@ -13,7 +13,6 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     if (!users || users.length === 0) {
       return NextResponse.json({ success: false, message: "no user found!" });
     }
-    console.log({ users });
 
     return NextResponse.json({ success: true, data: users });
   } catch (error: any) {

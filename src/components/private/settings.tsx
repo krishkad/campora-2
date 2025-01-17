@@ -38,9 +38,7 @@ const Settings = () => {
     },
   });
 
-  const { data, loading, error } = useFetchData("/api/bookings/get-bookings");
 
-  console.log({ fetchdata: data, loading, error });
 
   return (
     <div className="max-w-4xl mx-auto">
