@@ -70,7 +70,46 @@ const CampsiteForm = () => {
     <div className="w-full">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(() => {})}
+          onSubmit={form.handleSubmit(async (data) => {
+            try {
+              const response = await fetch("/api/campsites", {
+                method: "POST",
+                body: JSON.stringify(data),
+              });
+
+              if (response.ok) {
+                const json = await response.json();
+                toggleEditMode();
+                if (json.success && json.data) {
+                  toast({
+                    title: "Campsite sucessfully updated",
+                  });
+
+                  form.reset({
+                    camp_name: json.data?.camp_name,
+                    camp_description: json.data?.camp_description,
+                    total_camps: json.data?.total_camps,
+                    capacity_per_camp: json.data.capacity_per_camp,
+                    camp_price_without_meal: json.data.camp_price_without_meal,
+                    non_veg_price: json.data.non_veg_price,
+                    veg_price: json.data.veg_price,
+                  });
+                }
+                if (!json.success) {
+                  toast({
+                    title: "Failed to update campsite",
+                    description: json.message,
+                  });
+                }
+              }
+            } catch (error: any) {
+              console.log("error while updating campsites");
+              toast({
+                title: "error while updating campistes",
+                variant: "destructive",
+              });
+            }
+          })}
           className="w-full space-y-5"
         >
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -280,7 +319,11 @@ const CampsiteForm = () => {
           </div>
 
           <div className="w-full flex justify-between items-center">
-            {isDisabled ? null : (
+            {isDisabled ? (
+              <Button variant={"outline"} onClick={toggleEditMode}>
+                Edit
+              </Button>
+            ) : (
               <Button
                 variant={"outline"}
                 type="reset"
@@ -289,17 +332,17 @@ const CampsiteForm = () => {
                 Reset
               </Button>
             )}
-            <Button
-              variant={"outline"}
-              className={cn(
-                "ml-auto",
-                !isDisabled &&
+            {!isDisabled && (
+              <Button
+                type="submit"
+                className={cn(
+                  "ml-auto",
                   "bg-blue-600 text-white hover:bg-blue-500 hover:text-white"
-              )}
-              onClick={toggleEditMode}
-            >
-              {isDisabled ? "Edit" : "Save"}
-            </Button>
+                )}
+              >
+                Save
+              </Button>
+            )}
           </div>
         </form>
       </Form>

@@ -2,7 +2,7 @@ import { Booking } from "@/constants/index.c";
 import axios from "axios";
 
 export async function updateBooking(bookingProps: Partial<Booking>): Promise<{
-  data: Booking[] | null;
+  data: Booking| null;
   error: string | null;
 }> {
   if (!bookingProps) return { data: null, error: "bookingProps missing!" };

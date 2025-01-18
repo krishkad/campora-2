@@ -36,6 +36,7 @@ import { createBooking } from "@/hooks/create-booking";
 import { updateBooking } from "@/hooks/update-booking";
 import { v4 as uuidv4 } from "uuid";
 import useFetchData from "@/hooks/use-fetchdata";
+import UpdateBooking from "./update-booking";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
@@ -59,6 +60,26 @@ const BookingRoute = () => {
       amount: 600,
     },
   ]);
+  const [updateModel, setUpdateModel] = useState<boolean>(false);
+  const [editBooking, setEditBooking] = useState<Booking>({
+    _id: uuidv4(),
+    name: "Robert Johnson",
+    email: "robertj@example.com",
+    phone: "4561237890",
+    address: "789 Oak St, Gotham City, USA",
+    checkInAndOutDate: {
+      form: new Date("2024-02-10"),
+      to: new Date("2024-02-15"),
+    },
+    paymentStatus: "Paid",
+    foodPreference: "Veg",
+    numberOfGuests: 3,
+    numberOfKids: 1,
+    specialRequests: "Please arrange for a guided trekking tour.",
+    bookingStatus: "Confirmed",
+    createdAt: "2023-12-30T09:45:00Z",
+    amount: 600,
+  });
   const { toast } = useToast();
 
   const {
@@ -155,7 +176,32 @@ const BookingRoute = () => {
     if (error === null && newBooking) {
       setBookings((bookings) => [...bookings, newBooking]);
       toast({
-        title: "Booking Created",
+        title: `${newBooking.name} Booking created`,
+        description: newBooking.email,
+      });
+    }
+  };
+
+  const handleUpdateBooking = async (bookingProp: Partial<Booking>) => {
+    const bookIndex = bookings.findIndex((doc) => doc._id === bookingProp._id);
+
+    const { data, error } = await updateBooking({ ...bookingProp });
+
+    if (data && error === null) {
+      const filteredBooking = bookings.filter((doc) => doc._id !== data._id);
+
+      const editedBooking = [...filteredBooking, data];
+
+      setBookings(editedBooking);
+      toast({
+        title: `${data.name} Sucessfully Edited`,
+        description: `${data.email}`,
+      });
+    }
+    if (data === null && error) {
+      toast({
+        title: "Failed to Edit",
+        description: error,
       });
     }
   };
@@ -344,21 +390,14 @@ const BookingRoute = () => {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  Profile
+                <DropdownMenuItem
+                  onClick={() => {
+                    setEditBooking(row.original);
+                    setUpdateModel(true);
+                  }}
+                >
+                  Edit 
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Billing
-                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Settings
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Keyboard shortcuts
-                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
@@ -494,6 +533,12 @@ const BookingRoute = () => {
           />
         </CardContent>
       </Card>
+      <UpdateBooking
+        handleUpdateBooking={handleUpdateBooking}
+        open={updateModel}
+        onOpenChange={() => setUpdateModel(!updateModel)}
+        booking={editBooking ?? editBooking}
+      />
     </div>
   );
 };

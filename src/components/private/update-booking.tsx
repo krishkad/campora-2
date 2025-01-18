@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -36,6 +36,13 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
 import { v4 as uuidv4 } from "uuid";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // export interface Booking {
 //     id: number;
@@ -64,50 +71,87 @@ const BookingSchema = z.object({
     from: z.date(),
     to: z.date(),
   }),
-  numberOfGuests: z.number().min(1, "At least one guest required"),
-  numberOfKids: z.number().min(1, "At least one kids required"),
+  numberOfGuests: z.number().min(1, "At least one guest required").default(2),
+  numberOfKids: z
+    .number()
+    .optional()
+    .default(0),
   message: z.string().optional(),
   specialRequests: z.string().optional(),
   amount: z.number(),
   food: z.enum(["Veg", "Non-Veg"]),
-  createdAt: z.date(),
+  paymentStatus: z.enum(["Paid", "Pending", "Failed"]),
+  bookingStatus: z.enum(["Confirmed", "Pending", "Cancelled"]),
 });
 
-const CreateBooking = ({
-  handleCreateBooking
+const UpdateBooking = ({
+  handleUpdateBooking,
+  booking,
+  open,
+  onOpenChange,
 }: {
-  handleCreateBooking: (value: Partial<Booking>) => void;
+  handleUpdateBooking: (value: Partial<Booking>) => void;
+  booking: Booking;
+  open: boolean;
+  onOpenChange: (value: boolean) => void;
 }) => {
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      checkInAndOutDate: { from: new Date(), to: addDays(new Date(), 1) },
-      numberOfGuests: 2,
-      numberOfKids: 1,
-      message: "",
-      specialRequests: "",
-      amount: 120,
-      food: "Veg",
-      createdAt: new Date(),
+      name: booking.name,
+      email: booking.email,
+      phone: booking.phone,
+      address: booking.address,
+      checkInAndOutDate: {
+        from: new Date(booking.checkInAndOutDate.form),
+        to: new Date(booking.checkInAndOutDate?.to),
+      },
+      numberOfGuests: booking.numberOfGuests,
+      numberOfKids: booking.numberOfKids,
+      message: booking.message,
+      specialRequests: booking.specialRequests,
+      amount: booking.amount,
+      food: booking.foodPreference,
+      paymentStatus: booking.paymentStatus,
+      bookingStatus: booking.bookingStatus,
     },
   });
 
+  useEffect(() => {
+    form.reset({
+      name: booking.name,
+      email: booking.email,
+      phone: booking.phone,
+      address: booking.address,
+      checkInAndOutDate: {
+        from: new Date(booking.checkInAndOutDate.form),
+        to: new Date(booking.checkInAndOutDate?.to),
+      },
+      numberOfGuests: booking.numberOfGuests,
+      numberOfKids: booking.numberOfKids || 0,
+      message: booking.message,
+      specialRequests: booking.specialRequests,
+      amount: booking.amount,
+      food: booking.foodPreference,
+      paymentStatus: booking.paymentStatus,
+      bookingStatus: booking.bookingStatus,
+    });
+  }, [booking]);
+
   return (
-    <Dialog>
-      <DialogTrigger className={cn(buttonVariants({ variant: "default" }))}>
-        <PlusIcon className="w-4 h-4 shrink-0 inilne mr-0.5" />
-        <span className="max-sm:hidden"> Create Booking</span>
-      </DialogTrigger>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        onOpenChange(open);
+        form.reset();
+      }}
+    >
       <DialogContent className="max-sm:max-w-[90%] h-max max-w-2xl">
         <ScrollArea className="w-full max-h-[92svh]">
           <div className="w-full h-max px-1">
             <DialogHeader>
               <DialogTitle className="focus:border-none focus-visible:ring-0">
-                Create Booking
+                Update Booking
               </DialogTitle>
               <DialogDescription>
                 Fill Guest Information and Book on behave of Your Guest
@@ -117,9 +161,8 @@ const CreateBooking = ({
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit((data) => {
-                    const randomId = uuidv4();
-                    handleCreateBooking({
-                      // _id: randomId,
+                    handleUpdateBooking({
+                      _id: booking._id,
                       name: data.name,
                       email: data.email,
                       phone: data.phone,
@@ -134,11 +177,10 @@ const CreateBooking = ({
                       specialRequests: data.specialRequests,
                       amount: data.amount,
                       foodPreference: data.food,
-                      createdAt: new Date().toISOString(),
-                      paymentStatus: "Pending",
-                      bookingStatus: "Pending",
+                      paymentStatus: data.paymentStatus,
+                      bookingStatus: data.bookingStatus,
                     });
-                    form.reset();
+                    onOpenChange(false);
                   })}
                   className="space-y-5 mx-auto"
                 >
@@ -331,6 +373,68 @@ const CreateBooking = ({
                           );
                         }}
                       />
+                      <FormField
+                        control={form.control}
+                        name="bookingStatus"
+                        render={({ field }) => {
+                          return (
+                            <FormItem>
+                              <FormLabel>Booking Status</FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select Booking Status" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="Confirmed">
+                                    Confirmed
+                                  </SelectItem>
+                                  <SelectItem value="Pending">
+                                    Pending
+                                  </SelectItem>
+                                  <SelectItem value="Cancelled">
+                                    Cancelled
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          );
+                        }}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="paymentStatus"
+                        render={({ field }) => {
+                          return (
+                            <FormItem>
+                              <FormLabel>Payment Status</FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select Payment Status" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="Paid">Paid</SelectItem>
+                                  <SelectItem value="Pending">
+                                    Pending
+                                  </SelectItem>
+                                  <SelectItem value="Failed">Failed</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          );
+                        }}
+                      />
                     </div>
                     <div className="w-full space-y-5 grid-cols-1 md:grid-cols-2">
                       <FormField
@@ -452,7 +556,7 @@ const CreateBooking = ({
                       Reset
                     </Button>
                     <Button type="submit" className="max-sm:w-full">
-                      Book
+                      Update
                     </Button>
                   </div>
                 </form>
@@ -465,4 +569,4 @@ const CreateBooking = ({
   );
 };
 
-export default CreateBooking;
+export default UpdateBooking;
