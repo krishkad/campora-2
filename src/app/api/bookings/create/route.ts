@@ -9,15 +9,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest): Promise<NextResponse> {
   await ConnectToDatabase();
   try {
-    const { success, message , request} = await CheckAvailibility(req);
+    const { success, message, request, amount } = await CheckAvailibility(req);
 
     if (!success) {
       return NextResponse.json({ success, message });
     }
 
-   
-
-    const booking = await BookingsDb.create(request);
+    const booking = await BookingsDb.create({
+      ...request,
+      amount: request.amount ? request.amount : amount,
+    });
 
     if (!booking)
       return NextResponse.json({

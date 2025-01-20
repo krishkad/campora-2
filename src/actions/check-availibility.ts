@@ -7,14 +7,19 @@ import { NextRequest } from "next/server";
 
 export const CheckAvailibility = async (
   request: NextRequest
-): Promise<{ success: boolean; message: string; request?: any }> => {
+): Promise<{
+  success: boolean;
+  message: string;
+  request?: any;
+  amount?: number;
+}> => {
   try {
     await ConnectToDatabase();
     const body = await request.json();
 
     const startOfDay = new Date(body.checkInAndOutDate.form);
     const endOfDay = new Date(body.checkInAndOutDate.form);
-    startOfDay.setHours(0, 0, 0, 111);
+    startOfDay.setHours(0, 0, 0, 1);
     endOfDay.setHours(23, 59, 59, 999);
 
     // Query the database for posts within the specified date range
@@ -26,7 +31,12 @@ export const CheckAvailibility = async (
     });
 
     const campsites = await CampsitesDb.findOne().sort({ createdAt: -1 });
-  
+
+    const meal_price =
+      body.foodPreference === "Veg"
+        ? campsites.veg_price
+        : campsites.non_veg_price;
+
     if (bookings.length >= campsites.total_camps) {
       return {
         success: false,
@@ -48,6 +58,7 @@ export const CheckAvailibility = async (
       success: true,
       message: "tent available",
       request: body,
+      amount: campsites.camp_price_without_meal + meal_price,
     };
   } catch (error: any) {
     console.log("error in check availibility server action: ", error);

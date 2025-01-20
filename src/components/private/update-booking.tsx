@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -357,13 +358,13 @@ const UpdateBooking = ({
                               <FormControl>
                                 <Input
                                   placeholder="Enter No. of Kids"
-                                  type="number"
-                                  value={field.value || ""}
+                                  type="string"
+                                  value={field.value.toString() || ''}
                                   onChange={(e) => {
                                     // Convert the value to a number before updating the form state
                                     const value = e.target.value
                                       ? parseInt(e.target.value, 10)
-                                      : "";
+                                      : 0;
                                     field.onChange(value);
                                   }}
                                 />
@@ -501,6 +502,10 @@ const UpdateBooking = ({
                                   }}
                                 />
                               </FormControl>
+                              <FormDescription>
+                                Leave it blank to autofill, according to food
+                                Preference and camp price set
+                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           );

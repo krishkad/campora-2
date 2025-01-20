@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,8 +38,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
 import { v4 as uuidv4 } from "uuid";
 
-
-
 const BookingSchema = z.object({
   name: z.string().min(2, "Name must have at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -52,7 +51,7 @@ const BookingSchema = z.object({
   numberOfKids: z.number().optional().default(0),
   message: z.string().optional(),
   specialRequests: z.string().optional(),
-  amount: z.number(),
+  amount: z.number().optional(),
   food: z.enum(["Veg", "Non-Veg"]),
   createdAt: z.date(),
 });
@@ -75,7 +74,7 @@ const CreateBooking = ({
       numberOfKids: 1,
       message: "",
       specialRequests: "",
-      amount: 120,
+      amount: 0,
       food: "Veg",
       createdAt: new Date(),
     },
@@ -84,9 +83,9 @@ const CreateBooking = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button  onClick={() => setOpen(!open)}>
-        <PlusIcon className="w-4 h-4 shrink-0 inilne mr-0.5" />
-        <span className="max-sm:hidden"> Create Booking</span>
+        <Button onClick={() => setOpen(!open)}>
+          <PlusIcon className="w-4 h-4 shrink-0 inilne mr-0.5" />
+          <span className="max-sm:hidden"> Create Booking</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[90%] h-max max-w-2xl">
@@ -303,13 +302,13 @@ const CreateBooking = ({
                               <FormControl>
                                 <Input
                                   placeholder="Enter No. of Kids"
-                                  type="number"
-                                  value={field.value || ""}
+                                  type="string"
+                                  value={field.value.toString() || ""}
                                   onChange={(e) => {
                                     // Convert the value to a number before updating the form state
                                     const value = e.target.value
                                       ? parseInt(e.target.value, 10)
-                                      : "";
+                                      : 0;
                                     field.onChange(value);
                                   }}
                                 />
@@ -385,6 +384,10 @@ const CreateBooking = ({
                                   }}
                                 />
                               </FormControl>
+                              <FormDescription>
+                                Leave it blank to autofill, according to food
+                                Preference and camp price set
+                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           );
