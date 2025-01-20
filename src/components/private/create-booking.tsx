@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -37,23 +37,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
 import { v4 as uuidv4 } from "uuid";
 
-// export interface Booking {
-//     id: number;
-//     name: string;
-//     email: string;
-//     phone: string;
-//     address: string;
-//     checkInDate: string; // ISO format: YYYY-MM-DD
-//     checkOutDate: string; // ISO format: YYYY-MM-DD
-//     paymentStatus: "Paid" | "Pending" | "Failed";
-//     foodPreference: "Veg" | "Non-Veg";
-//     numberOfGuests: number;
-//     tentType: "Single" | "Double" | "Family";
-//     message?: string;
-//     specialRequests?: string;
-//     bookingStatus: "Confirmed" | "Pending" | "Cancelled";
-//     createdAt: string; // ISO format: YYYY-MM-DDTHH:mm:ssZ
-// };
+
 
 const BookingSchema = z.object({
   name: z.string().min(2, "Name must have at least 2 characters"),
@@ -65,7 +49,7 @@ const BookingSchema = z.object({
     to: z.date(),
   }),
   numberOfGuests: z.number().min(1, "At least one guest required"),
-  numberOfKids: z.number().min(1, "At least one kids required"),
+  numberOfKids: z.number().optional().default(0),
   message: z.string().optional(),
   specialRequests: z.string().optional(),
   amount: z.number(),
@@ -74,10 +58,11 @@ const BookingSchema = z.object({
 });
 
 const CreateBooking = ({
-  handleCreateBooking
+  handleCreateBooking,
 }: {
   handleCreateBooking: (value: Partial<Booking>) => void;
 }) => {
+  const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -97,10 +82,12 @@ const CreateBooking = ({
   });
 
   return (
-    <Dialog>
-      <DialogTrigger className={cn(buttonVariants({ variant: "default" }))}>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button  onClick={() => setOpen(!open)}>
         <PlusIcon className="w-4 h-4 shrink-0 inilne mr-0.5" />
         <span className="max-sm:hidden"> Create Booking</span>
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[90%] h-max max-w-2xl">
         <ScrollArea className="w-full max-h-[92svh]">
@@ -139,6 +126,7 @@ const CreateBooking = ({
                       bookingStatus: "Pending",
                     });
                     form.reset();
+                    setOpen(false);
                   })}
                   className="space-y-5 mx-auto"
                 >

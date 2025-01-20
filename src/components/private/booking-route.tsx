@@ -172,13 +172,19 @@ const BookingRoute = () => {
     if (!bookingProp) return;
 
     const { booking: newBooking, error } = await createBooking(bookingProp);
-
     if (error === null && newBooking) {
       setBookings((bookings) => [...bookings, newBooking]);
       toast({
         title: `${newBooking.name} Booking created`,
         description: newBooking.email,
       });
+    }
+
+    if(error && newBooking === null) {
+      toast({
+        title: error,
+        description: "Failed to create booking"
+      })
     }
   };
 

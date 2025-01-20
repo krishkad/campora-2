@@ -12,12 +12,21 @@ export const CheckAvailibility = async (
     await ConnectToDatabase();
     const body = await request.json();
 
+    const startOfDay = new Date(body.checkInAndOutDate.form);
+    const endOfDay = new Date(body.checkInAndOutDate.form);
+    startOfDay.setHours(0, 0, 0, 111);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // Query the database for posts within the specified date range
     const bookings = await BookingsDb.find({
-      "checkInAndOutDate.form": new Date(body.checkInAndOutDate.form), // Filter based on checkInAndOutDate.form
+      "checkInAndOutDate.form": {
+        $gte: startOfDay,
+        $lte: endOfDay,
+      },
     });
 
     const campsites = await CampsitesDb.findOne().sort({ createdAt: -1 });
-
+  
     if (bookings.length >= campsites.total_camps) {
       return {
         success: false,

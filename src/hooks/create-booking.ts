@@ -7,8 +7,9 @@ export async function createBooking(newBooking: Partial<Booking>): Promise<{
 }> {
   try {
     const response = await axios.post("/api/bookings/create", newBooking);
+    console.log({response: response.data});
     if (!response.data.success as boolean) {
-      return { booking: null, error: "failed to create booking" };
+      return { booking: null, error: response.data.message };
     }
 
     if (response.data.success) {
