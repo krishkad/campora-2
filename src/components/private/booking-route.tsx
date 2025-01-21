@@ -37,6 +37,8 @@ import { updateBooking } from "@/hooks/update-booking";
 import { v4 as uuidv4 } from "uuid";
 import useFetchData from "@/hooks/use-fetchdata";
 import UpdateBooking from "./update-booking";
+import { useMutation } from "@tanstack/react-query";
+import { BookingData, sendWhatsApp } from "@/actions/send-message";
 
 const BookingRoute = () => {
   const [bookings, setBookings] = useState<Booking[]>([
@@ -211,6 +213,21 @@ const BookingRoute = () => {
       });
     }
   };
+
+  const { mutate } = useMutation<void, Error, BookingData>({
+    mutationKey: ["sent-message"],
+    mutationFn: sendWhatsApp,
+    onSuccess: () => {
+      toast({
+        title: "message sent successfully!",
+      });
+    },
+    onError: ({ message }) => {
+      toast({
+        title: message,
+      });
+    },
+  });
 
   const column: ColumnDef<Booking>[] = [
     {
@@ -523,6 +540,23 @@ const BookingRoute = () => {
                 disabled={
                   row.original.bookingStatus === "Confirmed" ? false : true
                 }
+                onClick={async () => {
+                  if (
+                    row.original._id !== undefined &&
+                    row.original.amount !== undefined
+                  ) {
+                    mutate({
+                      _id: row.original._id,
+                      name: row.original.name,
+                      checkInAndOutDate: {
+                        form: row.original.checkInAndOutDate.form as string,
+                        to: row.original.checkInAndOutDate.to as string,
+                      },
+                      phoneNumber: row.original.phone,
+                      amount: row.original.amount as number,
+                    });
+                  }
+                }}
               >
                 Send Confirm message
               </DropdownMenuItem>
