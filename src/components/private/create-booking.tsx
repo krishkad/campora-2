@@ -71,7 +71,7 @@ const CreateBooking = ({
       address: "",
       checkInAndOutDate: { from: new Date(), to: addDays(new Date(), 1) },
       numberOfGuests: 2,
-      numberOfKids: 1,
+      numberOfKids: 0,
       message: "",
       specialRequests: "",
       amount: 0,
@@ -81,7 +81,13 @@ const CreateBooking = ({
   });
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        setOpen(open);
+        form.reset();
+      }}
+    >
       <DialogTrigger asChild>
         <Button onClick={() => setOpen(!open)}>
           <PlusIcon className="w-4 h-4 shrink-0 inilne mr-0.5" />

@@ -180,11 +180,11 @@ const BookingRoute = () => {
       });
     }
 
-    if(error && newBooking === null) {
+    if (error && newBooking === null) {
       toast({
         title: error,
-        description: "Failed to create booking"
-      })
+        description: "Failed to create booking",
+      });
     }
   };
 
@@ -402,7 +402,7 @@ const BookingRoute = () => {
                     setUpdateModel(true);
                   }}
                 >
-                  Edit 
+                  Edit
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -512,8 +512,20 @@ const BookingRoute = () => {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem>GitHub</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuItem disabled>API</DropdownMenuItem>
+              <DropdownMenuItem
+                disabled={
+                  row.original.bookingStatus === "Cancelled" ? false : true
+                }
+              >
+                Send Cancelled message
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                disabled={
+                  row.original.bookingStatus === "Confirmed" ? false : true
+                }
+              >
+                Send Confirm message
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 Log out

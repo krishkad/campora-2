@@ -79,7 +79,7 @@ const BookingSchema = z.object({
     .default(0),
   message: z.string().optional(),
   specialRequests: z.string().optional(),
-  amount: z.number(),
+  amount: z.number().min(1, "amount is required"),
   food: z.enum(["Veg", "Non-Veg"]),
   paymentStatus: z.enum(["Paid", "Pending", "Failed"]),
   bookingStatus: z.enum(["Confirmed", "Pending", "Cancelled"]),
@@ -481,6 +481,9 @@ const UpdateBooking = ({
                                   </div>
                                 </RadioGroup>
                               </FormControl>
+                              <FormDescription>
+                                Update amount manually if food is changed.
+                              </FormDescription>
                             </FormItem>
                           );
                         }}
@@ -502,10 +505,6 @@ const UpdateBooking = ({
                                   }}
                                 />
                               </FormControl>
-                              <FormDescription>
-                                Leave it blank to autofill, according to food
-                                Preference and camp price set
-                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           );
