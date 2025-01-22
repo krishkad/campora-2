@@ -58,6 +58,10 @@ async function sendMessage(page: any, phoneNumber: string, message: string) {
   console.log("Message sent!");
 }
 
+
+
+
+
 export const sendWhatsApp = async ({
   phoneNumber,
   amount,

@@ -32,7 +32,7 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon, PlusIcon, SquareDotIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "../ui/scroll-area";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
@@ -73,10 +73,7 @@ const BookingSchema = z.object({
     to: z.date(),
   }),
   numberOfGuests: z.number().min(1, "At least one guest required").default(2),
-  numberOfKids: z
-    .number()
-    .optional()
-    .default(0),
+  numberOfKids: z.number().optional().default(0),
   message: z.string().optional(),
   specialRequests: z.string().optional(),
   amount: z.number().min(1, "amount is required"),
@@ -148,8 +145,14 @@ const UpdateBooking = ({
       }}
     >
       <DialogContent className="max-sm:max-w-[90%] h-max max-w-2xl">
-        <ScrollArea className="w-full max-h-[92svh]">
-          <div className="w-full h-max px-1">
+        <div
+          className="w-full max-h-[92svh] overflow-y-auto   [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+        >
+          <div className="w-full h-max">
             <DialogHeader>
               <DialogTitle className="focus:border-none focus-visible:ring-0">
                 Update Booking
@@ -359,7 +362,7 @@ const UpdateBooking = ({
                                 <Input
                                   placeholder="Enter No. of Kids"
                                   type="string"
-                                  value={field.value.toString() || ''}
+                                  value={field.value.toString() || ""}
                                   onChange={(e) => {
                                     // Convert the value to a number before updating the form state
                                     const value = e.target.value
@@ -567,7 +570,7 @@ const UpdateBooking = ({
               </Form>
             </div>
           </div>
-        </ScrollArea>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -95,7 +95,13 @@ const CreateBooking = ({
         </Button>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[90%] h-max max-w-2xl">
-        <ScrollArea className="w-full max-h-[92svh]">
+        <div
+          className="w-full max-h-[92svh] overflow-y-auto   [&::-webkit-scrollbar]:w-2
+        [&::-webkit-scrollbar-track]:bg-gray-100
+        [&::-webkit-scrollbar-thumb]:bg-gray-300
+        dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+        dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+        >
           <div className="w-full h-max px-1">
             <DialogHeader>
               <DialogTitle className="focus:border-none focus-visible:ring-0">
@@ -456,7 +462,7 @@ const CreateBooking = ({
               </Form>
             </div>
           </div>
-        </ScrollArea>
+        </div>
       </DialogContent>
     </Dialog>
   );
