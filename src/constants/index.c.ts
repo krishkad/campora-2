@@ -789,3 +789,11 @@ export const campingPackages: CampingPackage[] = [
     buttonTitle: "Check Availability",
   },
 ];
+
+export interface IHoliday {
+  _id?: string;
+  holiday_name: string;
+  holiday_description?: string;
+  start_date: Date;
+  end_date: Date;
+}

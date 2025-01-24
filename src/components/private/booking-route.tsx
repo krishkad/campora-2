@@ -214,20 +214,24 @@ const BookingRoute = () => {
     }
   };
 
-  const { mutate } = useMutation<void, Error, BookingData>({
-    mutationKey: ["sent-message"],
-    mutationFn: sendWhatsApp,
-    onSuccess: () => {
-      toast({
-        title: "message sent successfully!",
-      });
-    },
-    onError: ({ message }) => {
-      toast({
-        title: message,
-      });
-    },
-  });
+  // const { mutate } = useMutation<
+  //   void,
+  //   Error,
+  //   { phoneNumber: string; message: string }
+  // >({
+  //   mutationKey: ["sent-message"],
+  //   mutationFn: sendSMS,
+  //   onSuccess: () => {
+  //     toast({
+  //       title: "message sent successfully!",
+  //     });
+  //   },
+  //   onError: ({ message }) => {
+  //     toast({
+  //       title: message,
+  //     });
+  //   },
+  // });
 
   const column: ColumnDef<Booking>[] = [
     {
@@ -534,31 +538,35 @@ const BookingRoute = () => {
                   row.original.bookingStatus === "Cancelled" ? false : true
                 }
               >
-                Send Cancelled message
+                Send Cancelled E-mail
               </DropdownMenuItem>
               <DropdownMenuItem
                 disabled={
                   row.original.bookingStatus === "Confirmed" ? false : true
                 }
-                onClick={async () => {
+                onClick={() => {
                   if (
                     row.original._id !== undefined &&
                     row.original.amount !== undefined
                   ) {
-                    mutate({
-                      _id: row.original._id,
-                      name: row.original.name,
-                      checkInAndOutDate: {
-                        form: row.original.checkInAndOutDate.form as string,
-                        to: row.original.checkInAndOutDate.to as string,
-                      },
-                      phoneNumber: row.original.phone,
-                      amount: row.original.amount as number,
-                    });
+                    //                     sendSMS({
+                    //                       phoneNumber: row.original.phone,
+                    //                       message: `Hello ${row.original.name}!
+                    // Your booking has been successfully confirmed! 🎉
+                    // Booking Details:
+                    // Amount Paid: ₹${row.original.amount}
+                    // Booking ID: ${row.original._id}
+                    // Date & Time: ${format(
+                    //                         new Date(row.original.checkInAndOutDate.form),
+                    //                         "dd MMM yyyy"
+                    //                       )}
+                    // We look forward to serving you! 😊
+                    // If you have any questions, feel free to reach out.`,
+                    //                     });
                   }
                 }}
               >
-                Send Confirm message
+                Send Confirm E-mail
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>

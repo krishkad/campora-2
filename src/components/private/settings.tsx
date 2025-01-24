@@ -1,6 +1,12 @@
 "use client";
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +23,9 @@ import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import useFetchData from "@/hooks/use-fetchdata";
+import { IHoliday } from "@/constants/index.c";
+import { useToast } from "@/hooks/use-toast";
+import { Label } from "../ui/label";
 
 const holidaySchema = z.object({
   holiday_name: z.string().min(2),
@@ -27,18 +36,38 @@ const holidaySchema = z.object({
 });
 
 const Settings = () => {
+  const [holidays, setHolidays] = useState<IHoliday[] | null>();
   const form = useForm<z.infer<typeof holidaySchema>>({
     resolver: zodResolver(holidaySchema),
     defaultValues: {
       holiday_name: "",
       holiday_description: "",
-      start_date: new Date(),
-      end_date: new Date(),
-      no_of_dayjs: [new Date(), new Date(), new Date()],
+      start_date: undefined,
+      end_date: undefined,
     },
   });
+  const { toast } = useToast();
 
+  const {
+    data,
+    loading,
+    error,
+  }: { data: IHoliday[] | null; loading: boolean; error: string | null } =
+    useFetchData("/api/holidays");
 
+  useEffect(() => {
+    if (!loading || data !== null) {
+      setHolidays(data as IHoliday[]);
+    }
+
+    if (!loading || error !== null) {
+      toast({
+        title: error as string,
+      });
+    }
+  }, [data]);
+
+  console.log({ holidays });
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -182,10 +211,47 @@ const Settings = () => {
                     }}
                   />
                 </div>
+                <div className="w-full flex items-center justify-end  mt-5">
+                  <Button type="submit">Create</Button>
+                </div>
               </form>
             </Form>
           </CardContent>
         </Card>
+        {holidays && (
+          <>
+            {holidays.map((holi) => {
+              return (
+                <Card key={holi._id}>
+                  <CardHeader>
+                    <CardTitle>{holi.holiday_name}</CardTitle>
+                    {holi.holiday_description && (
+                      <CardDescription>
+                        {holi.holiday_description}
+                      </CardDescription>
+                    )}
+                  </CardHeader>
+                  <CardContent>
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="w-full space-y-0.5">
+                        <Label>Start Date</Label>
+                        <p className="font-medu">
+                          {format(holi.start_date, "dd MMM yyyy")}
+                        </p>
+                      </div>
+                      <div className="w-full space-y-0.5">
+                        <Label>End Date</Label>
+                        <p className="font-medu">
+                          {format(holi.end_date, "dd MMM yyyy")}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </>
+        )}
       </div>
     </div>
   );

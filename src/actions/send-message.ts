@@ -13,34 +13,79 @@ export interface BookingData {
   _id: string;
 }
 
-async function openWhatsAppWeb() {
-  const browser = await puppeteer.launch({
-    headless: false, // Launch in non-headless mode for debugging
-    defaultViewport: null, // Full-size viewport for better view
-    args: ["--start-maximized"], // Open browser maximized
+// async function openWhatsAppWeb() {
+//   const browser = await puppeteer.launch({
+//     headless: false, // Launch in non-headless mode for debugging
+//     defaultViewport: null, // Full-size viewport for better view
+//     args: ["--start-maximized"], // Open browser maximized
+//   });
+
+//   const page = await browser.newPage();
+
+//   // Navigate to WhatsApp Web
+//   await page.goto("https://web.whatsapp.com/", { waitUntil: "networkidle2" });
+
+//   console.log("Waiting for QR code scan...");
+
+//   // Wait for the QR code element to appear (this ensures the page is ready)
+//   await page.waitForSelector(
+//     'canvas[aria-label="Scan this QR code to link a device!"]',
+//     { timeout: 0 }
+//   );
+
+//   console.log("QR code scanned!");
+
+//   // Wait for WhatsApp Web to fully load before proceeding
+//   await page.waitForSelector('div[title="Chats"]', { timeout: 0 });
+
+//   console.log('WhatsApp Web is fully loaded and ready!');
+
+//   return { browser, page };
+// }
+
+async function connectToExistingBrowser() {
+  const browser = await puppeteer.connect({
+    browserURL: "http://localhost:9222", // Connect to the remote browser with the specified port
   });
 
-  const page = await browser.newPage();
+  return browser;
+}
 
-  // Navigate to WhatsApp Web
-  await page.goto("https://web.whatsapp.com/", { waitUntil: "networkidle2" });
+async function openWhatsAppWeb(browser: any) {
+  const pages = await browser.pages(); // Get all open tabs in the browser
+  let page = null;
 
-  console.log("Waiting for QR code scan...");
+  // Check if WhatsApp Web tab is already open
+  for (let i = 0; i < pages.length; i++) {
+    const tab = pages[i];
+    const url = await tab.url();
+    if (url.includes("web.whatsapp.com")) {
+      page = tab; // Found existing WhatsApp Web tab
+      console.log("Using existing WhatsApp Web tab");
+      break;
+    }
+  }
 
-  // Wait for the QR code element to appear (this ensures the page is ready)
-  await page.waitForSelector(
-    'canvas[aria-label="Scan this QR code to link a device!"]',
-    { timeout: 0 }
-  );
+  // If WhatsApp Web tab is not open, create a new one
+  if (!page) {
+    console.log("WhatsApp Web tab not found, opening a new tab...");
+    page = await browser.newPage();
+    await page.goto("https://web.whatsapp.com/", { waitUntil: "networkidle2" });
+    console.log("Scan QR code to connect");
+    // Wait for the QR code element to appear (this ensures the page is ready)
+    await page.waitForSelector(
+      'canvas[aria-label="Scan this QR code to link a device!"]',
+      { timeout: 0 }
+    );
 
-  console.log("QR code scanned!");
+    console.log("QR code scanned!");
+  }
 
-  // Wait for WhatsApp Web to fully load before proceeding
+  // Wait for the <div> with title="Chats" to ensure page is fully loaded
   await page.waitForSelector('div[title="Chats"]', { timeout: 0 });
+  console.log("WhatsApp Web is fully loaded and ready!");
 
-  console.log('WhatsApp Web is fully loaded and ready!');
-
-  return { browser, page };
+  return page;
 }
 
 async function sendMessage(page: any, phoneNumber: string, message: string) {
@@ -58,10 +103,6 @@ async function sendMessage(page: any, phoneNumber: string, message: string) {
   console.log("Message sent!");
 }
 
-
-
-
-
 export const sendWhatsApp = async ({
   phoneNumber,
   amount,
@@ -70,7 +111,13 @@ export const sendWhatsApp = async ({
   _id,
 }: BookingData): Promise<void> => {
   try {
-    const { browser, page } = await openWhatsAppWeb();
+    const browser = await puppeteer.launch({
+      headless: false,  // Launch in non-headless mode for debugging
+      defaultViewport: null,  // Full-size viewport for better view
+      args: ['--start-maximized'], // Open browser maximized
+    });
+
+    const page = await openWhatsAppWeb(browser);
 
     // Send message
 
