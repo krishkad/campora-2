@@ -242,7 +242,11 @@ const UpdateBooking = ({
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
-                                  disabled={(date) => date < new Date()}
+                                  disabled={(date) => {
+                                    const today = new Date();
+                                    today.setHours(0, 0, 0, 0);
+                                    return date < today;
+                                  }}
                                   // {...field}
                                 />
                               </PopoverContent>

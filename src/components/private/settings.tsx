@@ -10,7 +10,14 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormControl, FormField, FormItem, FormLabel, Form } from "../ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  Form,
+  FormDescription,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Calendar } from "../ui/calendar";
 import { Button } from "../ui/button";
@@ -29,14 +36,14 @@ import { Label } from "../ui/label";
 
 const holidaySchema = z.object({
   holiday_name: z.string().min(2),
-  holiday_description: z.string(),
+  holiday_description: z.string().optional(),
   start_date: z.date(),
   end_date: z.date(),
-  no_of_dayjs: z.array(z.date()),
 });
 
 const Settings = () => {
   const [holidays, setHolidays] = useState<IHoliday[] | null>();
+
   const form = useForm<z.infer<typeof holidaySchema>>({
     resolver: zodResolver(holidaySchema),
     defaultValues: {
@@ -56,18 +63,16 @@ const Settings = () => {
     useFetchData("/api/holidays");
 
   useEffect(() => {
-    if (!loading || data !== null) {
+    if (!loading && data !== null) {
       setHolidays(data as IHoliday[]);
     }
 
-    if (!loading || error !== null) {
+    if (!loading && error !== null) {
       toast({
         title: error as string,
       });
     }
   }, [data]);
-
-  console.log({ holidays });
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -78,7 +83,59 @@ const Settings = () => {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(() => {})}>
+              <form
+                onSubmit={form.handleSubmit(async (data) => {
+                  console.log("handlesubmit");
+                  const endDate = new Date(
+                    new Date(data.end_date).getFullYear(),
+                    new Date(data.end_date).getMonth(),
+                    new Date(data.end_date).getDate() + 1
+                  );
+                  endDate.setUTCHours(23, 59, 59, 999);
+
+                  const startDate = new Date(data.start_date);
+                  startDate.setUTCHours(0, 0, 0, 1);
+                  try {
+                    const response = await fetch("/api/holidays/", {
+                      method: "POST",
+                      body: JSON.stringify({
+                        ...data,
+                        end_date: endDate.toISOString(),
+                        start_date: startDate.toISOString(),
+                      }),
+                    });
+
+                    console.log({ endDate, startDate });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                      toast({
+                        title: "Holiday created successfully",
+                      });
+                    }
+
+                    if (!result.success) {
+                      toast({
+                        title: "failed to create holiday",
+                        description: result.message,
+                        variant: "destructive",
+                      });
+                    }
+                  } catch (error: any) {
+                    console.log(
+                      "error while post request holiday: ",
+                      error.message
+                    );
+
+                    toast({
+                      title: "Request failed.",
+                      variant: "destructive",
+                    });
+                  }
+                  form.reset();
+                })}
+              >
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <FormField
                     control={form.control}
@@ -152,10 +209,11 @@ const Settings = () => {
                                 mode="single"
                                 selected={field.value}
                                 onSelect={field.onChange}
-                                disabled={(date) =>
-                                  date < new Date() ||
-                                  date < new Date("1900-01-01")
-                                }
+                                disabled={(date) => {
+                                  const today = new Date();
+                                  today.setHours(0, 0, 0, 0);
+                                  return date < today;
+                                }}
                                 initialFocus
                               />
                             </PopoverContent>
@@ -197,15 +255,24 @@ const Settings = () => {
                               <Calendar
                                 mode="single"
                                 selected={field.value}
-                                onSelect={field.onChange}
-                                disabled={(date) =>
-                                  date < new Date() ||
-                                  date < new Date("1900-01-01")
-                                }
+                                onSelect={(date) => {
+                                  if (date === undefined) return;
+                                  field.onChange(date);
+                                  console.log({ date });
+                                }}
+                                disabled={(date) => {
+                                  const today = new Date();
+                                  today.setHours(0, 0, 0, 0);
+
+                                  return date < today;
+                                }}
                                 initialFocus
                               />
                             </PopoverContent>
                           </Popover>
+                          <FormDescription>
+                            Select Last day of holiday.
+                          </FormDescription>
                         </FormItem>
                       );
                     }}

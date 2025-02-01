@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { CheckAvailibility } from "@/actions/check-availibility";
+import { CheckAvailibilityAndHolidays } from "@/actions/check-availibility-and-holidays";
 import { Booking } from "@/constants/index.c";
 import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
@@ -9,7 +9,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest): Promise<NextResponse> {
   await ConnectToDatabase();
   try {
-    const { success, message, request, amount } = await CheckAvailibility(req);
+    const { success, message, request, amount } =
+      await CheckAvailibilityAndHolidays(req);
 
     if (!success) {
       return NextResponse.json({ success, message });

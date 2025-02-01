@@ -2,10 +2,11 @@
 import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
 import CampsitesDb from "@/database/models/campsites";
+import HolidayDb from "@/database/models/holiday";
 import { format } from "date-fns";
 import { NextRequest } from "next/server";
 
-export const CheckAvailibility = async (
+export const CheckAvailibilityAndHolidays = async (
   request: NextRequest
 ): Promise<{
   success: boolean;
@@ -19,8 +20,52 @@ export const CheckAvailibility = async (
 
     const startOfDay = new Date(body.checkInAndOutDate.form);
     const endOfDay = new Date(body.checkInAndOutDate.form);
+    const checkOutDay = new Date(body.checkInAndOutDate.to);
     startOfDay.setHours(0, 0, 0, 1);
     endOfDay.setHours(23, 59, 59, 999);
+
+    const holidays = await HolidayDb.findOne({
+      $or: [
+        {
+          start_date: { $lte: startOfDay },
+          end_date: { $gte: checkOutDay },
+        },
+        {
+          start_date: { $lte: new Date(body.checkInAndOutDate.form) },
+          end_date: { $gte: new Date(body.checkInAndOutDate.form) },
+        },
+        {
+          start_date: { $lte: new Date(body.checkInAndOutDate.to) },
+          end_date: { $gte: new Date(body.checkInAndOutDate.to) },
+        },
+        {
+          start_date: { $gte: new Date(body.checkInAndOutDate.form) },
+          end_date: { $lte: new Date(body.checkInAndOutDate.to) },
+        },
+      ],
+    });
+
+    console.log({
+      holidays,
+      holiday: new Date("2025-01-01T00:00:00.000Z") <= startOfDay,
+    });
+
+    if (holidays) {
+      return {
+        success: false,
+        message: `${holidays.holiday_name} form ${format(
+          new Date(holidays.start_date as Date),
+          "d MMM yyyy"
+        )} to ${format(
+          new Date(
+            new Date(holidays.end_date).getFullYear(),
+            new Date(holidays.end_date).getMonth(),
+            new Date(holidays.end_date).getDate() - 1 // Subtract 1 day
+          ),
+          "d MMM yyyy"
+        )}`,
+      };
+    }
 
     // Query the database for posts within the specified date range
     const bookings = await BookingsDb.find({
