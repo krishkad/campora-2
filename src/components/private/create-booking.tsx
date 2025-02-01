@@ -37,6 +37,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Booking } from "@/constants/index.c";
 import { v4 as uuidv4 } from "uuid";
+import { useToast } from "@/hooks/use-toast";
 
 const BookingSchema = z.object({
   name: z.string().min(2, "Name must have at least 2 characters"),
@@ -79,6 +80,7 @@ const CreateBooking = ({
       createdAt: new Date(),
     },
   });
+  const { toast } = useToast();
 
   return (
     <Dialog
@@ -149,12 +151,15 @@ const CreateBooking = ({
                             <FormLabel>Check In and Out Date</FormLabel>
                             <Popover>
                               <PopoverTrigger asChild>
-                                <FormControl>
+                                <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
-                                    id="date"
+                                    id="create-booking"
                                     variant={"outline"}
+                                    onClick={() =>
+                                      toast({ title: "Click registered for iphone" })
+                                    }
                                     className={cn(
-                                      "w-full justify-start text-left font-normal",
+                                      "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
                                       !field.value && "text-muted-foreground"
                                     )}
                                   >

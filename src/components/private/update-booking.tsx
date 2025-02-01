@@ -44,6 +44,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 // export interface Booking {
 //     id: number;
@@ -136,6 +137,8 @@ const UpdateBooking = ({
     });
   }, [booking]);
 
+  const { toast } = useToast();
+
   return (
     <Dialog
       open={open}
@@ -198,12 +201,17 @@ const UpdateBooking = ({
                             <FormLabel>Check In and Out Date</FormLabel>
                             <Popover>
                               <PopoverTrigger asChild>
-                                <FormControl>
+                                <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
-                                    id="date"
+                                    id="udpate-booking"
                                     variant={"outline"}
+                                    onClick={() =>
+                                      toast({
+                                        title: "Click registered for iphone",
+                                      })
+                                    }
                                     className={cn(
-                                      "w-full justify-start text-left font-normal",
+                                      "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
                                       !field.value && "text-muted-foreground"
                                     )}
                                   >
@@ -231,11 +239,11 @@ const UpdateBooking = ({
                                 </FormControl>
                               </PopoverTrigger>
                               <PopoverContent
-                                className="z-60 w-auto p-0 pointer-events-auto"
+                                className="z-[9999] w-auto p-0 pointer-events-auto cursor-pointer"
                                 align="start"
                               >
                                 <Calendar
-                                  className="z-60"
+                                  className="z-[99999]"
                                   initialFocus
                                   mode="range"
                                   defaultMonth={field.value?.from}
