@@ -247,7 +247,6 @@ const UpdateBooking = ({
                                     today.setHours(0, 0, 0, 0);
                                     return date < today;
                                   }}
-                                  // {...field}
                                 />
                               </PopoverContent>
                             </Popover>

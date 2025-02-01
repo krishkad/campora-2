@@ -115,9 +115,7 @@ const CreateBooking = ({
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit((data) => {
-                    const randomId = uuidv4();
                     handleCreateBooking({
-                      // _id: randomId,
                       name: data.name,
                       email: data.email,
                       phone: data.phone,
@@ -184,7 +182,7 @@ const CreateBooking = ({
                                 </FormControl>
                               </PopoverTrigger>
                               <PopoverContent
-                                className="z-60 w-auto p-0 pointer-events-auto"
+                                className="z-[9999] w-auto p-0 pointer-events-auto"
                                 align="start"
                               >
                                 <Calendar
@@ -200,7 +198,6 @@ const CreateBooking = ({
                                     today.setHours(0, 0, 0, 0);
                                     return date < today;
                                   }}
-                                  // {...field}
                                 />
                               </PopoverContent>
                             </Popover>
