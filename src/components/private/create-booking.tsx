@@ -186,7 +186,7 @@ const CreateBooking = ({
                                 align="start"
                               >
                                 <Calendar
-                                  className="z-60"
+                                  className="z-[99999]"
                                   initialFocus
                                   mode="range"
                                   defaultMonth={field.value?.from}
