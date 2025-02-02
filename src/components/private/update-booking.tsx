@@ -96,6 +96,7 @@ const UpdateBooking = ({
   onOpenChange: (value: boolean) => void;
 }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
+  const [onTouch, setOnTouch] = useState(false);
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -207,19 +208,27 @@ const UpdateBooking = ({
                                 console.log({ open });
                                 setOpenCalendar(open);
                               }}
-                              key={`${openCalendar ? "open" : "close"}-${form.watch('food')}`}
+                              key={`${openCalendar ? "open" : "close"}-${
+                                form.watch("food") === "Veg" ? "Veg" : "Non-Veg"
+                              }-${openCalendar}`}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
                                     id="create-booking"
                                     variant={"outline"}
-                                    onTouchStart={() => {
+                                    onTouchStart={(e) => {
+                                      e.preventDefault();
+                                      setOnTouch(true);
                                       setOpenCalendar(true); // Ensures the popover opens on touch
                                     }}
-                                    onClick={() =>
-                                      setOpenCalendar(!openCalendar)
-                                    }
+                                    onClick={() => {
+                                      if (onTouch) {
+                                        setOnTouch(false);
+                                        return;
+                                      }
+                                      setOpenCalendar(!openCalendar);
+                                    }}
                                     className={cn(
                                       "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
                                       !field.value && "text-muted-foreground"
@@ -253,7 +262,7 @@ const UpdateBooking = ({
                                 align="start"
                                 side="bottom"
                                 sideOffset={8}
-                                key={`${form.watch('food')}`}
+                                key={`${form.watch("food")}`}
                               >
                                 <Calendar
                                   className="z-[99]"
