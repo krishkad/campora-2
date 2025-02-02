@@ -152,16 +152,18 @@ const CreateBooking = ({
                             <FormLabel>Check In and Out Date</FormLabel>
                             <Popover
                               open={openCalendar}
-                              onOpenChange={setOpenCalendar}
+                              onOpenChange={(open) => {
+                                console.log({ open });
+                                setOpenCalendar(open);
+                              }}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
                                     id="create-booking"
                                     variant={"outline"}
-                                    onTouchStart={(e) => {
-                                      e.preventDefault(); // Prevents duplicate triggering on iPhone
-                                      setOpenCalendar(!openCalendar); // Ensures the popover opens on touch
+                                    onTouchStart={() => {
+                                      setOpenCalendar(true); // Ensures the popover opens on touch
                                     }}
                                     onClick={() =>
                                       setOpenCalendar(!openCalendar)
