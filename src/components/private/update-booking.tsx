@@ -207,7 +207,7 @@ const UpdateBooking = ({
                                 console.log({ open });
                                 setOpenCalendar(open);
                               }}
-                              key={`${openCalendar ? "open" : "close"}`}
+                              key={`${openCalendar ? "open" : "close"}-${form.watch('food')}`}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
