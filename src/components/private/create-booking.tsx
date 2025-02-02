@@ -156,7 +156,9 @@ const CreateBooking = ({
                                     id="create-booking"
                                     variant={"outline"}
                                     onClick={() =>
-                                      toast({ title: "Click registered for iphone" })
+                                      toast({
+                                        title: "Click registered for iphone",
+                                      })
                                     }
                                     className={cn(
                                       "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
@@ -189,12 +191,17 @@ const CreateBooking = ({
                               <PopoverContent
                                 className="z-[9999] w-auto p-0 pointer-events-auto"
                                 align="start"
+                                key={field.value.from.toString()}
                               >
                                 <Calendar
                                   className="z-[99999]"
                                   initialFocus
                                   mode="range"
-                                  defaultMonth={field.value?.from}
+                                  defaultMonth={
+                                    field.value?.from
+                                      ? new Date(field.value.from)
+                                      : new Date()
+                                  }
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}

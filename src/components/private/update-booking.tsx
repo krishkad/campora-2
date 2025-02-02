@@ -239,14 +239,19 @@ const UpdateBooking = ({
                                 </FormControl>
                               </PopoverTrigger>
                               <PopoverContent
-                                className="z-[9999] w-auto p-0 pointer-events-auto cursor-pointer"
+                                className="!z-[9999] w-auto p-0 pointer-events-auto cursor-pointer"
                                 align="start"
+                                key={field.value.from.toString()}
                               >
                                 <Calendar
-                                  className="z-[99999]"
+                                  className="!z-[99999]"
                                   initialFocus
                                   mode="range"
-                                  defaultMonth={field.value?.from}
+                                  defaultMonth={
+                                    field.value?.from
+                                      ? new Date(field.value.from)
+                                      : new Date()
+                                  }
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
