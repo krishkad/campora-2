@@ -194,22 +194,23 @@ const CreateBooking = ({
                                 </FormControl>
                               </PopoverTrigger>
                               <PopoverContent
-                                className="z-[9999] w-auto p-0 pointer-events-auto"
+                                className="z-[99] w-auto p-0 pointer-events-auto"
                                 align="start"
                                 key={field.value.from.toString()}
                               >
                                 <Calendar
+                                className="z-[99]"
                                   initialFocus
                                   mode="range"
                                   defaultMonth={field.value?.from}
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
-                                  disabled={(date) => {
-                                    const today = new Date();
-                                    today.setHours(0, 0, 0, 0);
-                                    return date < today;
-                                  }}
+                                  // disabled={(date) => {
+                                  //   const today = new Date();
+                                  //   today.setHours(0, 0, 0, 0);
+                                  //   return date < today;
+                                  // }}
                                 />
                               </PopoverContent>
                             </Popover>
