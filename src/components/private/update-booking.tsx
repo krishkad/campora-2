@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -94,6 +94,7 @@ const UpdateBooking = ({
   open: boolean;
   onOpenChange: (value: boolean) => void;
 }) => {
+  const [openCalendar, setOpenCalendar] = useState(false);
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -199,16 +200,24 @@ const UpdateBooking = ({
                         return (
                           <FormItem className="flex flex-col gap-1">
                             <FormLabel>Check In and Out Date</FormLabel>
-                            <Popover>
+                            <Popover
+                              open={openCalendar}
+                              onOpenChange={(open) => {
+                                console.log({ open });
+                                setOpenCalendar(open);
+                              }}
+                              key={openCalendar ? "open" : "close"}
+                            >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
-                                    id="udpate-booking"
+                                    id="create-booking"
                                     variant={"outline"}
+                                    onTouchStart={() => {
+                                      setOpenCalendar(true); // Ensures the popover opens on touch
+                                    }}
                                     onClick={() =>
-                                      toast({
-                                        title: "Click registered for iphone",
-                                      })
+                                      setOpenCalendar(!openCalendar)
                                     }
                                     className={cn(
                                       "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
@@ -239,27 +248,24 @@ const UpdateBooking = ({
                                 </FormControl>
                               </PopoverTrigger>
                               <PopoverContent
-                                className="!z-[9999] w-auto p-0 pointer-events-auto cursor-pointer"
+                                className="z-[99] w-auto p-0 pointer-events-auto"
                                 align="start"
-                                key={field.value.from.toString()}
+                                side="bottom"
+                                sideOffset={8}
                               >
                                 <Calendar
-                                  className="!z-[99999]"
+                                  className="z-[99]"
                                   initialFocus
                                   mode="range"
-                                  defaultMonth={
-                                    field.value?.from
-                                      ? new Date(field.value.from)
-                                      : new Date()
-                                  }
+                                  defaultMonth={field.value?.from || new Date()} // Fix
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
-                                  // disabled={(date) => {
-                                  //   const today = new Date();
-                                  //   today.setHours(0, 0, 0, 0);
-                                  //   return date < today;
-                                  // }}
+                                  disabled={(date) => {
+                                    const today = new Date();
+                                    today.setHours(0, 0, 0, 0);
+                                    return date < today;
+                                  }}
                                 />
                               </PopoverContent>
                             </Popover>
