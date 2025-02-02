@@ -63,6 +63,7 @@ const CreateBooking = ({
   handleCreateBooking: (value: Partial<Booking>) => void;
 }) => {
   const [open, setOpen] = useState(false);
+  const [openCalendar, setOpenCalendar] = useState(false);
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -149,17 +150,21 @@ const CreateBooking = ({
                         return (
                           <FormItem className="flex flex-col gap-1">
                             <FormLabel>Check In and Out Date</FormLabel>
-                            <Popover>
+                            <Popover
+                              open={openCalendar}
+                              onOpenChange={setOpenCalendar}
+                            >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
                                   <Button
                                     id="create-booking"
                                     variant={"outline"}
-                                    onClick={() =>
+                                    onClick={() => {
+                                      setOpenCalendar(!openCalendar);
                                       toast({
                                         title: "Click registered for iphone",
-                                      })
-                                    }
+                                      });
+                                    }}
                                     className={cn(
                                       "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
                                       !field.value && "text-muted-foreground"
@@ -194,14 +199,9 @@ const CreateBooking = ({
                                 key={field.value.from.toString()}
                               >
                                 <Calendar
-                                  className="z-[99999]"
                                   initialFocus
                                   mode="range"
-                                  defaultMonth={
-                                    field.value?.from
-                                      ? new Date(field.value.from)
-                                      : new Date()
-                                  }
+                                  defaultMonth={field.value?.from}
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
