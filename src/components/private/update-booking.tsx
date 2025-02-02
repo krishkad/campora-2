@@ -207,7 +207,7 @@ const UpdateBooking = ({
                                 console.log({ open });
                                 setOpenCalendar(open);
                               }}
-                              key={`${openCalendar ? "open" : "close"}-${form.watch('food')}`}
+                              key={`${openCalendar ? "open" : "close"}`}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
@@ -253,6 +253,7 @@ const UpdateBooking = ({
                                 align="start"
                                 side="bottom"
                                 sideOffset={8}
+                                key={`${form.watch('food')}`}
                               >
                                 <Calendar
                                   className="z-[99]"
