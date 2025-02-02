@@ -45,6 +45,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { fromJSON } from "postcss";
 
 // export interface Booking {
 //     id: number;
@@ -206,7 +207,7 @@ const UpdateBooking = ({
                                 console.log({ open });
                                 setOpenCalendar(open);
                               }}
-                              key={openCalendar ? "open" : "close"}
+                              key={`${openCalendar ? "open" : "close"}-${form.watch('food')}`}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
