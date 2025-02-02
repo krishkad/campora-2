@@ -159,7 +159,10 @@ const CreateBooking = ({
                                   <Button
                                     id="create-booking"
                                     variant={"outline"}
-                                    onTouchStart={() => setOpenCalendar(!openCalendar)} // Fix for iPhone
+                                    onTouchStart={(e) => {
+                                      e.preventDefault(); // Prevents duplicate triggering on iPhone
+                                      setOpenCalendar(!openCalendar); // Ensures the popover opens on touch
+                                    }}
                                     onClick={() =>
                                       setOpenCalendar(!openCalendar)
                                     }
