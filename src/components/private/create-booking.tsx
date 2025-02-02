@@ -159,12 +159,10 @@ const CreateBooking = ({
                                   <Button
                                     id="create-booking"
                                     variant={"outline"}
-                                    onClick={() => {
-                                      setOpenCalendar(!openCalendar);
-                                      toast({
-                                        title: "Click registered for iphone",
-                                      });
-                                    }}
+                                    onTouchStart={() => setOpenCalendar(true)} // Fix for iPhone
+                                    onClick={() =>
+                                      setOpenCalendar(!openCalendar)
+                                    }
                                     className={cn(
                                       "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
                                       !field.value && "text-muted-foreground"
@@ -196,21 +194,22 @@ const CreateBooking = ({
                               <PopoverContent
                                 className="z-[99] w-auto p-0 pointer-events-auto"
                                 align="start"
-                                key={field.value.from.toString()}
+                                side="bottom"
+                                sideOffset={8}
                               >
                                 <Calendar
-                                className="z-[99]"
+                                  className="z-[99]"
                                   initialFocus
                                   mode="range"
-                                  defaultMonth={field.value?.from}
+                                  defaultMonth={field.value?.from || new Date()} // Fix
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   numberOfMonths={2}
-                                  // disabled={(date) => {
-                                  //   const today = new Date();
-                                  //   today.setHours(0, 0, 0, 0);
-                                  //   return date < today;
-                                  // }}
+                                  disabled={(date) => {
+                                    const today = new Date();
+                                    today.setHours(0, 0, 0, 0);
+                                    return date < today;
+                                  }}
                                 />
                               </PopoverContent>
                             </Popover>
@@ -218,6 +217,7 @@ const CreateBooking = ({
                         );
                       }}
                     />
+
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
                       <FormField
                         control={form.control}
