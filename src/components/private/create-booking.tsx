@@ -156,6 +156,7 @@ const CreateBooking = ({
                                 console.log({ open });
                                 setOpenCalendar(open);
                               }}
+                              key={openCalendar ? "open": "close"}
                             >
                               <PopoverTrigger asChild>
                                 <FormControl className="pointer-events-auto cursor-pointer">
