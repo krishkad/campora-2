@@ -226,6 +226,10 @@ const UpdateBooking = ({
                                     if (!isTouch)
                                       setOpenCalendar(!openCalendar);
                                   }}
+                                  className={cn(
+                                    "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
+                                    !field.value && "text-muted-foreground"
+                                  )}
                                 >
                                   <CalendarIcon />
                                   {field.value?.from
@@ -243,7 +247,7 @@ const UpdateBooking = ({
                               </FormControl>
                             </PopoverTrigger>
                             <PopoverContent
-                              className="z-[9999]"
+                              className="z-[9999] w-auto pointer-events-auto"
                               align="start"
                               side="bottom"
                               sideOffset={8}
@@ -251,6 +255,7 @@ const UpdateBooking = ({
                               <Calendar
                                 mode="range"
                                 selected={field.value}
+                                defaultMonth={field.value.from ? field.value.from : new Date()}
                                 onSelect={field.onChange}
                                 numberOfMonths={2}
                                 disabled={(date) => date < new Date()}
