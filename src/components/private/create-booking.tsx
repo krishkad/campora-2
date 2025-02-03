@@ -169,7 +169,7 @@ const CreateBooking = ({
                                   variant="outline"
                                   onTouchEnd={(e) => {
                                     e.preventDefault();
-                                    setOpenCalendar(true);
+                                    setOpenCalendar(!openCalendar);
                                   }}
                                   onClick={() => {
                                     if (!isTouch)
