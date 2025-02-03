@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -64,6 +64,16 @@ const CreateBooking = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [openCalendar, setOpenCalendar] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  // Detect if device is touch-based (for iOS/Android handling)
+  useEffect(() => {
+    const handleTouch = () => setIsTouch(true);
+    window.addEventListener("touchstart", handleTouch, { passive: true });
+
+    return () => window.removeEventListener("touchstart", handleTouch);
+  }, []);
+
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -146,82 +156,71 @@ const CreateBooking = ({
                     <FormField
                       control={form.control}
                       name="checkInAndOutDate"
-                      render={({ field }) => {
-                        return (
-                          <FormItem className="flex flex-col gap-1">
-                            <FormLabel>Check In and Out Date</FormLabel>
-                            <Popover
-                              open={openCalendar}
-                              onOpenChange={(open) => {
-                                console.log({ open });
-                                setOpenCalendar(open);
-                              }}
-                              key={openCalendar ? "open": "close"}
-                            >
-                              <PopoverTrigger asChild>
-                                <FormControl className="pointer-events-auto cursor-pointer">
-                                  <Button
-                                    id="create-booking"
-                                    variant={"outline"}
-                                    onTouchStart={() => {
-                                      setOpenCalendar(true); // Ensures the popover opens on touch
-                                    }}
-                                    onClick={() =>
-                                      setOpenCalendar(!openCalendar)
-                                    }
-                                    className={cn(
-                                      "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
-                                      !field.value && "text-muted-foreground"
-                                    )}
-                                  >
-                                    <CalendarIcon />
-                                    {field.value?.from ? (
-                                      field.value.to ? (
-                                        <>
-                                          {format(
-                                            field.value.from,
-                                            "LLL dd, y"
-                                          )}{" "}
-                                          -{" "}
-                                          {format(field.value.to, "LLL dd, y")}
-                                        </>
-                                      ) : (
-                                        format(
-                                          new Date(field.value.from),
-                                          "LLL dd, y"
-                                        )
-                                      )
-                                    ) : (
-                                      <span>Pick a date</span>
-                                    )}
-                                  </Button>
-                                </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent
-                                className="z-[99] w-auto p-0 pointer-events-auto"
-                                align="start"
-                                side="bottom"
-                                sideOffset={8}
-                              >
-                                <Calendar
-                                  className="z-[99]"
-                                  initialFocus
-                                  mode="range"
-                                  defaultMonth={field.value?.from || new Date()} // Fix
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  numberOfMonths={2}
-                                  disabled={(date) => {
-                                    const today = new Date();
-                                    today.setHours(0, 0, 0, 0);
-                                    return date < today;
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Check In and Out Date</FormLabel>
+                          <Popover
+                            open={openCalendar}
+                            onOpenChange={setOpenCalendar}
+                          >
+                            <PopoverTrigger asChild>
+                              <FormControl>
+                                <Button
+                                  variant="outline"
+                                  onTouchEnd={(e) => {
+                                    e.preventDefault();
+                                    setOpenCalendar(true);
                                   }}
-                                />
-                              </PopoverContent>
-                            </Popover>
-                          </FormItem>
-                        );
-                      }}
+                                  onClick={() => {
+                                    if (!isTouch)
+                                      setOpenCalendar(!openCalendar);
+                                  }}
+                                  className={cn(
+                                    "w-full justify-start text-left font-normal pointer-events-auto cursor-pointer",
+                                    !field.value && "text-muted-foreground"
+                                  )}
+                                >
+                                  <CalendarIcon />
+                                  {field.value?.from
+                                    ? field.value.to
+                                      ? `${format(
+                                          field.value.from,
+                                          "LLL dd, y"
+                                        )} - ${format(
+                                          field.value.to,
+                                          "LLL dd, y"
+                                        )}`
+                                      : format(field.value.from, "LLL dd, y")
+                                    : "Pick a date"}
+                                </Button>
+                              </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="z-[9999] w-auto pointer-events-auto"
+                              align="start"
+                              side="bottom"
+                              sideOffset={8}
+                            >
+                              <Calendar
+                                mode="range"
+                                selected={field.value}
+                                defaultMonth={
+                                  field.value.from
+                                    ? field.value.from
+                                    : new Date()
+                                }
+                                onSelect={field.onChange}
+                                numberOfMonths={2}
+                                disabled={(date) => {
+                                  const today = new Date();
+                                  today.setHours(0,0,0,0);
+                                  return date <  today;
+                                }}
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </FormItem>
+                      )}
                     />
 
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">

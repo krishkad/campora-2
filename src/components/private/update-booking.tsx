@@ -255,10 +255,18 @@ const UpdateBooking = ({
                               <Calendar
                                 mode="range"
                                 selected={field.value}
-                                defaultMonth={field.value.from ? field.value.from : new Date()}
+                                defaultMonth={
+                                  field.value.from
+                                    ? field.value.from
+                                    : new Date()
+                                }
                                 onSelect={field.onChange}
                                 numberOfMonths={2}
-                                disabled={(date) => date < new Date()}
+                                disabled={(date) => {
+                                  const today = new Date();
+                                  today.setHours(0, 0, 0, 0);
+                                  return date < today;
+                                }}
                               />
                             </PopoverContent>
                           </Popover>
