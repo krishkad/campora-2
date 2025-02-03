@@ -220,7 +220,7 @@ const UpdateBooking = ({
                                   variant="outline"
                                   onTouchEnd={(e) => {
                                     e.preventDefault();
-                                    setOpenCalendar(true);
+                                    setOpenCalendar(!openCalendar);
                                   }}
                                   onClick={() => {
                                     if (!isTouch)
