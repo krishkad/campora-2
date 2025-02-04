@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import useFetchData from "@/hooks/use-fetchdata";
 import { IHoliday } from "@/constants/index.c";
 import { useToast } from "@/hooks/use-toast";
@@ -309,7 +309,7 @@ const Settings = () => {
                       <div className="w-full space-y-0.5">
                         <Label>End Date</Label>
                         <p className="font-medu">
-                          {format(holi.end_date, "dd MMM yyyy")}
+                          {format(subDays(holi.end_date, 1), "dd MMM yyyy")}
                         </p>
                       </div>
                     </div>

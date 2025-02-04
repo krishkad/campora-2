@@ -44,8 +44,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { fromJSON } from "postcss";
 
 // export interface Booking {
 //     id: number;
@@ -149,7 +147,6 @@ const UpdateBooking = ({
     });
   }, [booking]);
 
-  const { toast } = useToast();
 
   return (
     <Dialog
