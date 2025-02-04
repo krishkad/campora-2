@@ -173,7 +173,11 @@ const BookingRoute = () => {
   const handleCreateBooking = async (bookingProp: Partial<Booking>) => {
     if (!bookingProp) return;
 
-    const { booking: newBooking, error } = await createBooking(bookingProp);
+    const {
+      booking: newBooking,
+      error,
+      title,
+    } = await createBooking(bookingProp);
     if (error === null && newBooking) {
       setBookings((bookings) => [...bookings, newBooking]);
       toast({
@@ -184,8 +188,8 @@ const BookingRoute = () => {
 
     if (error && newBooking === null) {
       toast({
-        title: error,
-        description: "Failed to create booking",
+        title: title ? title : error,
+        description: title ? error : "Failed to create booking",
       });
     }
   };

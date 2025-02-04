@@ -4,12 +4,17 @@ import axios from "axios";
 export async function createBooking(newBooking: Partial<Booking>): Promise<{
   booking: Booking | null;
   error: string | null;
+  title?: string | null;
 }> {
   try {
     const response = await axios.post("/api/bookings/create", newBooking);
-    console.log({response: response.data});
+    console.log({ response: response.data });
     if (!response.data.success as boolean) {
-      return { booking: null, error: response.data.message };
+      return {
+        booking: null,
+        error: response.data.message,
+        title: response.data.title ? response.data.title : null,
+      };
     }
 
     if (response.data.success) {

@@ -3,7 +3,7 @@ import { ConnectToDatabase } from "@/database/db";
 import BookingsDb from "@/database/models/bookings";
 import CampsitesDb from "@/database/models/campsites";
 import HolidayDb from "@/database/models/holiday";
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
 export const CheckAvailibilityAndHolidays = async (
@@ -13,6 +13,7 @@ export const CheckAvailibilityAndHolidays = async (
   message: string;
   request?: any;
   amount?: number;
+  title?: string | null;
 }> => {
   try {
     await ConnectToDatabase();
@@ -53,17 +54,13 @@ export const CheckAvailibilityAndHolidays = async (
     if (holidays) {
       return {
         success: false,
-        message: `${holidays.holiday_name} form ${format(
+        title: `Resort Closed for ${holidays.holiday_name}`,
+        message: `We’ll be closed from ${format(
           new Date(holidays.start_date as Date),
           "d MMM yyyy"
-        )} to ${format(
-          new Date(
-            new Date(holidays.end_date).getFullYear(),
-            new Date(holidays.end_date).getMonth(),
-            new Date(holidays.end_date).getDate() - 1 // Subtract 1 day
-          ),
-          "d MMM yyyy"
-        )}`,
+        )} to ${format(subDays(holidays.end_date, 1), "d MMM yyyy")} for ${
+          holidays.holiday_name
+        }. See you soon!`,
       };
     }
 
