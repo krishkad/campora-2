@@ -8,7 +8,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const { success, message, title } = await CheckAvailibilityAndHolidays(req);
 
     if (!success) {
-      console.log({ success, message, title });
       return NextResponse.json({
         success,
         message,

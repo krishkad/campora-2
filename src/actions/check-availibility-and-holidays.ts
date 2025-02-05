@@ -46,10 +46,7 @@ export const CheckAvailibilityAndHolidays = async (
       ],
     });
 
-    console.log({
-      holidays,
-      holiday: new Date("2025-01-01T00:00:00.000Z") <= startOfDay,
-    });
+  
 
     if (holidays) {
       return {

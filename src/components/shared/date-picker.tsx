@@ -17,17 +17,21 @@ import dayjs from "dayjs";
 
 interface DatePickerTypes extends React.HTMLAttributes<HTMLDivElement> {
   ButtonClassName?: string;
+  date: DateRange | undefined;
+  setDate: (value: DateRange | undefined) => void;
 }
 
 export default function DatePicker({
   className,
   ButtonClassName,
+  date,
+  setDate,
 }: DatePickerTypes) {
   // Use useState with lazy initialization
-  const [date, setDate] = React.useState<DateRange | undefined>(() => ({
-    from: new Date(dayjs().year(), dayjs().month(), dayjs().date()),
-    to: addDays(new Date(dayjs().year(), dayjs().month(), dayjs().date()), 1),
-  }));
+  // const [date, setDate] = React.useState<DateRange | undefined>(() => ({
+  //   from: new Date(dayjs().year(), dayjs().month(), dayjs().date()),
+  //   to: addDays(new Date(dayjs().year(), dayjs().month(), dayjs().date()), 1),
+  // }));
 
   const formattedDate = React.useMemo(() => {
     if (date?.from) {
