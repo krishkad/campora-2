@@ -11,10 +11,12 @@ import {
 import { cn } from "@/lib/utils";
 
 const NumberSelect = ({
+  placeHolder,
   selectValueClassName,
   numberOfGuest,
   setNumberOfGuest,
 }: {
+  placeHolder?: string;
   selectValueClassName?: string;
   numberOfGuest: number;
   setNumberOfGuest: (value: number) => void;
@@ -30,7 +32,7 @@ const NumberSelect = ({
         <SelectTrigger className={cn("w-full", selectValueClassName)}>
           <SelectValue
             className={cn("bg-white")}
-            placeholder={numberOfGuest}
+            placeholder={numberOfGuest ?? placeHolder}
             defaultValue={numberOfGuest}
           />
         </SelectTrigger>

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import DatePicker from "./date-picker";
 import { Input } from "../ui/input";
 import NumberSelect from "./number-select";
@@ -9,8 +9,16 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { PhoneIcon, UserIcon } from "lucide-react";
 import { MdEmail } from "react-icons/md";
+import { addDays } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 const Booking = () => {
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 1),
+  });
+  const [numberOfGuest, setNumberOfGuest] = useState(0);
+  const [numberOfKids, setNumberOfKids] = useState(0);
   return (
     <div className="w-full">
       <div className="w-full">
@@ -33,7 +41,11 @@ const Booking = () => {
       <div className="max-w-3xl mx-auto px-5 py-8">
         <div className="w-full border p-3 bg-slate-100 rounded-xl">
           <div className="w-full">
-            <DatePicker ButtonClassName="h-12 rounded-md" />
+            <DatePicker
+              ButtonClassName="h-12 rounded-md"
+              date={date}
+              setDate={setDate}
+            />
           </div>
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
             <div className="relative w-full h-max">
@@ -63,12 +75,16 @@ const Booking = () => {
             <div className="w-full grid grid-cols-2 gap-5">
               <div className="w-full space-y-1">
                 <NumberSelect
+                  numberOfGuest={numberOfKids}
+                  setNumberOfGuest={setNumberOfKids}
                   placeHolder={"no. of Kids"}
                   selectValueClassName="h-12"
                 />
               </div>
               <div className="w-full space-y-1">
                 <NumberSelect
+                  numberOfGuest={numberOfGuest}
+                  setNumberOfGuest={setNumberOfGuest}
                   placeHolder={"no. of Guest"}
                   selectValueClassName="h-12"
                 />
